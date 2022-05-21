@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+*.local
+*.log*
+dist/
+deploy_versions/
+.temp/
+.rn_temp/

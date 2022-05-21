@@ -1,0 +1,19 @@
+{
+  "cSpell.allowCompoundWords": true,
+  "cSpell.words": [
+    "avenir",
+    "nutui",
+    "pinia",
+    "pnpm",
+    "pxtransform",
+    "styl",
+    "tarojs",
+    "weapp"
+  ],
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  }
+}
