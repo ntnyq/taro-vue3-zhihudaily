@@ -1,3 +1,9 @@
+/**
+ * @file 页面配置
+ * @module pages/index/index
+ */
+
 export default definePageConfig({
-  navigationBarTitleText: `首页`,
+  navigationBarTitleText: `日推`,
+  enablePullDownRefresh: true,
 })

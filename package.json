@@ -45,6 +45,7 @@
     "@tarojs/plugin-html": "3.4.9",
     "@tarojs/runtime": "3.4.9",
     "@tarojs/taro": "3.4.9",
+    "axios-miniprogram": "2.0.0-rc-2",
     "pinia": "^2.0.14",
     "taro-plugin-pinia": "^1.0.0",
     "vue": "^3.0.0"
@@ -69,7 +70,10 @@
   },
   "eslintConfig": {
     "root": true,
-    "extends": "@ntnyq"
+    "extends": "@ntnyq",
+    "rules": {
+      "vue/prefer-true-attribute-shorthand": "off"
+    }
   },
   "browserslist": [
     "last 3 versions",

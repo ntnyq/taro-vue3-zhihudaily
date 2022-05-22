@@ -1,7 +1,15 @@
+/**
+ * @file config
+ */
+
+const path = require(`path`)
+
+const resolve = (...args) => path.resolve(__dirname, `..`, ...args)
+
 const config = {
   projectName: `starter-vue-wechat-app`,
   date: `2022-5-21`,
-  designWidth: 375,
+  designWidth: 750,
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,
@@ -10,15 +18,23 @@ const config = {
   },
   sourceRoot: `src`,
   outputRoot: `dist`,
-  plugins: [`@tarojs/plugin-html`, `taro-plugin-pinia`],
-  defineConstants: {},
+  plugins: [
+    `@tarojs/plugin-html`,
+    `taro-plugin-pinia`,
+  ],
+  defineConstants: {
+    API_HOST: `"https://news-at.zhihu.com/api/4"`,
+  },
   copy: {
     patterns: [],
     options: {},
   },
   framework: `vue3`,
   sass: {
-    data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`,
+    resource: [
+      resolve(`src/assets/styles/core.scss`),
+    ],
+    data: `@import "@nutui/nutui-taro/dist/styles/variables.scss"; `,
   },
   mini: {
     postcss: {
