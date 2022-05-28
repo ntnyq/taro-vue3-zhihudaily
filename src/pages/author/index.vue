@@ -95,15 +95,5 @@ const contributors = ref([
       }
     }
   }
-
-  .nut-divider {
-    font-size: 12px;
-    color: #ccc;
-
-    &:before,
-    &:after {
-      border: 1px solid #efefef;
-    }
-  }
 }
 </style>

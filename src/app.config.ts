@@ -4,12 +4,12 @@
 
 export default defineAppConfig({
   pages: [
+    `pages/detail/index`,
     `pages/index/index`,
+    `pages/user/index`,
     `pages/author/index`,
     `pages/thank/index`,
     `pages/copy/index`,
-    `pages/user/index`,
-    `pages/detail/index`,
   ],
   window: {
     backgroundTextStyle: `light`,

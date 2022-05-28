@@ -1,11 +1,9 @@
 <template>
   <view class="page-user">
     <view class="user-header">
-      <view v-if="hasAuth" class="has-auth">
-        <nut-avatar icon="{avatarUrl}" size="large" />
-        <text class="has-auth-username">
-          {{ nickname }}
-        </text>
+      <view v-if="user.hasAuth" class="has-auth">
+        <open-data class="user-avatar" type="userAvatarUrl" />
+        <open-data class="user-name" type="userNickName" />
       </view>
       <view v-else class="no-auth">
         <text class="no-auth-text">
@@ -56,15 +54,16 @@
 
 <script lang="ts" setup>
 import Taro from '@tarojs/taro'
-import { ref } from 'vue'
+import { useUserStore } from '../../stores/user'
 
-const nickname = ref(``)
-const hasAuth = ref(false)
+const user = useUserStore()
 
-const onGetUserInfo = async (userInfo: any) => {
-  console.log({ userInfo })
+const onGetUserInfo = async (evt: any) => {
+  const { userInfo = {} } = evt.detail || {}
+  user.setUserInfo(userInfo)
 }
 const onClearAllCache = async () => {
+  user.clearUserInfo()
   await Taro.clearStorage()
   Taro.showToast({ title: `清理成功`, icon: `success` })
 }
@@ -110,15 +109,20 @@ const onCellClick = (key: string) => {
         width: 100%;
         padding: 0 30px;
 
-        &-avatar {
+        .user-avatar {
           display: block;
           width: 120px;
           height: 120px;
+          margin-right: 20px;
+          border-radius: 50%;
+          padding: 4px;
+          border: 1px solid #f2f3f4;
         }
 
-        &-username {
+        .user-name {
           flex: 1 0;
           margin-left: 20px;
+          font-size: 40px;
           color: #666;
         }
       }

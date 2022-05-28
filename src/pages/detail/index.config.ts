@@ -3,7 +3,7 @@
  * @module pages/detail/index
  */
 
-definePageConfig({
+export default definePageConfig({
   enableShareAppMessage: true,
   enableShareTimeline: true,
 })
