@@ -19,7 +19,6 @@
         </nut-button>
       </view>
     </view>
-    <!-- <nut-toast v-model:visible="show" :msg="msg" :type="type" :cover="cover" /> -->
     <view class="user-section">
       <view class="user-section-title">
         <view class="user-section-title-line" />
@@ -39,7 +38,11 @@
       <nut-cell-group>
         <nut-cell title="意见反馈" @click="onCellClick(`feedback`)">
           <view class="feedback-wrap">
-            <nut-button class="feedback-btn" open-type="feedback">
+            <nut-button
+              class="feedback-btn"
+              hover-class="none"
+              open-type="feedback"
+            >
               意见反馈
             </nut-button>
           </view>
@@ -57,7 +60,6 @@ import Taro from '@tarojs/taro'
 import { useUserStore } from '../../stores/user'
 
 const user = useUserStore()
-
 const onGetUserInfo = async (evt: any) => {
   const { userInfo = {} } = evt.detail || {}
   user.setUserInfo(userInfo)

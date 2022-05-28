@@ -72,20 +72,33 @@
         </text>
       </button>
     </view>
+    <poster-builder
+      v-if="posterConfig"
+      :config="posterConfig"
+      :show-loading="true"
+      @success="onPosterGenerateSuccess"
+    />
   </view>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import {
+  authorize,
+  getSetting,
+  openSetting,
   previewImage,
+  saveImageToPhotosAlbum,
   setNavigationBarTitle,
+  showModal,
   showToast,
   useRouter,
   useShareAppMessage,
   useShareTimeline,
 } from '@tarojs/taro'
+import PosterBuilder from '../../components/PosterBuilder/index.vue'
 import { getNewsDetail } from '../../services'
+import { formatTime } from '../../utils'
 import { normalizeStory } from '../../utils/translators'
 import type { Question } from '../../types'
 
@@ -95,6 +108,8 @@ const newsImage = ref(``)
 const newsTitle = ref(``)
 const questions = ref<Question[]>([])
 const images = ref<string[]>([])
+const nickName = ``
+const posterConfig = ref<any>(null)
 
 const fetchNewsDetail = async (id: string) => {
   try {
@@ -117,8 +132,148 @@ const onPreviewImages = async (image: string) => {
     showToast({ title: `预览图片失败，请重试`, icon: `error` })
   }
 }
-const onGeneratePoster = async () => {
 
+const onGeneratePoster = async () => {
+  const time = formatTime(new Date(), `yyyy年MM月dd日`)
+  const width = 750
+  const height = 1100
+  posterConfig.value = {
+    width,
+    height,
+    backgroundColor: `#ffffff`,
+    blocks: [
+      {
+        y: height - 120,
+        x: 0,
+        width: 750,
+        height: 120,
+        backgroundColor: `#eccdb0`,
+        zIndex: 10,
+      },
+    ],
+    images: [
+      {
+        x: 0,
+        y: 0,
+        width: 750,
+        height: 450,
+        url: newsImage.value,
+      },
+    ],
+    texts: [
+      {
+        x: 40,
+        y: 470,
+        width: 500,
+        fontSize: 36,
+        lineHeight: 50,
+        lineNum: 2,
+        color: `#333333`,
+        text: newsTitle.value,
+      },
+      {
+        x: 40,
+        y: 600,
+        color: `#999999`,
+        text: `来自：「知乎日报」`,
+      },
+      {
+        x: 40,
+        y: 700,
+        width: 300,
+        lineNum: 1,
+        fontSize: 24,
+        color: `#333333`,
+        text: nickName ? `${nickName} - 邀请你来读文章` : `来源: 文章分享`,
+      },
+      {
+        x: 40,
+        y: 750,
+        width: 300,
+        lineNum: 1,
+        fontSize: 24,
+        color: `#333333`,
+        text: `分享于: ${time}`,
+      },
+      {
+        x: width - 40 - 200,
+        y: 700,
+        width: 200,
+        height: 200,
+        fontSize: 32,
+        lineHeight: 48,
+        lineNum: 2,
+        color: `#666666`,
+        text: `假装这里是小程序二维码`,
+      },
+      {
+        x: 40,
+        y: height - 90,
+        fontSize: 24,
+        lineHeight: 30,
+        lineNum: 1,
+        color: `#914d4d`,
+        text: `长按小程序码`,
+        zIndex: 20,
+      },
+      {
+        x: 40,
+        y: height - 50,
+        fontSize: 24,
+        lineHeight: 30,
+        lineNum: 1,
+        color: `#914d4d`,
+        text: `进入喔喔日推小程序查看`,
+        zIndex: 20,
+      },
+    ],
+  }
+}
+const saveImage = async (filePath: string) => {
+  try {
+    await saveImageToPhotosAlbum({ filePath })
+    showModal({
+      showCancel: false,
+      title: `图片已保存到系统相册`,
+      content: `快去分享给小伙伴们吧~~`,
+      confirmText: `我知道了`,
+      confirmColor: `#2d8cf0`,
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+const onPosterGenerateSuccess = async (result: { tempFilePath: string }) => {
+  const { authSetting = {} } = await getSetting()
+  const filePath = result.tempFilePath
+  if (!filePath) {
+    return showToast({ title: `图片生成失败，请重试`, icon: `error` })
+  }
+  if (authSetting[`scope.writePhotosAlbum`]) return saveImage(filePath)
+  authorize({
+    scope: `scope.writePhotosAlbum`,
+    success () {
+      saveImage(filePath)
+    },
+    fail () {
+      showModal({
+        title: `提示`,
+        content: `保存图片需要您的授权`,
+        showCancel: true,
+        cancelText: `取消`,
+        cancelColor: `#7f7f7f`,
+        confirmText: `去设置`,
+        confirmColor: `#2d8cf0`,
+        success (res) {
+          if (res.confirm) {
+            openSetting()
+          } else {
+            console.log(`用户点击了取消`)
+          }
+        },
+      })
+    },
+  })
 }
 
 useShareAppMessage(() => ({

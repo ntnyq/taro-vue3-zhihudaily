@@ -62,7 +62,7 @@ const config = {
   h5: {
     publicPath: `/`,
     staticDirectory: `static`,
-    esnextModules: [`nutui-taro`],
+    esnextModules: [`nutui-taro`, `poster-builder`],
     postcss: {
       autoprefixer: {
         enable: true,
