@@ -47,7 +47,7 @@
                 :src="node.content"
                 mode="widthFix"
                 class="p-image"
-                @click="onPreviewImages(node.content)"
+                @tap="onPreviewImages(node.content)"
               />
             </view>
           </view>
@@ -287,7 +287,7 @@ useShareTimeline(() => ({
 }))
 
 onMounted(() => {
-  const id = router.params.id || `9748999`
+  const id = router.params.id
   if (!id) return
   newsId.value = id
   fetchNewsDetail(id)
@@ -387,17 +387,11 @@ onMounted(() => {
           right: 0;
           display: block;
           width: 2px;
-          height: 40%;
+          height: 60%;
           background-color: $primary-color;
           transform: translateY(-50%);
         }
       }
-    }
-
-    .at-fab {
-      position: fixed;
-      right: 30px;
-      bottom: 100px;
     }
   }
 

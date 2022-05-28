@@ -4,8 +4,8 @@
 
 export default defineAppConfig({
   pages: [
-    `pages/detail/index`,
     `pages/index/index`,
+    `pages/detail/index`,
     `pages/user/index`,
     `pages/author/index`,
     `pages/thank/index`,

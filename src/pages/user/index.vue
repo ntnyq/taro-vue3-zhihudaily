@@ -38,13 +38,13 @@
       <nut-cell-group>
         <nut-cell title="意见反馈" @click="onCellClick(`feedback`)">
           <view class="feedback-wrap">
-            <nut-button
+            <button
               class="feedback-btn"
               hover-class="none"
               open-type="feedback"
             >
               意见反馈
-            </nut-button>
+            </button>
           </view>
         </nut-cell>
         <nut-cell title="版权声明" @click="onCellClick(`copy`)" />
@@ -171,18 +171,6 @@ const onCellClick = (key: string) => {
           color: #444;
         }
       }
-
-      .at-list {
-        &__item {
-          font-weight: 500;
-          font-size: 24px;
-          color: #666;
-
-          .item-extra__icon-arrow {
-            font-size: 32px;
-          }
-        }
-      }
     }
   }
 
@@ -207,13 +195,14 @@ const onCellClick = (key: string) => {
       line-height: 40px;
       background-color: transparent !important;
       padding: 0;
+      text-align: left;
       border: none;
-      color: #666;
-      font: inherit;
+      font-size: 30px;
+      font-family: inherit;
+      color: #333;
 
-      .nut-button__warp {
-        justify-content: start;
-        text-align: left;
+      &::after {
+        border: none;
       }
     }
 
