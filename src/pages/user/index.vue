@@ -57,7 +57,7 @@
 
 <script lang="ts" setup>
 import Taro from '@tarojs/taro'
-import { useUserStore } from '../../stores/user'
+import { useUserStore } from '@/stores/user'
 
 const user = useUserStore()
 const onGetUserInfo = async (evt: any) => {
@@ -74,7 +74,7 @@ const onCellClick = (key: string) => {
     case `copy`:
     case `author`:
     case `thank`:
-      Taro.navigateTo({ url: `/pages/${key}/index` })
+      Taro.navigateTo({ url: `/packages/user/${key}/index` })
       break
     case `permission`:
       Taro.openSetting()

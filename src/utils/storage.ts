@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
-import type { UserInfo } from '../types'
-import { StorageKey } from '../types'
+import type { UserInfo } from '@/types'
+import { StorageKey } from '@/types'
 
 export function getUserInfo () {
   return Taro.getStorageSync<UserInfo>(StorageKey.userInfo)

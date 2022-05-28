@@ -10,8 +10,8 @@ import {
   NoticeBar,
   Toast,
 } from '@nutui/nutui-taro'
-import { useUserStore } from './stores/user'
-import './app.scss'
+import { useUserStore } from '@/stores/user'
+import '@/app.scss'
 
 const App = createApp({
   onShow () {

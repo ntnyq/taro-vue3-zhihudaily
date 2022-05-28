@@ -1,4 +1,4 @@
-import type { Question } from '../types'
+import type { Question } from '@/types'
 
 /**
  * Get matched String

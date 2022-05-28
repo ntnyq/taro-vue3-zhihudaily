@@ -3,7 +3,7 @@
  * @module services/index
  */
 
-import http from '../utils/request'
+import http from '@/utils/request'
 
 export function getLatestNewsList () {
   return http.get(`/news/latest`)

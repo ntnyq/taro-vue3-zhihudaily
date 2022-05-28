@@ -96,11 +96,11 @@ import {
   useShareAppMessage,
   useShareTimeline,
 } from '@tarojs/taro'
-import PosterBuilder from '../../components/PosterBuilder/index.vue'
-import { getNewsDetail } from '../../services'
-import { formatTime } from '../../utils'
-import { normalizeStory } from '../../utils/translators'
-import type { Question } from '../../types'
+import PosterBuilder from '@/components/PosterBuilder/index.vue'
+import { getNewsDetail } from '@/services'
+import { formatTime } from '@/utils'
+import { normalizeStory } from '@/utils/translators'
+import type { Question } from '@/types'
 
 const router = useRouter()
 const newsId = ref(``)

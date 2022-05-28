@@ -22,6 +22,9 @@ const config = {
     `@tarojs/plugin-html`,
     `taro-plugin-pinia`,
   ],
+  alias: {
+    '@': resolve(`src`),
+  },
   defineConstants: {
     API_HOST: `"https://news-at.zhihu.com/api/4"`,
   },

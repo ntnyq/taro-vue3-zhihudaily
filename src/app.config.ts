@@ -7,9 +7,6 @@ export default defineAppConfig({
     `pages/index/index`,
     `pages/detail/index`,
     `pages/user/index`,
-    `pages/author/index`,
-    `pages/thank/index`,
-    `pages/copy/index`,
   ],
   window: {
     backgroundTextStyle: `light`,
@@ -36,4 +33,16 @@ export default defineAppConfig({
       },
     ],
   },
+  subPackages: [
+    {
+      root: `packages/user`,
+      pages: [
+        `author/index`,
+        `copy/index`,
+        `thank/index`,
+      ],
+      // name: `user`,
+      // independent: true,
+    },
+  ],
 })

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import type { UserInfo } from '../types'
-import { StoreModole } from '../types'
-import * as Storage from '../utils/storage'
+import * as Storage from '@/utils/storage'
+import { StoreModole } from '@/types'
+import type { UserInfo } from '@/types'
 
 export interface IUserState {
   hasAuth: boolean
