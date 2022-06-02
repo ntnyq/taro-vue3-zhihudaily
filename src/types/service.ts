@@ -1,6 +1,6 @@
 
 export interface Story {
-  id: number
+  id: string
   hint: string
   url: string
   title: string
@@ -11,14 +11,13 @@ export interface Story {
 
 export type TopStory = Omit<Story, `images`> & { image: string }
 
+export type StoryMeta = Pick<TopStory, `id`|`title`|`image`>
+
 export interface UserInfo {
   avatarUrl: string
   city: string
-  country: string
-  gender: number
   nickName: string
   province: string
-  language: string
 }
 
 export interface Content {

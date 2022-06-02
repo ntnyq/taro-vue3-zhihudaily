@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import type { UserInfo } from '@/types'
+import type { StoryMeta, UserInfo } from '@/types'
 import { StorageKey } from '@/types'
 
 export function getUserInfo () {
@@ -12,4 +12,16 @@ export function setUserInfo (userInfo: UserInfo) {
 
 export function removeUserInfo () {
   return Taro.removeStorageSync(StorageKey.userInfo)
+}
+
+export function getFavoriteStoryList () {
+  return Taro.getStorageSync<StoryMeta[]>(StorageKey.favoriteList)
+}
+
+export function setFavoriteStoryList (list: StoryMeta[]) {
+  return Taro.setStorageSync(StorageKey.favoriteList, list)
+}
+
+export function removeFavoriteStoryList () {
+  return Taro.removeStorageSync(StorageKey.favoriteList)
 }

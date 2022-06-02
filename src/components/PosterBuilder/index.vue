@@ -68,21 +68,20 @@ export default defineComponent({
      * step2: 初始化 canvas && 获取其 dom 节点和实例
      * @return {Promise} resolve 里返回其 dom 和实例
      */
-    const initCanvas = () =>
-      new Promise<any>(resolve => {
-        setTimeout(() => {
-          const pageInstance = Taro.getCurrentInstance()?.page || {} // 拿到当前页面实例
-          const query = Taro.createSelectorQuery().in(pageInstance) // 确定在当前页面内匹配子元素
-          query
-            .select(`#${canvasId}`)
-            .fields({ node: true, size: true, context: true }, res => {
-              const canvas = res.node
-              const ctx = canvas.getContext(`2d`)
-              resolve({ ctx, canvas })
-            })
-            .exec()
-        }, 300)
-      })
+    const initCanvas = () => new Promise(resolve => {
+      setTimeout(() => {
+        const pageInstance = Taro.getCurrentInstance()?.page || {} // 拿到当前页面实例
+        const query = Taro.createSelectorQuery().in(pageInstance) // 确定在当前页面内匹配子元素
+        query
+          .select(`#${canvasId}`)
+          .fields({ node: true, size: true, context: true }, res => {
+            const canvas = res.node
+            const ctx = canvas.getContext(`2d`)
+            resolve({ ctx, canvas })
+          })
+          .exec()
+      }, 300)
+    })
 
     /**
      * @description 保存绘制的图片
@@ -124,7 +123,7 @@ export default defineComponent({
     const startDrawing = async drawTasks => {
       // TODO: check
       // const configHeight = getHeight(config)
-      const { ctx, canvas } = await initCanvas()
+      const { ctx, canvas } = await initCanvas() as any
 
       canvas.width = width
       canvas.height = height
@@ -187,7 +186,9 @@ export default defineComponent({
 
     // start: 初始化 canvas 实例 && 下载图片资源
     const init = () => {
-      if (props.showLoading) { Taro.showLoading({ mask: true, title: `生成中...` }) }
+      if (props.showLoading) {
+        Taro.showLoading({ mask: true, title: `生成中...` })
+      }
       if (props.config?.images?.length) {
         initImages(props.config.images)
           .then(result => {

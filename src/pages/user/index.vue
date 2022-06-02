@@ -2,18 +2,17 @@
   <view class="page-user">
     <view class="user-header">
       <view v-if="user.hasAuth" class="has-auth">
-        <open-data class="user-avatar" type="userAvatarUrl" />
-        <open-data class="user-name" type="userNickName" />
+        <image class="user-avatar" :src="user.userInfo.avatarUrl" mode="aspectFill" />
+        <span class="username">{{ user.userInfo.nickName }}</span>
       </view>
       <view v-else class="no-auth">
         <text class="no-auth-text">
           授权后，获取个性化内容
         </text>
         <nut-button
-          open-type="getUserInfo"
           type="primary"
           size="small"
-          @getuserinfo="onGetUserInfo"
+          @tap="onGetUserInfo"
         >
           点击授权
         </nut-button>
@@ -60,9 +59,14 @@ import Taro from '@tarojs/taro'
 import { useUserStore } from '@/stores/user'
 
 const user = useUserStore()
-const onGetUserInfo = async (evt: any) => {
-  const { userInfo = {} } = evt.detail || {}
-  user.setUserInfo(userInfo)
+const onGetUserInfo = async () => {
+  try {
+    const res = await Taro.getUserProfile({ desc: `用于展示用户信息` })
+    if (!res.userInfo) return
+    user.setUserInfo(res.userInfo)
+  } catch (err) {
+    console.log(err)
+  }
 }
 const onClearAllCache = async () => {
   user.clearUserInfo()
@@ -74,6 +78,7 @@ const onCellClick = (key: string) => {
     case `copy`:
     case `author`:
     case `thank`:
+    case `favorite`:
       Taro.navigateTo({ url: `/packages/user/${key}/index` })
       break
     case `permission`:
@@ -118,10 +123,10 @@ const onCellClick = (key: string) => {
           margin-right: 20px;
           border-radius: 50%;
           padding: 4px;
-          border: 1px solid #f2f3f4;
+          border: 1px solid #f1f2f3;
         }
 
-        .user-name {
+        .username {
           flex: 1 0;
           margin-left: 20px;
           font-size: 40px;

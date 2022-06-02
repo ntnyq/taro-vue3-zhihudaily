@@ -20,5 +20,8 @@
   },
   "[typescript]": {
     "editor.formatOnSave": false
+  },
+  "[vue]": {
+    "editor.formatOnSave": false
   }
 }

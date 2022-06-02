@@ -40,6 +40,7 @@ export default defineAppConfig({
         `author/index`,
         `copy/index`,
         `thank/index`,
+        `favorite/index`,
       ],
       // name: `user`,
       // independent: true,

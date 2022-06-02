@@ -57,21 +57,28 @@
     <nut-divider :dashed="true" :hairline="true">
       没有更多了
     </nut-divider>
-    <view class="detail-action">
-      <button hover-class="none" class="action-item" open-type="share">
-        <nut-icon class="action-item-icon" name="share" />
-        <text class="action-item-text">
-          分享给好友
-        </text>
-        <view class="action-item-line" />
-      </button>
-      <button hover-class="none" class="action-item" @click="onGeneratePoster">
-        <nut-icon class="action-item-icon" name="photograph" />
-        <text class="action-item-text">
-          生成海报
-        </text>
-      </button>
-    </view>
+    <template v-if="newsImage">
+      <view class="detail-collection">
+        <nut-checkbox v-model="isChecked" icon-size="20" @change="onToggleFavoriteStory">
+          收藏此文章
+        </nut-checkbox>
+      </view>
+      <view class="detail-action">
+        <button hover-class="none" class="action-item" open-type="share">
+          <nut-icon class="action-item-icon" name="share" />
+          <text class="action-item-text">
+            分享给好友
+          </text>
+          <view class="action-item-line" />
+        </button>
+        <button hover-class="none" class="action-item" @click="onGeneratePoster">
+          <nut-icon class="action-item-icon" name="photograph" />
+          <text class="action-item-text">
+            生成海报
+          </text>
+        </button>
+      </view>
+    </template>
     <poster-builder
       v-if="posterConfig"
       :config="posterConfig"
@@ -101,6 +108,7 @@ import { getNewsDetail } from '@/services'
 import { formatTime } from '@/utils'
 import { normalizeStory } from '@/utils/translators'
 import type { Question } from '@/types'
+import { useFavoriteStore } from '@/stores/favorite'
 
 const router = useRouter()
 const newsId = ref(``)
@@ -109,7 +117,9 @@ const newsTitle = ref(``)
 const questions = ref<Question[]>([])
 const images = ref<string[]>([])
 const nickName = ``
+const isChecked = ref(false)
 const posterConfig = ref<any>(null)
+const favorite = useFavoriteStore()
 
 const fetchNewsDetail = async (id: string) => {
   try {
@@ -132,7 +142,18 @@ const onPreviewImages = async (image: string) => {
     showToast({ title: `预览图片失败，请重试`, icon: `error` })
   }
 }
-
+const onToggleFavoriteStory = isChecked => {
+  const storyMeta = {
+    id: newsId.value,
+    title: newsTitle.value,
+    image: newsImage.value,
+  }
+  if (isChecked) {
+    favorite.addStory(storyMeta)
+  } else {
+    favorite.removeStory(newsId.value)
+  }
+}
 const onGeneratePoster = async () => {
   const time = formatTime(new Date(), `yyyy年MM月dd日`)
   const width = 750
@@ -290,6 +311,7 @@ onMounted(() => {
   const id = router.params.id
   if (!id) return
   newsId.value = id
+  isChecked.value = favorite.list.map(item => item.id).includes(id)
   fetchNewsDetail(id)
 })
 </script>
@@ -463,6 +485,11 @@ onMounted(() => {
         }
       }
     }
+  }
+
+  .detail-collection {
+    position: relative;
+    padding: 10px 20px 40px;
   }
 }
 </style>
