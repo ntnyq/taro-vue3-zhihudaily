@@ -13,3 +13,9 @@ $primary-color-end: #ffd300;
   -webkit-line-clamp: $num;
   overflow: hidden;
 }
+
+@mixin safe-area-bottom($bottom: 0px, $attr: "padding-bottom") {
+  #{$attr}: $bottom;
+  #{$attr}: calc(#{$bottom} + constant(safe-area-inset-bottom));
+  #{$attr}: calc(#{$bottom} + env(safe-area-inset-bottom));
+}

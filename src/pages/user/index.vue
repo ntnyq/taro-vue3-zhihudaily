@@ -57,8 +57,10 @@
 <script lang="ts" setup>
 import Taro from '@tarojs/taro'
 import { useUserStore } from '@/stores/user'
+import { useFavoriteStore } from '@/stores/favorite'
 
 const user = useUserStore()
+const favorite = useFavoriteStore()
 const onGetUserInfo = async () => {
   try {
     const res = await Taro.getUserProfile({ desc: `用于展示用户信息` })
@@ -70,6 +72,7 @@ const onGetUserInfo = async () => {
 }
 const onClearAllCache = async () => {
   user.clearUserInfo()
+  favorite.clearStoryList()
   await Taro.clearStorage()
   Taro.showToast({ title: `清理成功`, icon: `success` })
 }

@@ -15,11 +15,7 @@
         </text>
       </view>
       <view class="question-main">
-        <view
-          v-for="answer in question.answers"
-          :key="answer.author"
-          class="question-answer"
-        >
+        <view v-for="answer in question.answers" :key="answer.author" class="question-answer">
           <view class="question-answer-meta">
             <image :src="answer.avatar" mode="aspectFill" class="meta-avatar" />
             <view class="meta-main">
@@ -32,21 +28,11 @@
             </view>
           </view>
           <view class="question-answer-main">
-            <view
-              v-for="node in answer.contents"
-              :key="node.content"
-              class="paragraph"
-            >
-              <rich-text
-                v-if="node.type === `PARAGRAPH`"
-                :nodes="node.content"
-                class="p-text"
-              />
+            <view v-for="node in answer.contents" :key="node.content" class="paragraph">
+              <rich-text v-if="node.type === `PARAGRAPH`" :nodes="node.content" class="p-text" />
+              <rich-text v-if="node.type === `LIST`" :nodes="node.content" class="p-list" />
               <image
-                v-if="node.type === `IMAGE`"
-                :src="node.content"
-                mode="widthFix"
-                class="p-image"
+                v-if="node.type === `IMAGE`" :src="node.content" mode="widthFix" class="p-image"
                 @tap="onPreviewImages(node.content)"
               />
             </view>
@@ -80,9 +66,7 @@
       </view>
     </template>
     <poster-builder
-      v-if="posterConfig"
-      :config="posterConfig"
-      :show-loading="true"
+      v-if="posterConfig" :config="posterConfig" :show-loading="true"
       @success="onPosterGenerateSuccess"
     />
   </view>
@@ -276,8 +260,8 @@ const onPosterGenerateSuccess = async (result: { tempFilePath: string }) => {
     success () {
       saveImage(filePath)
     },
-    fail () {
-      showModal({
+    async fail () {
+      const res = await showModal({
         title: `提示`,
         content: `保存图片需要您的授权`,
         showCancel: true,
@@ -285,14 +269,9 @@ const onPosterGenerateSuccess = async (result: { tempFilePath: string }) => {
         cancelColor: `#7f7f7f`,
         confirmText: `去设置`,
         confirmColor: `#2d8cf0`,
-        success (res) {
-          if (res.confirm) {
-            openSetting()
-          } else {
-            console.log(`用户点击了取消`)
-          }
-        },
       })
+      if (!res.confirm) return
+      openSetting()
     },
   })
 }
@@ -318,101 +297,97 @@ onMounted(() => {
 
 <style lang="scss">
 .page-detail {
-  padding-bottom: 80px;
+  position: relative;
+  height: 100%;
+  padding-bottom: 100px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
-  .detail {
+  .detail-banner {
     position: relative;
-    height: 100%;
-    padding-bottom: 100px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    height: 450px;
 
-    &-banner {
-      position: relative;
-      height: 450px;
-
-      &-image {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-
-      &-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(91, 115, 145, 0.5);
-      }
-
-      &-title {
-        position: absolute;
-        left: 5%;
-        bottom: 40px;
-        width: 60%;
-        line-height: 60px;
-        font-weight: bold;
-        font-size: 36px;
-        color: rgba(255, 255, 255, 0.9);
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      }
-
-      &-source {
-        position: absolute;
-        right: 2%;
-        bottom: 20px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #fff;
-        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-      }
+    &-image {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
-    &-action {
-      position: fixed;
+    &-overlay {
+      position: absolute;
+      top: 0;
       left: 0;
-      bottom: 0;
-      z-index: 999;
-      display: flex;
       width: 100%;
-      height: 80px;
-      border-top: 1px solid #efefef;
+      height: 100%;
+      background-color: rgba(91, 115, 145, 0.5);
+    }
 
-      .action-item {
-        position: relative;
-        width: 100%;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-        border-radius: 0;
+    &-title {
+      position: absolute;
+      left: 5%;
+      bottom: 40px;
+      width: 60%;
+      line-height: 60px;
+      font-weight: bold;
+      font-size: 36px;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
 
-        &::after {
-          border: none;
-        }
+    &-source {
+      position: absolute;
+      right: 2%;
+      bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+  }
 
-        &-icon {
-          margin-right: 16px;
-          font-size: 32px;
-          color: $primary-color;
-        }
+  .detail-action {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    border-top: 1px solid #efefef;
 
-        &-text {
-          font-size: 28px;
-        }
+    .action-item {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border-radius: 0;
 
-        &-line {
-          position: absolute;
-          top: 50%;
-          right: 0;
-          display: block;
-          width: 2px;
-          height: 60%;
-          background-color: $primary-color;
-          transform: translateY(-50%);
-        }
+      &::after {
+        border: none;
+      }
+
+      &-icon {
+        margin-right: 16px;
+        font-size: 32px;
+        color: $primary-color;
+      }
+
+      &-text {
+        font-size: 28px;
+      }
+
+      &-line {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        display: block;
+        width: 2px;
+        height: 60%;
+        background-color: $primary-color;
+        transform: translateY(-50%);
       }
     }
   }

@@ -17,8 +17,11 @@ export const RE_AVATAR = /<img class="avatar"(.*?).((jpe?g)|(png))([\s\S]*?)">/g
 export const RE_AUTHOR = /<span class="author">(.*?)<\/span>/g
 export const RE_BIO = /<span class="bio">(.*?)<\/span>/g
 // TODO 正文，段落列表，需要添加兼容性，p标签是段落正文，figure 标签有可能内嵌图片信息
-export const RE_CONTENT = /(<p>|<figure).*?(<\/p>|<\/figure>)/g
+export const RE_CONTENT = /(<p>|<figure>|<ul>|<ol>)([\s\S]*?)(<\/p>|<\/figure>|<\/ul>|<\/ol>)/g
 export const RE_IMAGE = /<img.*?>/i
+export const RE_OL = /<ol.*?>([\s\S]*?)<\/ol>/i
+export const RE_UL = /<ul.*?>([\s\S]*?)<\/ul>/i
+export const RE_LI = /<li.*?>([\s\S]*?)<\/li>/ig
 export const RE_IMAGE_SOURCE = /src=".*?"/i
 
 export function normalizeStory (html: string) {
@@ -42,6 +45,7 @@ export function normalizeStory (html: string) {
       const bio = bioHtml.substring(18, bioHtml.length - 7)
       const contents = contentHtmlList.map(content => {
         const hasImage = RE_IMAGE.test(content)
+        const hasList = RE_OL.test(content) || RE_UL.test(content)
         const temp = { type: ``, content: `` }
         if (hasImage) {
           const tempContentHtml = getMatchedString(content.match(RE_IMAGE_SOURCE))
@@ -49,6 +53,9 @@ export function normalizeStory (html: string) {
           temp.content = imageSrc
           temp.type = `IMAGE`
           images.push(imageSrc)
+        } else if (hasList) {
+          temp.type = `LIST`
+          temp.content = content
         } else {
           temp.type = `PARAGRAPH`
           temp.content = content
@@ -59,6 +66,7 @@ export function normalizeStory (html: string) {
             // .replace(/<\/strong>/g, '')
             .replace(/<a.*?\/a>/g, ``)
             .replace(/&nbsp;/g, ` `)
+            .replace(/&amp;/g, `&`)
             .replace(/&ldquo;/g, `"`)
             .replace(/&rdquo;/g, `"`)
         }
