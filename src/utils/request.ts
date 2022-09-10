@@ -39,36 +39,33 @@ const api = {
         }
       })
       .catch(err => {
-        const message = `小程序数据请求失败`
-
         Taro.showToast({
-          title: err.errorMsg || message,
+          title: err.errorMsg || `小程序数据请求失败`,
           icon: `none`,
         })
-
         return Promise.reject(err)
       })
   },
 
-  get (url, data = {}) {
+  get (url: string, data = {}) {
     const options = { url, data }
 
     return this.baseOptions(options, `GET`)
   },
 
-  post (url, data = {}, contentType) {
+  post (url: string, data = {}, contentType: string) {
     const options = { url, data, contentType }
 
     return this.baseOptions(options, `POST`)
   },
 
-  put (url, data = {}) {
+  put (url: string, data = {}) {
     const options = { url, data }
 
     return this.baseOptions(options, `PUT`)
   },
 
-  delete (url, data = {}) {
+  delete (url: string, data = {}) {
     const options = { url, data }
 
     return this.baseOptions(options, `DELETE`)

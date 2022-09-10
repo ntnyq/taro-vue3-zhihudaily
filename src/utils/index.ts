@@ -41,4 +41,4 @@ export function formatTime (value: string | Date, fmt = `yyyy-MM-dd hh:mm:ss`) {
  * @param obj object to be checked
  * @returns `true` if the object is empty
  */
-export const isEmptyObject = (obj: Record<string, any>) => !!Object.keys(obj).length
+export const isEmptyObject = (obj: Record<string, any>) => Boolean(Object.keys(obj).length)

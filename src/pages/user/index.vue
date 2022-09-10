@@ -1,18 +1,28 @@
 <template>
   <view class="page-user">
     <view class="user-header">
-      <view v-if="user.hasAuth" class="has-auth">
-        <image class="user-avatar" :src="user.userInfo.avatarUrl" mode="aspectFill" />
+      <view
+        v-if="user.hasAuth"
+        class="has-auth"
+      >
+        <image
+          class="user-avatar"
+          :src="user.userInfo.avatarUrl"
+          mode="aspectFill"
+        />
         <span class="username">{{ user.userInfo.nickName }}</span>
       </view>
-      <view v-else class="no-auth">
+      <view
+        v-else
+        class="no-auth"
+      >
         <text class="no-auth-text">
           授权后，获取个性化内容
         </text>
         <nut-button
+          @tap="onGetUserInfo"
           type="primary"
           size="small"
-          @tap="onGetUserInfo"
         >
           点击授权
         </nut-button>
@@ -24,9 +34,18 @@
         <text>用户设置</text>
       </view>
       <nut-cell-group>
-        <nut-cell title="我的收藏" @click="onCellClick(`favorite`)" />
-        <nut-cell title="权限管理" @click="onCellClick(`permission`)" />
-        <nut-cell title="清理缓存" @click="onCellClick(`cache`)" />
+        <nut-cell
+          @click="onCellClick(`favorite`)"
+          title="我的收藏"
+        />
+        <nut-cell
+          @click="onCellClick(`permission`)"
+          title="权限管理"
+        />
+        <nut-cell
+          @click="onCellClick(`cache`)"
+          title="清理缓存"
+        />
       </nut-cell-group>
     </view>
     <view class="user-section">
@@ -35,7 +54,10 @@
         <text>关于应用</text>
       </view>
       <nut-cell-group>
-        <nut-cell title="意见反馈" @click="onCellClick(`feedback`)">
+        <nut-cell
+          @click="onCellClick(`feedback`)"
+          title="意见反馈"
+        >
           <view class="feedback-wrap">
             <button
               class="feedback-btn"
@@ -46,9 +68,18 @@
             </button>
           </view>
         </nut-cell>
-        <nut-cell title="版权声明" @click="onCellClick(`copy`)" />
-        <nut-cell title="关于作者" @click="onCellClick(`author`)" />
-        <nut-cell title="致谢" @click="onCellClick(`thank`)" />
+        <nut-cell
+          @click="onCellClick(`copy`)"
+          title="版权声明"
+        />
+        <nut-cell
+          @click="onCellClick(`author`)"
+          title="关于作者"
+        />
+        <nut-cell
+          @click="onCellClick(`thank`)"
+          title="致谢"
+        />
       </nut-cell-group>
     </view>
   </view>

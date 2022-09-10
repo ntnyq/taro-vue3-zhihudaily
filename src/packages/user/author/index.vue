@@ -21,12 +21,18 @@
             hover-class="none"
             open-type="contact"
           >
-            <nut-icon class="contributor-item-wechat-icon" name="service" />
+            <nut-icon
+              class="contributor-item-wechat-icon"
+              name="service"
+            />
           </button>
         </view>
       </view>
     </view>
-    <nut-divider :dashed="true" :hairline="true">
+    <nut-divider
+      :dashed="true"
+      :hairline="true"
+    >
       点击图标，直接与作者对话
     </nut-divider>
   </view>

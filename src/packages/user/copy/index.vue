@@ -14,10 +14,10 @@
       </text>
     </view>
     <nut-button
+      @click="onCopyEmail()"
       class="btn-copy-email"
       size="small"
       type="primary"
-      @click="onCopyEmail()"
     >
       复制邮箱
     </nut-button>

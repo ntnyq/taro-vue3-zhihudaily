@@ -9,9 +9,9 @@
       class="index-swiper"
     >
       <swiper-item
+        @tap="onGoNewsDetail(slide)"
         v-for="slide in slides"
         :key="slide.id"
-        @tap="onGoNewsDetail(slide)"
       >
         <image
           :src="slide.image"
@@ -27,7 +27,11 @@
     </swiper>
 
     <view class="index-list-wrap">
-      <view v-for="item in newsList" :key="item.date" class="index-list-item">
+      <view
+        v-for="item in newsList"
+        :key="item.date"
+        class="index-list-item"
+      >
         <view class="index-list-item-header">
           <text class="index-list-item-title">
             {{ item.date }}
@@ -35,12 +39,13 @@
         </view>
         <view class="index-list-item-main">
           <view
+            @tap="onGoNewsDetail(story)"
             v-for="story in item.stories || []"
             :key="story.id"
             class="index-list-item-news"
-            @tap="onGoNewsDetail(story)"
           >
             <image
+              v-if="Array.isArray(story.images)"
               :src="story.images[0]"
               mode="aspectFill"
               class="index-list-item-news-image"

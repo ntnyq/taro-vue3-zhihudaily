@@ -1,27 +1,50 @@
 <template>
   <view class="page-favorite">
-    <view v-if="favorite.list.length" class="favorite-list">
+    <view
+      v-if="favorite.list.length"
+      class="favorite-list"
+    >
       <view class="favorite-list-count">
         <text class="count-text">
           共计 {{ favorite.list.length }} 篇收藏
         </text>
-        <nut-button class="count-clear-btn" type="primary" size="small" @tap="clearFaveriteList">
+        <nut-button
+          @tap="clearFaveriteList"
+          class="count-clear-btn"
+          type="primary"
+          size="small"
+        >
           清空收藏
         </nut-button>
       </view>
 
-      <view v-for="item in favorite.list" :key="item.id" class="favorite-item" @tap="goStoryDetail(item.id)">
-        <image :src="item.image" mode="aspectFill" class="favorite-item-image" />
+      <view
+        @tap="goStoryDetail(item.id)"
+        v-for="item in favorite.list"
+        :key="item.id"
+        class="favorite-item"
+      >
+        <image
+          :src="item.image"
+          mode="aspectFill"
+          class="favorite-item-image"
+        />
         <view class="favorite-item-title">
           {{ item.title }}
         </view>
       </view>
     </view>
-    <view v-else class="no-content">
+    <view
+      v-else
+      class="no-content"
+    >
       <text class="no-content-tip">
         暂无收藏日推
       </text>
-      <nut-button type="primary" @tap="goHome">
+      <nut-button
+        @tap="goHome"
+        type="primary"
+      >
         点击回到首页
       </nut-button>
     </view>

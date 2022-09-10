@@ -1,27 +1,26 @@
 <template>
   <canvas
-    :id="canvasId"
     type="2d"
-    :style="
-      `height: ${height}rpx; width:${width}rpx; position: absolute;
+    :style="`height: ${height}rpx; width:${width}rpx; position: absolute;
     ${debug ? '' : 'transform:translate3d(-9999rpx, 0, 0)'}`
     "
+    :id="canvasId"
   />
 </template>
 
 <script lang="ts">
-import Taro from "@tarojs/taro"
-import type { PropType } from "vue"
-import { defineComponent, onMounted, ref } from "vue"
-import type { DrawConfig, Image } from "./types"
-import { drawBlock, drawImage, drawLine, drawText } from "./utils/draw"
+import Taro from '@tarojs/taro'
+import type { PropType } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import type { DrawConfig, Image } from './types'
+import { drawBlock, drawImage, drawLine, drawText } from './utils/draw'
 import {
   getImageInfo,
   getLinearColor,
   getRandomId,
   toPx,
   toRpx,
-} from "./utils/tools"
+} from './utils/tools'
 
 export default defineComponent({
   name: `PosterBuilder`,
@@ -66,7 +65,7 @@ export default defineComponent({
 
     /**
      * step2: 初始化 canvas && 获取其 dom 节点和实例
-     * @return {Promise} resolve 里返回其 dom 和实例
+     * @return resolve 里返回其 dom 和实例
      */
     const initCanvas = () => new Promise(resolve => {
       setTimeout(() => {
@@ -85,7 +84,7 @@ export default defineComponent({
 
     /**
      * @description 保存绘制的图片
-     * @param  { object } config
+     * @param canvas
      */
     const getTempFile = canvas => {
       Taro.canvasToTempFilePath(

@@ -5,7 +5,10 @@
     </nut-noticebar>
     <view class="card">
       感谢
-      <text class="highlight" @tap="onCopyLink(`https://www.zhihu.com`)">
+      <text
+        @tap="onCopyLink(`https://www.zhihu.com`)"
+        class="highlight"
+      >
         知乎 (Zhihu.Inc)
       </text>
       提供 API。
@@ -14,8 +17,8 @@
     <view class="card">
       感谢
       <text
-        class="highlight"
         @tap="onCopyLink(`https://github.com/izzyleung/ZhihuDailyPurify`)"
+        class="highlight"
       >
         izzyleung/ZhihuDailyPurify
       </text>
@@ -25,8 +28,8 @@
     <view class="card">
       感谢
       <text
-        class="highlight"
         @tap="onCopyLink(`https://github.com/walleeeee/daily-zhihu`)"
+        class="highlight"
       >
         walleeeee/daily-zhihu
       </text>
