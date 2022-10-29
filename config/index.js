@@ -22,6 +22,7 @@ const config = {
     `@tarojs/plugin-html`,
     `taro-plugin-pinia`,
   ],
+  compiler: `webpack5`,
   alias: {
     '@': resolve(`src`),
   },

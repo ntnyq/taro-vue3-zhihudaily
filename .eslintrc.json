@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": [
+    "@ntnyq"
+  ],
+  "rules": {
+    "vue/prefer-true-attribute-shorthand": "off"
+  }
+}

@@ -49,25 +49,21 @@ const api = {
 
   get (url: string, data = {}) {
     const options = { url, data }
-
     return this.baseOptions(options, `GET`)
   },
 
   post (url: string, data = {}, contentType: string) {
     const options = { url, data, contentType }
-
     return this.baseOptions(options, `POST`)
   },
 
   put (url: string, data = {}) {
     const options = { url, data }
-
     return this.baseOptions(options, `PUT`)
   },
 
   delete (url: string, data = {}) {
     const options = { url, data }
-
     return this.baseOptions(options, `DELETE`)
   },
 }

@@ -123,12 +123,11 @@ export const toRpx = (px: number, factor = getFactor()) =>
 
 /**
  * 下载图片资源
- * @param { string } url
- * @returns  { Promise }
+ * @param  url
  */
 export function downImage (url: string) {
   return new Promise<string>((resolve, reject) => {
-    if (/^http/.test(url) && !new RegExp(wx.env.USER_DATA_PATH).test(url)) {
+    if (url.startsWith('http') && !new RegExp(wx.env.USER_DATA_PATH).test(url)) {
       // wx.env.USER_DATA_PATH 文件系统中的用户目录路径
       Taro.downloadFile({
         url: mapHttpToHttps(url),
