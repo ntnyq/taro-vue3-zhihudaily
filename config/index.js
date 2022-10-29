@@ -23,6 +23,19 @@ const config = {
     `taro-plugin-pinia`,
   ],
   compiler: `webpack5`,
+  framework: `vue3`,
+  cache: {
+    enable: true,
+  },
+  jsMinimizer: `esbuild`,
+  esbuild: {
+    minify: {
+      config: {
+        target: [`es2015`, `chrome58`, `firefox75`, `safari11`],
+        charset: `utf8`,
+      },
+    },
+  },
   alias: {
     '@': resolve(`src`),
   },
@@ -33,7 +46,6 @@ const config = {
     patterns: [],
     options: {},
   },
-  framework: `vue3`,
   sass: {
     resource: [
       resolve(`src/assets/styles/core.scss`),

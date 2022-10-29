@@ -5,5 +5,8 @@
   ],
   "rules": {
     "vue/prefer-true-attribute-shorthand": "off"
-  }
+  },
+  "ignorePatterns": [
+    "src/index.html"
+  ]
 }
