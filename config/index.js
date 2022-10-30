@@ -2,11 +2,14 @@
  * @file config
  */
 
+// @ts-check
+
 const path = require(`path`)
+const { defineConfig } = require(`taro-define-config`)
 
 const resolve = (...args) => path.resolve(__dirname, `..`, ...args)
 
-const config = {
+const config = defineConfig({
   projectName: `starter-vue-wechat-app`,
   date: `2022-5-21`,
   designWidth: 750,
@@ -50,7 +53,7 @@ const config = {
     resource: [
       resolve(`src/assets/styles/core.scss`),
     ],
-    data: `@import "@nutui/nutui-taro/dist/styles/variables.scss"; `,
+    data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`,
   },
   mini: {
     postcss: {
@@ -93,7 +96,7 @@ const config = {
       },
     },
   },
-}
+})
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === `development`) {
