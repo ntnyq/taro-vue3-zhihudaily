@@ -19,7 +19,6 @@ specifiers:
   '@types/webpack-env': ^1.18.0
   '@vue/babel-plugin-jsx': ^1.1.1
   '@vue/compiler-sfc': ^3.2.45
-  axios-miniprogram: 2.0.0-rc-2
   babel-plugin-import: ^1.13.6
   babel-preset-taro: ^3.5.11
   bumpp: ^8.2.1
@@ -44,7 +43,6 @@ dependencies:
   '@tarojs/plugin-html': 3.5.11_vue@3.2.45
   '@tarojs/runtime': 3.5.11
   '@tarojs/taro': 3.5.11_vue@3.2.45
-  axios-miniprogram: 2.0.0-rc-2
   pinia: 2.0.28_prq2uz4lho2pwp6irk4cfkrxwu
   taro-plugin-pinia: 1.0.0
   vue: 3.2.45
@@ -3424,11 +3422,6 @@ packages:
   /aws4/1.11.0:
     resolution: {integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==}
     dev: true
-
-  /axios-miniprogram/2.0.0-rc-2:
-    resolution: {integrity: sha512-GL1yDds9P/evGPqJFXIU/2VD9/9rUL7I4WnvExuocGWAfEO9oYV7DUt6Vjd5a6F1jkltVCwxtpMPQO9ZWGRZhQ==}
-    engines: {node: '>=10.0.0'}
-    dev: false
 
   /babel-code-frame/6.26.0:
     resolution: {integrity: sha512-XqYMR2dfdGMW+hd0IUZ2PwK+fGeFkOxZJ0wY+JaQAHzt1Zx8LcvpiZD2NiGkEG8qx0CfkAOr5xt76d1e8vG90g==}
