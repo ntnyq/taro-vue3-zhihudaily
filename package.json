@@ -1,6 +1,6 @@
 {
   "name": "starter-taro-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "packageManager": "pnpm@7.23.0",
   "description": "starter-taro-vue",
