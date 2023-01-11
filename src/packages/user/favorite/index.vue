@@ -1,12 +1,12 @@
 <template>
   <view class="page-favorite">
     <view
-      v-if="favorite.list.length"
+      v-if="favoriteStore.list.length"
       class="favorite-list"
     >
       <view class="favorite-list-count">
         <text class="count-text">
-          共计 {{ favorite.list.length }} 篇收藏
+          共计 {{ favoriteStore.list.length }} 篇收藏
         </text>
         <nut-button
           @tap="clearFaveriteList"
@@ -20,7 +20,7 @@
 
       <view
         @tap="goStoryDetail(item.id)"
-        v-for="item in favorite.list"
+        v-for="item in favoriteStore.list"
         :key="item.id"
         class="favorite-item"
       >
@@ -55,7 +55,7 @@
 import Taro from '@tarojs/taro'
 import { useFavoriteStore } from '@/stores/favorite'
 
-const favorite = useFavoriteStore()
+const favoriteStore = useFavoriteStore()
 
 const clearFaveriteList = async () => {
   const res = await Taro.showModal({
@@ -63,7 +63,7 @@ const clearFaveriteList = async () => {
     content: `确定清除所有收藏吗，清除后无法恢复？`,
   })
   if (!res.confirm) return
-  favorite.clearStoryList()
+  favoriteStore.clearStoryList()
 }
 const goStoryDetail = async (id: string) => {
   if (!id) return

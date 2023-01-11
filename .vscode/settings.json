@@ -1,4 +1,17 @@
 {
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "vue",
+    "yaml",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "json5"
+  ],
   "cSpell.allowCompoundWords": true,
   "cSpell.words": [
     "avenir",

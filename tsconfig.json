@@ -11,7 +11,7 @@
     "outDir": "lib",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     "noUnusedLocals": true,

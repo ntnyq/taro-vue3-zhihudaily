@@ -1,8 +1,13 @@
 .DS_Store
 node_modules
-*.local
 *.log*
+*.local
+
+# Production
 dist/
+
+# Temp files
 deploy_versions/
 .temp/
 .rn_temp/
+.swc/

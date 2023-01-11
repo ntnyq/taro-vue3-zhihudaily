@@ -5,11 +5,11 @@ import type { UserInfo } from '@/types'
 
 export interface IUserState {
   hasAuth: boolean
-  userInfo: UserInfo
+  userInfo: Partial<UserInfo>
 }
 
 export const useUserStore = defineStore(StoreModole.user, {
-  state: () => <IUserState>({
+  state: (): IUserState => ({
     hasAuth: false,
     userInfo: {},
   }),

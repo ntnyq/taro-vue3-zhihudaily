@@ -160,7 +160,7 @@ const images = ref<string[]>([])
 const nickName = ``
 const isChecked = ref(false)
 const posterConfig = ref<any>(null)
-const favorite = useFavoriteStore()
+const favoriteStore = useFavoriteStore()
 
 const fetchNewsDetail = async (id: string) => {
   try {
@@ -190,9 +190,9 @@ const onToggleFavoriteStory = isChecked => {
     image: newsImage.value,
   }
   if (isChecked) {
-    favorite.addStory(storyMeta)
+    favoriteStore.addStory(storyMeta)
   } else {
-    favorite.removeStory(newsId.value)
+    favoriteStore.removeStory(newsId.value)
   }
 }
 const onGeneratePoster = async () => {
@@ -347,7 +347,7 @@ onMounted(() => {
   const id = router.params.id
   if (!id) return
   newsId.value = id
-  isChecked.value = favorite.list.map(item => item.id).includes(id)
+  isChecked.value = favoriteStore.list.map(item => item.id).includes(id)
   fetchNewsDetail(id)
 })
 </script>

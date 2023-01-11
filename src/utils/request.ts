@@ -3,13 +3,12 @@
  * @module utils/request
  */
 import Taro from '@tarojs/taro'
-// import axios from 'axios-miniprogram'
 
 // @ts-expect-error defined constant
 export const apiHost = API_HOST
 
 const api = {
-  baseOptions (params: any, method = `GET`) {
+  async baseOptions (params: any, method = `GET`) {
     const {
       url,
       data,

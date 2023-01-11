@@ -84,7 +84,6 @@ const config = defineConfig({
     esnextModules: [`nutui-taro`, `poster-builder`],
     postcss: {
       autoprefixer: {
-        // @ts-expect-error type error
         enable: true,
         config: {},
       },

@@ -2,15 +2,15 @@
   <view class="page-user">
     <view class="user-header">
       <view
-        v-if="user.hasAuth"
+        v-if="userStore.hasAuth"
         class="has-auth"
       >
         <image
           class="user-avatar"
-          :src="user.userInfo.avatarUrl"
+          :src="userStore.userInfo.avatarUrl"
           mode="aspectFill"
         />
-        <span class="username">{{ user.userInfo.nickName }}</span>
+        <span class="username">{{ userStore.userInfo.nickName }}</span>
       </view>
       <view
         v-else
@@ -90,20 +90,20 @@ import Taro from '@tarojs/taro'
 import { useUserStore } from '@/stores/user'
 import { useFavoriteStore } from '@/stores/favorite'
 
-const user = useUserStore()
-const favorite = useFavoriteStore()
+const userStore = useUserStore()
+const favoriteStore = useFavoriteStore()
 const onGetUserInfo = async () => {
   try {
     const res = await Taro.getUserProfile({ desc: `用于展示用户信息` })
     if (!res.userInfo) return
-    user.setUserInfo(res.userInfo)
+    userStore.setUserInfo(res.userInfo)
   } catch (err) {
     console.log(err)
   }
 }
 const onClearAllCache = async () => {
-  user.clearUserInfo()
-  favorite.clearStoryList()
+  userStore.clearUserInfo()
+  favoriteStore.clearStoryList()
   await Taro.clearStorage()
   Taro.showToast({ title: `清理成功`, icon: `success` })
 }

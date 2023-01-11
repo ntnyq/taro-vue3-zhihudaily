@@ -3,12 +3,12 @@ import * as Storage from '@/utils/storage'
 import type { StoryMeta } from '@/types'
 import { StoreModole } from '@/types'
 
-export interface IState {
+export interface IFavoriteState {
   list: StoryMeta[]
 }
 
 export const useFavoriteStore = defineStore(StoreModole.favorite, {
-  state: () => <IState>({
+  state: (): IFavoriteState => ({
     list: [],
   }),
 
