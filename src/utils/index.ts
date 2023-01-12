@@ -3,37 +3,15 @@
  * @module utils/index
  */
 
-export function formatTime (value: string | Date, fmt = `yyyy-MM-dd hh:mm:ss`) {
-  const time = new Date(value)
-  const obj = {
-    'M+': time.getMonth() + 1,
-    'd+': time.getDate(),
-    'h+': time.getHours(),
-    'm+': time.getMinutes(),
-    's+': time.getSeconds(),
-    'q+': ~~((time.getMonth() + 3) / 3),
-    S: time.getMilliseconds(),
-  }
+import dayjs from 'dayjs'
 
-  if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(
-      RegExp.$1,
-      (`${time.getFullYear()}`).substr(4 - RegExp.$1.length),
-    )
-  }
-
-  for (const k in obj) {
-    if (new RegExp(`(${k})`).test(fmt)) {
-      fmt = fmt.replace(
-        RegExp.$1,
-        RegExp.$1.length === 1
-          ? obj[k]
-          : (`00${obj[k]}`).substr((`${obj[k]}`).length),
-      )
-    }
-  }
-
-  return fmt
+export function formatTime (date: dayjs.ConfigType, {
+  isUnix = false,
+  format = `YYYY-MM-DD HH:mm:ss`,
+} = {}) {
+  return isUnix
+    ? dayjs.unix(date as number).format(format)
+    : dayjs(date).format(format)
 }
 
 /**

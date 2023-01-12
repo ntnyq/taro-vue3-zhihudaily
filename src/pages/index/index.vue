@@ -83,7 +83,7 @@ const fetchNewsByDate = async () => {
   const day = latestDate.value.slice(-2)
   const time = new Date(`${year}/${month}/${day}`)
   time.setDate(time.getDate() + dateOffset.value)
-  const date = formatTime(time, `yyyyMMdd`)
+  const date = formatTime(time, { format: `YYYYMMDD` })
   dateOffset.value = --dateOffset.value
   const res = await getNewsListByDate(date)
   newsList.value.push(res)

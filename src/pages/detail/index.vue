@@ -196,7 +196,7 @@ const onToggleFavoriteStory = isChecked => {
   }
 }
 const onGeneratePoster = async () => {
-  const time = formatTime(new Date(), `yyyy年MM月dd日`)
+  const time = formatTime(new Date(), { format: `YYYY年MM月DD日` })
   const width = 750
   const height = 1100
   posterConfig.value = {

@@ -30,6 +30,7 @@
     "@tarojs/plugin-html": "^3.5.11",
     "@tarojs/runtime": "^3.5.11",
     "@tarojs/taro": "^3.5.11",
+    "dayjs": "^1.11.7",
     "pinia": "^2.0.28",
     "taro-plugin-pinia": "^1.0.0",
     "vue": "^3.2.45"
