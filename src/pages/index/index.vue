@@ -70,7 +70,7 @@ const INIT_DATE_OFFSET = 0
 
 const slides = ref<any>([])
 const newsList = ref<any>([])
-const latestDate = ref(``)
+const latestDate = ref('')
 const dateOffset = ref(INIT_DATE_OFFSET)
 
 const onGoNewsDetail = (news: any) => {
@@ -83,7 +83,7 @@ const fetchNewsByDate = async () => {
   const day = latestDate.value.slice(-2)
   const time = new Date(`${year}/${month}/${day}`)
   time.setDate(time.getDate() + dateOffset.value)
-  const date = formatTime(time, { format: `YYYYMMDD` })
+  const date = formatTime(time, { format: 'YYYYMMDD' })
   dateOffset.value = --dateOffset.value
   const res = await getNewsListByDate(date)
   newsList.value.push(res)
@@ -105,7 +105,7 @@ const fetchLatestNews = async () => {
 }
 
 usePullDownRefresh(async () => {
-  Taro.showLoading({ title: `加载中，请稍等` })
+  Taro.showLoading({ title: '加载中，请稍等' })
   try {
     await fetchLatestNews()
     dateOffset.value = INIT_DATE_OFFSET
@@ -166,7 +166,7 @@ onMounted(() => {
         text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
 
         &:before {
-          content: '';
+          content: "";
           position: absolute;
           bottom: -20px;
           right: 0;

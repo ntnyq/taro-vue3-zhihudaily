@@ -5,8 +5,8 @@ import type { Question } from '@/types'
  * @param matches REGEXP match result
  * @returns matched string
  */
-export function getMatchedString (matches: string[] | null) {
-  return (matches || [])[0] || ``
+export function getMatchedString(matches: string[] | null) {
+  return (matches || [])[0] || ''
 }
 
 // ([\s\S]*?) 可以匹配换行等字符，(.*?) 是不可以的
@@ -21,10 +21,10 @@ export const RE_CONTENT = /(<p>|<figure>|<ul>|<ol>)([\s\S]*?)(<\/p>|<\/figure>|<
 export const RE_IMAGE = /<img.*?>/i
 export const RE_OL = /<ol.*?>([\s\S]*?)<\/ol>/i
 export const RE_UL = /<ul.*?>([\s\S]*?)<\/ul>/i
-export const RE_LI = /<li.*?>([\s\S]*?)<\/li>/ig
+export const RE_LI = /<li.*?>([\s\S]*?)<\/li>/gi
 export const RE_IMAGE_SOURCE = /src=".*?"/i
 
-export function normalizeStory (html: string) {
+export function normalizeStory(html: string) {
   const images: string[] = []
   const questions: Question[] = []
   const questionHtmlList = html.match(RE_QUESTION)
@@ -32,7 +32,7 @@ export function normalizeStory (html: string) {
 
   questionHtmlList.forEach(question => {
     const titleHtml = getMatchedString(question.match(RE_TITLE))
-    const title = titleHtml.substring(27, titleHtml.length - 5) || ``
+    const title = titleHtml.substring(27, titleHtml.length - 5) || ''
     const answerHtmlList = question.match(RE_ANSWER) || []
     const answers = answerHtmlList.map(answer => {
       const avatarHtml = getMatchedString(answer.match(RE_AVATAR))
@@ -46,29 +46,29 @@ export function normalizeStory (html: string) {
       const contents = contentHtmlList.map(content => {
         const hasImage = RE_IMAGE.test(content)
         const hasList = RE_OL.test(content) || RE_UL.test(content)
-        const temp = { type: ``, content: `` }
+        const temp = { type: '', content: '' }
         if (hasImage) {
           const tempContentHtml = getMatchedString(content.match(RE_IMAGE_SOURCE))
           const imageSrc = tempContentHtml.substring(5, tempContentHtml.length - 1)
           temp.content = imageSrc
-          temp.type = `IMAGE`
+          temp.type = 'IMAGE'
           images.push(imageSrc)
         } else if (hasList) {
-          temp.type = `LIST`
+          temp.type = 'LIST'
           temp.content = content
         } else {
-          temp.type = `PARAGRAPH`
+          temp.type = 'PARAGRAPH'
           temp.content = content
             // .replace(/<p>/g, '')
             // .replace(/<\/p>/g, '')
             // 不屏蔽 strong 标签
             // .replace(/<strong>/g, '')
             // .replace(/<\/strong>/g, '')
-            .replace(/<a.*?\/a>/g, ``)
-            .replace(/&nbsp;/g, ` `)
-            .replace(/&amp;/g, `&`)
-            .replace(/&ldquo;/g, `"`)
-            .replace(/&rdquo;/g, `"`)
+            .replace(/<a.*?\/a>/g, '')
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&amp;/g, '&')
+            .replace(/&ldquo;/g, '"')
+            .replace(/&rdquo;/g, '"')
         }
         return temp
       })

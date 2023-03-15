@@ -1,4 +1,3 @@
-
 import type { CanvasContext, CanvasGradient } from '@tarojs/taro'
 import Taro from '@tarojs/taro'
 
@@ -8,7 +7,7 @@ declare const wx: any
  * @description 生成随机字符串
  * @param length - 字符串长度
  */
-export function randomString (length: number) {
+export function randomString(length: number) {
   let str = Math.random().toString(36).substring(2)
   if (str.length >= length) {
     return str.substring(0, length)
@@ -22,7 +21,7 @@ export function randomString (length: number) {
  * @param  { number } length - 字符串长度
  * @returns { string }
  */
-export function getRandomId (prefix = `canvas`, length = 10) {
+export function getRandomId(prefix = 'canvas', length = 10) {
   return prefix + randomString(length)
 }
 
@@ -81,12 +80,12 @@ export function getRandomId (prefix = `canvas`, length = 10) {
 /**
  * 将 http转为https
  */
-export function mapHttpToHttps (rawUrl: string) {
-  if (!rawUrl.includes(`:`) || rawUrl.startsWith(`http://tmp`)) return rawUrl
-  const urlComponent = rawUrl.split(`:`)
+export function mapHttpToHttps(rawUrl: string) {
+  if (!rawUrl.includes(':') || rawUrl.startsWith('http://tmp')) return rawUrl
+  const urlComponent = rawUrl.split(':')
   if (urlComponent.length === 2) {
-    if (urlComponent[0] === `http`) {
-      urlComponent[0] = `https`
+    if (urlComponent[0] === 'http') {
+      urlComponent[0] = 'https'
       return `${urlComponent[0]}:${urlComponent[1]}`
     }
   }
@@ -109,8 +108,7 @@ export const getFactor = () => {
  * @param factor - 转化因子
  * @returns
  */
-export const toPx = (rpx, factor = getFactor()) =>
-  parseInt(String(rpx * factor), 10)
+export const toPx = (rpx, factor = getFactor()) => parseInt(String(rpx * factor), 10)
 
 /**
  * px => rpx 单位转换
@@ -118,14 +116,13 @@ export const toPx = (rpx, factor = getFactor()) =>
  * @param factor - 转化因子
  * @returns
  */
-export const toRpx = (px: number, factor = getFactor()) =>
-  parseInt(String(px / factor), 10)
+export const toRpx = (px: number, factor = getFactor()) => parseInt(String(px / factor), 10)
 
 /**
  * 下载图片资源
  * @param  url
  */
-export function downImage (url: string) {
+export function downImage(url: string) {
   return new Promise<string>((resolve, reject) => {
     if (url.startsWith('http') && !new RegExp(wx.env.USER_DATA_PATH).test(url)) {
       // wx.env.USER_DATA_PATH 文件系统中的用户目录路径
@@ -135,12 +132,12 @@ export function downImage (url: string) {
           if (res.statusCode === 200) {
             resolve(res.tempFilePath)
           } else {
-            console.log(`下载失败`, res)
+            console.log('下载失败', res)
             reject(res)
           }
         },
-        fail (err) {
-          console.log(`下载失败了`, err)
+        fail(err) {
+          console.log('下载失败了', err)
           reject(err)
         },
       })
@@ -179,12 +176,12 @@ export const getImageInfo = (item, index) =>
           }
           // 给 canvas 画图准备参数，详见 ./draw.ts-drawImage
           const result = {
-            type: `image`,
+            type: 'image',
             borderRadius,
             borderWidth: item.borderWidth,
             borderColor: item.borderColor,
             borderRadiusGroup: item.borderRadiusGroup,
-            zIndex: typeof zIndex !== `undefined` ? zIndex : index,
+            zIndex: zIndex !== undefined ? zIndex : index,
             imgPath: url,
             sx,
             sy,
@@ -198,7 +195,7 @@ export const getImageInfo = (item, index) =>
           resolve(result)
         })
         .catch(err => {
-          console.log(`读取图片信息失败`, err)
+          console.log('读取图片信息失败', err)
           reject(err)
         }),
     )
@@ -216,25 +213,18 @@ export const getImageInfo = (item, index) =>
  */
 // TODO: 待优化, 支持所有角度，多个颜色的线性渐变
 // eslint-disable-next-line max-params
-export function getLinearColor (
-  ctx: CanvasContext,
-  color,
-  startX,
-  startY,
-  w,
-  h,
-) {
+export function getLinearColor(ctx: CanvasContext, color, startX, startY, w, h) {
   if (
-    typeof startX !== `number`
-    || typeof startY !== `number`
-    || typeof w !== `number`
-    || typeof h !== `number`
+    typeof startX !== 'number' ||
+    typeof startY !== 'number' ||
+    typeof w !== 'number' ||
+    typeof h !== 'number'
   ) {
-    console.warn(`坐标或者宽高只支持数字`)
+    console.warn('坐标或者宽高只支持数字')
     return color
   }
   let grd: CanvasGradient | string = color
-  if (color.includes(`linear-gradient`)) {
+  if (color.includes('linear-gradient')) {
     // fillStyle 不支持线性渐变色
     const colorList = color.match(/\((\d+)deg,\s(.+)\s\d+%,\s(.+)\s\d+%/)
     const radian = colorList[1] // 渐变弧度（角度）
@@ -256,10 +246,10 @@ export function getLinearColor (
     } else if (radian > 0 && radian < 180) {
       grd = ctx.createLinearGradient(startX, startY, x + startX, y + startY)
     } else {
-      throw new Error(`只支持0 <= 颜色弧度 <= 180`)
+      throw new Error('只支持0 <= 颜色弧度 <= 180')
     }
-    (grd as CanvasGradient).addColorStop(0, color1);
-    (grd as CanvasGradient).addColorStop(1, color2)
+    ;(grd as CanvasGradient).addColorStop(0, color1)
+    ;(grd as CanvasGradient).addColorStop(1, color2)
   }
   return grd
 }
@@ -267,11 +257,11 @@ export function getLinearColor (
 /**
  * 根据文字对齐方式设置坐标
  */
-export function getTextX (textAlign: string, x: number, width: number) {
+export function getTextX(textAlign: string, x: number, width: number) {
   let newX = x
-  if (textAlign === `center`) {
+  if (textAlign === 'center') {
     newX = width / 2 + x
-  } else if (textAlign === `right`) {
+  } else if (textAlign === 'right') {
     newX = width + x
   }
   return newX

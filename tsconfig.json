@@ -10,9 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "outDir": "lib",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -24,13 +22,8 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "typeRoots": ["node_modules/@types"]
   },
-  "include": [
-    "./src",
-    "global.d.ts"
-  ],
+  "include": ["./src", "global.d.ts"],
   "compileOnSave": false
 }

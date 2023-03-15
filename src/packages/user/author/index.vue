@@ -21,10 +21,7 @@
             hover-class="none"
             open-type="contact"
           >
-            <nut-icon
-              class="contributor-item-wechat-icon"
-              name="service"
-            />
+            <Service class="contributor-item-wechat-icon" />
           </button>
         </view>
       </view>
@@ -40,12 +37,13 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { Service } from '@nutui/icons-vue-taro'
 
 const contributors = ref([
   {
-    name: `ntnyq`,
-    avatar: `https://avatars1.githubusercontent.com/u/22659150`,
-    description: `前端工程师，喜欢技术，喜欢折腾，喜欢小说，喜欢打游戏。`,
+    name: 'ntnyq',
+    avatar: 'https://avatars1.githubusercontent.com/u/22659150',
+    description: '前端工程师，喜欢技术，喜欢折腾，喜欢小说，喜欢打游戏。',
   },
 ])
 </script>

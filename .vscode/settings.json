@@ -1,17 +1,21 @@
 {
+  "editor.formatOnSave": true,
   "eslint.validate": [
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
     "vue",
     "yaml",
     "html",
-    "markdown",
     "json",
     "jsonc",
-    "json5"
+    "json5",
+    "markdown",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
   ],
+  "[vue]": {
+    "editor.formatOnSave": false
+  },
   "cSpell.allowCompoundWords": true,
   "cSpell.words": [
     "avenir",
@@ -27,17 +31,9 @@
     "rdquo",
     "styl",
     "tarojs",
+    "unplugin",
     "walleeeee",
     "weapp",
     "Zhihu"
-  ],
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  "[typescript]": {
-    "editor.formatOnSave": false
-  },
-  "[vue]": {
-    "editor.formatOnSave": false
-  }
+  ]
 }

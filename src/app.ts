@@ -7,16 +7,16 @@ import {
   CellGroup,
   Checkbox,
   Divider,
-  Icon,
-  NoticeBar,
+  Noticebar,
   Toast,
 } from '@nutui/nutui-taro'
+import '@nutui/nutui-taro/dist/style.css'
 import { useUserStore } from '@/stores/user'
 import { useFavoriteStore } from '@/stores/favorite'
 import '@/app.scss'
 
 const App = createApp({
-  onShow () {
+  onShow() {
     const userStore = useUserStore()
     const favoriteStore = useFavoriteStore()
     userStore.init()
@@ -31,8 +31,7 @@ App.use(Button)
 App.use(Cell)
 App.use(CellGroup)
 App.use(Divider)
-App.use(Icon)
-App.use(NoticeBar)
+App.use(Noticebar)
 App.use(Checkbox)
 App.use(Toast)
 

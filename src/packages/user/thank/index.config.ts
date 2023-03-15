@@ -4,5 +4,5 @@
  */
 
 export default definePageConfig({
-  navigationBarTitleText: `致谢`,
+  navigationBarTitleText: '致谢',
 })

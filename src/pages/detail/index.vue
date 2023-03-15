@@ -96,13 +96,8 @@
           class="action-item"
           open-type="share"
         >
-          <nut-icon
-            class="action-item-icon"
-            name="share"
-          />
-          <text class="action-item-text">
-            分享给好友
-          </text>
+          <Share class="action-item-icon" />
+          <text class="action-item-text"> 分享给好友 </text>
           <view class="action-item-line" />
         </button>
         <button
@@ -110,13 +105,8 @@
           hover-class="none"
           class="action-item"
         >
-          <nut-icon
-            class="action-item-icon"
-            name="photograph"
-          />
-          <text class="action-item-text">
-            生成海报
-          </text>
+          <Photograph class="action-item-icon" />
+          <text class="action-item-text"> 生成海报 </text>
         </button>
       </view>
     </template>
@@ -144,6 +134,7 @@ import {
   useShareAppMessage,
   useShareTimeline,
 } from '@tarojs/taro'
+import { Photograph, Share } from '@nutui/icons-vue-taro'
 import PosterBuilder from '@/components/PosterBuilder/index.vue'
 import { getNewsDetail } from '@/services'
 import { formatTime } from '@/utils'
@@ -152,12 +143,12 @@ import type { Question } from '@/types'
 import { useFavoriteStore } from '@/stores/favorite'
 
 const router = useRouter()
-const newsId = ref(``)
-const newsImage = ref(``)
-const newsTitle = ref(``)
+const newsId = ref('')
+const newsImage = ref('')
+const newsTitle = ref('')
 const questions = ref<Question[]>([])
 const images = ref<string[]>([])
-const nickName = ``
+const nickName = ''
 const isChecked = ref(false)
 const posterConfig = ref<any>(null)
 const favoriteStore = useFavoriteStore()
@@ -180,7 +171,7 @@ const onPreviewImages = async (image: string) => {
   try {
     await previewImage({ current: image, urls: images.value })
   } catch (err) {
-    showToast({ title: `预览图片失败，请重试`, icon: `error` })
+    showToast({ title: '预览图片失败，请重试', icon: 'error' })
   }
 }
 const onToggleFavoriteStory = isChecked => {
@@ -196,20 +187,20 @@ const onToggleFavoriteStory = isChecked => {
   }
 }
 const onGeneratePoster = async () => {
-  const time = formatTime(new Date(), { format: `YYYY年MM月DD日` })
+  const time = formatTime(new Date(), { format: 'YYYY年MM月DD日' })
   const width = 750
   const height = 1100
   posterConfig.value = {
     width,
     height,
-    backgroundColor: `#ffffff`,
+    backgroundColor: '#ffffff',
     blocks: [
       {
         y: height - 120,
         x: 0,
         width: 750,
         height: 120,
-        backgroundColor: `#eccdb0`,
+        backgroundColor: '#eccdb0',
         zIndex: 10,
       },
     ],
@@ -230,14 +221,14 @@ const onGeneratePoster = async () => {
         fontSize: 36,
         lineHeight: 50,
         lineNum: 2,
-        color: `#333333`,
+        color: '#333333',
         text: newsTitle.value,
       },
       {
         x: 40,
         y: 600,
-        color: `#999999`,
-        text: `来自：「知乎日报」`,
+        color: '#999999',
+        text: '来自：「知乎日报」',
       },
       {
         x: 40,
@@ -245,8 +236,8 @@ const onGeneratePoster = async () => {
         width: 300,
         lineNum: 1,
         fontSize: 24,
-        color: `#333333`,
-        text: nickName ? `${nickName} - 邀请你来读文章` : `来源: 文章分享`,
+        color: '#333333',
+        text: nickName ? `${nickName} - 邀请你来读文章` : '来源: 文章分享',
       },
       {
         x: 40,
@@ -254,7 +245,7 @@ const onGeneratePoster = async () => {
         width: 300,
         lineNum: 1,
         fontSize: 24,
-        color: `#333333`,
+        color: '#333333',
         text: `分享于: ${time}`,
       },
       {
@@ -265,8 +256,8 @@ const onGeneratePoster = async () => {
         fontSize: 32,
         lineHeight: 48,
         lineNum: 2,
-        color: `#666666`,
-        text: `假装这里是小程序二维码`,
+        color: '#666666',
+        text: '假装这里是小程序二维码',
       },
       {
         x: 40,
@@ -274,8 +265,8 @@ const onGeneratePoster = async () => {
         fontSize: 24,
         lineHeight: 30,
         lineNum: 1,
-        color: `#914d4d`,
-        text: `长按小程序码`,
+        color: '#914d4d',
+        text: '长按小程序码',
         zIndex: 20,
       },
       {
@@ -284,8 +275,8 @@ const onGeneratePoster = async () => {
         fontSize: 24,
         lineHeight: 30,
         lineNum: 1,
-        color: `#914d4d`,
-        text: `进入喔喔日推小程序查看`,
+        color: '#914d4d',
+        text: '进入喔喔日推小程序查看',
         zIndex: 20,
       },
     ],
@@ -296,10 +287,10 @@ const saveImage = async (filePath: string) => {
     await saveImageToPhotosAlbum({ filePath })
     showModal({
       showCancel: false,
-      title: `图片已保存到系统相册`,
-      content: `快去分享给小伙伴们吧~~`,
-      confirmText: `我知道了`,
-      confirmColor: `#2d8cf0`,
+      title: '图片已保存到系统相册',
+      content: '快去分享给小伙伴们吧~~',
+      confirmText: '我知道了',
+      confirmColor: '#2d8cf0',
     })
   } catch (err) {
     console.log(err)
@@ -309,23 +300,23 @@ const onPosterGenerateSuccess = async (result: { tempFilePath: string }) => {
   const { authSetting = {} } = await getSetting()
   const filePath = result.tempFilePath
   if (!filePath) {
-    return showToast({ title: `图片生成失败，请重试`, icon: `error` })
+    return showToast({ title: '图片生成失败，请重试', icon: 'error' })
   }
-  if (authSetting[`scope.writePhotosAlbum`]) return saveImage(filePath)
+  if (authSetting['scope.writePhotosAlbum']) return saveImage(filePath)
   authorize({
-    scope: `scope.writePhotosAlbum`,
-    success () {
+    scope: 'scope.writePhotosAlbum',
+    success() {
       saveImage(filePath)
     },
-    async fail () {
+    async fail() {
       const res = await showModal({
-        title: `提示`,
-        content: `保存图片需要您的授权`,
+        title: '提示',
+        content: '保存图片需要您的授权',
         showCancel: true,
-        cancelText: `取消`,
-        cancelColor: `#7f7f7f`,
-        confirmText: `去设置`,
-        confirmColor: `#2d8cf0`,
+        cancelText: '取消',
+        cancelColor: '#7f7f7f',
+        confirmText: '去设置',
+        confirmColor: '#2d8cf0',
       })
       if (!res.confirm) return
       openSetting()

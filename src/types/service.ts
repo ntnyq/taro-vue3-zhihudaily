@@ -1,4 +1,3 @@
-
 export interface Story {
   id: string
   hint: string
@@ -9,9 +8,9 @@ export interface Story {
   images: string[]
 }
 
-export type TopStory = Omit<Story, `images`> & { image: string }
+export type TopStory = Omit<Story, 'images'> & { image: string }
 
-export type StoryMeta = Pick<TopStory, `id`|`title`|`image`>
+export type StoryMeta = Pick<TopStory, 'id' | 'title' | 'image'>
 
 export interface UserInfo {
   avatarUrl: string

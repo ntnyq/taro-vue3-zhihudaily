@@ -4,6 +4,6 @@
  */
 
 export default definePageConfig({
-  navigationBarTitleText: `日推`,
+  navigationBarTitleText: '日推',
   enablePullDownRefresh: true,
 })

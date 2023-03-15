@@ -8,12 +8,8 @@ import Taro from '@tarojs/taro'
 export const apiHost = API_HOST
 
 const api = {
-  async baseOptions (params: any, method = `GET`) {
-    const {
-      url,
-      data,
-      contentType,
-    } = params
+  async baseOptions(params: any, method = 'GET') {
+    const { url, data, contentType } = params
     const options = {
       url: /^https?/.test(url) ? url : apiHost + url,
       data,
@@ -23,8 +19,7 @@ const api = {
       },
     } as Taro.request.Option
 
-    return Taro
-      .request(options)
+    return Taro.request(options)
       .then(res => {
         const { statusCode, errMsg } = res
 
@@ -33,37 +28,37 @@ const api = {
         } else {
           Taro.showToast({
             title: errMsg || `返回成功，但状态码为${statusCode}`,
-            icon: `none`,
+            icon: 'none',
           })
         }
       })
       .catch(err => {
         Taro.showToast({
-          title: err.errorMsg || `小程序数据请求失败`,
-          icon: `none`,
+          title: err.errorMsg || '小程序数据请求失败',
+          icon: 'none',
         })
         return Promise.reject(err)
       })
   },
 
-  get (url: string, data = {}) {
+  get(url: string, data = {}) {
     const options = { url, data }
-    return this.baseOptions(options, `GET`)
+    return this.baseOptions(options, 'GET')
   },
 
-  post (url: string, data = {}, contentType: string) {
+  post(url: string, data = {}, contentType: string) {
     const options = { url, data, contentType }
-    return this.baseOptions(options, `POST`)
+    return this.baseOptions(options, 'POST')
   },
 
-  put (url: string, data = {}) {
+  put(url: string, data = {}) {
     const options = { url, data }
-    return this.baseOptions(options, `PUT`)
+    return this.baseOptions(options, 'PUT')
   },
 
-  delete (url: string, data = {}) {
+  delete(url: string, data = {}) {
     const options = { url, data }
-    return this.baseOptions(options, `DELETE`)
+    return this.baseOptions(options, 'DELETE')
   },
 }
 

@@ -1,12 +1,8 @@
 {
   "root": true,
-  "extends": [
-    "@ntnyq"
-  ],
+  "extends": ["@ntnyq"],
   "rules": {
     "vue/prefer-true-attribute-shorthand": "off"
   },
-  "ignorePatterns": [
-    "src/index.html"
-  ]
+  "ignorePatterns": ["src/index.html"]
 }

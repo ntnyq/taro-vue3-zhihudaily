@@ -5,13 +5,11 @@
 
 import dayjs from 'dayjs'
 
-export function formatTime (date: dayjs.ConfigType, {
-  isUnix = false,
-  format = `YYYY-MM-DD HH:mm:ss`,
-} = {}) {
-  return isUnix
-    ? dayjs.unix(date as number).format(format)
-    : dayjs(date).format(format)
+export function formatTime(
+  date: dayjs.ConfigType,
+  { isUnix = false, format = 'YYYY-MM-DD HH:mm:ss' } = {},
+) {
+  return isUnix ? dayjs.unix(date as number).format(format) : dayjs(date).format(format)
 }
 
 /**

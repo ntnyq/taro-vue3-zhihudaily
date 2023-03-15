@@ -13,24 +13,24 @@ export const useFavoriteStore = defineStore(StoreModole.favorite, {
   }),
 
   actions: {
-    addStory (story: StoryMeta) {
+    addStory(story: StoryMeta) {
       const list = [story, ...this.list]
       this.$patch({ list })
       Storage.setFavoriteStoryList(list)
     },
 
-    removeStory (id: string) {
+    removeStory(id: string) {
       const list = this.list.filter(item => item.id !== id)
       this.$patch({ list })
       Storage.setFavoriteStoryList(list)
     },
 
-    clearStoryList () {
+    clearStoryList() {
       Storage.removeFavoriteStoryList()
       this.$reset()
     },
 
-    init () {
+    init() {
       const list = Storage.getFavoriteStoryList()
       if (!list || !list.length) return
       this.$patch({ list })

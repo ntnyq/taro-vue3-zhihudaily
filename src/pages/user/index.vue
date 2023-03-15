@@ -16,9 +16,7 @@
         v-else
         class="no-auth"
       >
-        <text class="no-auth-text">
-          授权后，获取个性化内容
-        </text>
+        <text class="no-auth-text"> 授权后，获取个性化内容 </text>
         <nut-button
           @tap="onGetUserInfo"
           type="primary"
@@ -94,7 +92,7 @@ const userStore = useUserStore()
 const favoriteStore = useFavoriteStore()
 const onGetUserInfo = async () => {
   try {
-    const res = await Taro.getUserProfile({ desc: `用于展示用户信息` })
+    const res = await Taro.getUserProfile({ desc: '用于展示用户信息' })
     if (!res.userInfo) return
     userStore.setUserInfo(res.userInfo)
   } catch (err) {
@@ -105,20 +103,20 @@ const onClearAllCache = async () => {
   userStore.clearUserInfo()
   favoriteStore.clearStoryList()
   await Taro.clearStorage()
-  Taro.showToast({ title: `清理成功`, icon: `success` })
+  Taro.showToast({ title: '清理成功', icon: 'success' })
 }
 const onCellClick = (key: string) => {
   switch (key) {
-    case `copy`:
-    case `author`:
-    case `thank`:
-    case `favorite`:
+    case 'copy':
+    case 'author':
+    case 'thank':
+    case 'favorite':
       Taro.navigateTo({ url: `/packages/user/${key}/index` })
       break
-    case `permission`:
+    case 'permission':
       Taro.openSetting()
       break
-    case `cache`:
+    case 'cache':
       onClearAllCache()
       break
     default:

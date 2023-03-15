@@ -4,5 +4,5 @@
  */
 
 export default definePageConfig({
-  navigationBarTitleText: `版权声明`,
+  navigationBarTitleText: '版权声明',
 })

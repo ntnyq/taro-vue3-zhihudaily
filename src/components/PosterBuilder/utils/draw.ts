@@ -1,4 +1,3 @@
-
 import { getLinearColor, getTextX, toPx } from './tools'
 
 /**
@@ -15,7 +14,7 @@ import { getLinearColor, getTextX, toPx } from './tools'
  * ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise(是否逆时针画弧))
  * ctx.arcTo(x1, y1, x2, y2, radius); // 当前点-x1点 画切线 x1点到x2点画切线， 用半径为radius的圆弧替换掉切线部分
  */
-export function _drawRadiusRect ({ x, y, w, h, r }, { ctx }) {
+export function _drawRadiusRect({ x, y, w, h, r }, { ctx }) {
   const minSize = Math.min(w, h)
   if (r > minSize / 2) r = minSize / 2
   ctx.beginPath()
@@ -38,7 +37,7 @@ export function _drawRadiusRect ({ x, y, w, h, r }, { ctx }) {
  * @param { object } drawOptions - 绘制对象
  * @param { object } drawOptions.ctx - ctx对象
  */
-export function _drawRadiusGroupRect ({ x, y, w, h, g }, { ctx }) {
+export function _drawRadiusGroupRect({ x, y, w, h, g }, { ctx }) {
   const [
     borderTopLeftRadius,
     borderTopRightRadius,
@@ -94,10 +93,10 @@ export function _drawRadiusGroupRect ({ x, y, w, h, g }, { ctx }) {
  * @param { object } drawOptions - 绘制对象
  * @param { object } drawOptions.ctx - ctx对象
  */
-export function _getTextWidth (text, drawOptions) {
+export function _getTextWidth(text, drawOptions) {
   const { ctx } = drawOptions
   let texts: any[] = []
-  if (Object.prototype.toString.call(text) === `[object Object]`) {
+  if (Object.prototype.toString.call(text) === '[object Object]') {
     texts.push(text)
   } else {
     texts = text
@@ -107,9 +106,9 @@ export function _getTextWidth (text, drawOptions) {
     ({
       fontSize,
       text: textStr,
-      fontStyle = `normal`,
-      fontWeight = `normal`,
-      fontFamily = `sans-serif`,
+      fontStyle = 'normal',
+      fontWeight = 'normal',
+      fontFamily = 'sans-serif',
       marginLeft = 0,
       marginRight = 0,
     }) => {
@@ -142,7 +141,7 @@ export function _getTextWidth (text, drawOptions) {
  * @param { object } drawOptions - 绘制对象
  * @param { object } drawOptions.ctx - ctx对象
  */
-export function _drawSingleText (drawData, drawOptions) {
+export function _drawSingleText(drawData, drawOptions) {
   const {
     x = 0,
     y = 0,
@@ -150,15 +149,15 @@ export function _drawSingleText (drawData, drawOptions) {
     color,
     width,
     fontSize = 28,
-    baseLine = `top`,
-    textAlign = `left`,
+    baseLine = 'top',
+    textAlign = 'left',
     opacity = 1,
-    textDecoration = `none`,
+    textDecoration = 'none',
     lineNum = 1,
     lineHeight = 0,
-    fontWeight = `normal`,
-    fontStyle = `normal`,
-    fontFamily = `sans-serif`,
+    fontWeight = 'normal',
+    fontStyle = 'normal',
+    fontFamily = 'sans-serif',
   } = drawData
   const { ctx } = drawOptions
   // 画笔初始化
@@ -175,7 +174,7 @@ export function _drawSingleText (drawData, drawOptions) {
   // 文本超出换行
   if (textWidth > width) {
     // 如果超出一行 ，则判断要分为几行
-    let fillText = `` // 当前行已拼接的文字
+    let fillText = '' // 当前行已拼接的文字
     let line = 1 // 当前是第几行
     for (let i = 0; i <= text.length - 1; i++) {
       // 将文字转为数组，一行文字一个元素
@@ -187,10 +186,7 @@ export function _drawSingleText (drawData, drawOptions) {
         // 如果拼接下一个字就超出宽度则添加者省略号或者换行
         if (line === lineNum) {
           // 已经是最后一行，就拼接省略号
-          if (
-            restWidth + ctx.measureText(text[i + 1]).width
-            > ctx.measureText(`...`).width
-          ) {
+          if (restWidth + ctx.measureText(text[i + 1]).width > ctx.measureText('...').width) {
             // 剩余宽度能否放下省略号
             fillText = `${fillText}...`
           } else {
@@ -202,7 +198,7 @@ export function _drawSingleText (drawData, drawOptions) {
           // 如果不是最后一行，就换行
           textArr.push(fillText)
           line++
-          fillText = ``
+          fillText = ''
         }
       } else if (i === text.length - 1) {
         textArr.push(fillText)
@@ -224,9 +220,9 @@ export function _drawSingleText (drawData, drawOptions) {
   ctx.restore()
 
   // 文本修饰，下划线、删除线什么的
-  if (textDecoration !== `none`) {
+  if (textDecoration !== 'none') {
     let lineY = y
-    if (textDecoration === `line-through`) {
+    if (textDecoration === 'line-through') {
       // 目前只支持贯穿线
       lineY = y
     }
@@ -262,9 +258,9 @@ export function _drawSingleText (drawData, drawOptions) {
  * @param { object } drawOptions - 绘制对象
  * @param { object } drawOptions.ctx - ctx对象
  */
-export function drawText (params, drawOptions) {
+export function drawText(params, drawOptions) {
   const { x = 0, y = 0, text, baseLine } = params
-  if (Object.prototype.toString.call(text) === `[object Array]`) {
+  if (Object.prototype.toString.call(text) === '[object Array]') {
     const preText = { x, y, baseLine }
 
     // 遍历多行文字，一行一行渲染
@@ -294,7 +290,7 @@ export function drawText (params, drawOptions) {
  * @param { object } drawOptions - 绘制对象
  * @param { object } drawOptions.ctx - ctx对象
  */
-export function drawLine (drawData, drawOptions) {
+export function drawLine(drawData, drawOptions) {
   const { startX, startY, endX, endY, color, width } = drawData
   const { ctx } = drawOptions
   if (!width) return
@@ -328,7 +324,7 @@ export function drawLine (drawData, drawOptions) {
  * @param { object } drawOptions - 绘制对象
  * @param { object } drawOptions.ctx - ctx对象
  */
-export function drawBlock (data, drawOptions) {
+export function drawBlock(data, drawOptions) {
   const {
     x,
     y,
@@ -355,21 +351,18 @@ export function drawBlock (data, drawOptions) {
   // 渲染块内文字
   if (text) {
     // 如果文字宽度超出块宽度，则块的宽度为：文字的宽度 + 内边距
-    const textWidth = _getTextWidth(
-      typeof text.text === `string` ? text : text.text,
-      drawOptions,
-    )
+    const textWidth = _getTextWidth(typeof text.text === 'string' ? text : text.text, drawOptions)
     blockWidth = textWidth > width ? textWidth : width
     blockWidth += paddingLeft + paddingLeft
 
-    const { textAlign = `left` } = text
+    const { textAlign = 'left' } = text
     textY = y // 文字默认定位在块的左上角
     textX = x + paddingLeft
 
     // 文字居中
-    if (textAlign === `center`) {
+    if (textAlign === 'center') {
       textX = blockWidth / 2 + x
-    } else if (textAlign === `right`) {
+    } else if (textAlign === 'right') {
       textX = x + blockWidth - paddingRight
     }
     drawText(Object.assign(text, { x: textX, y: textY }), drawOptions)

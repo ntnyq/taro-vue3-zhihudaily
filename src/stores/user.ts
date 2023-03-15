@@ -15,17 +15,17 @@ export const useUserStore = defineStore(StoreModole.user, {
   }),
 
   actions: {
-    setUserInfo (userInfo: UserInfo) {
+    setUserInfo(userInfo: UserInfo) {
       this.$patch({ userInfo, hasAuth: true })
       Storage.setUserInfo(userInfo)
     },
 
-    clearUserInfo () {
+    clearUserInfo() {
       Storage.removeUserInfo()
       this.$reset()
     },
 
-    init () {
+    init() {
       const userInfo = Storage.getUserInfo()
       if (!userInfo && !Object.keys(userInfo).length) return
       this.$patch({ userInfo, hasAuth: true })

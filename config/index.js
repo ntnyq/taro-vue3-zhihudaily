@@ -4,14 +4,14 @@
 
 // @ts-check
 
-const path = require(`path`)
-const { defineConfig } = require(`taro-define-config`)
+const path = require('node:path')
+const { defineConfig } = require('taro-define-config')
 
-const resolve = (...args) => path.resolve(__dirname, `..`, ...args)
+const resolve = (...args) => path.resolve(__dirname, '..', ...args)
 
 const config = defineConfig({
-  projectName: `starter-vue-wechat-app`,
-  date: `2022-5-21`,
+  projectName: 'starter-vue-wechat-app',
+  date: '2022-5-21',
   designWidth: 750,
   deviceRatio: {
     640: 2.34 / 2,
@@ -19,48 +19,48 @@ const config = defineConfig({
     828: 1.81 / 2,
     375: 2 / 1,
   },
-  sourceRoot: `src`,
-  outputRoot: `dist`,
-  plugins: [
-    `@tarojs/plugin-html`,
-    `taro-plugin-pinia`,
-  ],
-  compiler: `webpack5`,
-  framework: `vue3`,
+  sourceRoot: 'src',
+  outputRoot: 'dist',
+  plugins: ['@tarojs/plugin-html', 'taro-plugin-pinia'],
+  compiler: {
+    type: 'webpack5',
+    prebundle: {
+      exclude: ['@nutui/nutui-taro'],
+    },
+  },
+  framework: 'vue3',
   cache: {
     enable: true,
   },
-  jsMinimizer: `esbuild`,
+  jsMinimizer: 'esbuild',
   esbuild: {
     minify: {
       config: {
-        target: [`es2015`, `chrome58`, `firefox75`, `safari11`],
-        charset: `utf8`,
+        target: ['es2015', 'chrome58', 'firefox75', 'safari11'],
+        charset: 'utf8',
       },
     },
   },
   alias: {
-    '@': resolve(`src`),
+    '@': resolve('src'),
   },
   defineConstants: {
-    API_HOST: `"https://news-at.zhihu.com/api/4"`,
+    API_HOST: '"https://news-at.zhihu.com/api/4"',
   },
   copy: {
     patterns: [],
     options: {},
   },
   sass: {
-    resource: [
-      resolve(`src/assets/styles/core.scss`),
-    ],
-    data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`,
+    resource: [resolve('src/assets/styles/core.scss')],
+    data: '@import "@nutui/nutui-taro/dist/styles/variables.scss";',
   },
   mini: {
     postcss: {
       pxtransform: {
         enable: true,
         config: {
-          selectorBlackList: [`nut-`],
+          selectorBlackList: ['nut-'],
         },
       },
       url: {
@@ -72,16 +72,16 @@ const config = defineConfig({
       cssModules: {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
-          namingPattern: `module`, // 转换模式，取值为 global/module
-          generateScopedName: `[name]__[local]___[hash:base64:5]`,
+          namingPattern: 'module', // 转换模式，取值为 global/module
+          generateScopedName: '[name]__[local]___[hash:base64:5]',
         },
       },
     },
   },
   h5: {
-    publicPath: `/`,
-    staticDirectory: `static`,
-    esnextModules: [`nutui-taro`, `poster-builder`],
+    publicPath: '/',
+    staticDirectory: 'static',
+    esnextModules: ['nutui-taro', 'poster-builder'],
     postcss: {
       autoprefixer: {
         enable: true,
@@ -90,8 +90,8 @@ const config = defineConfig({
       cssModules: {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
-          namingPattern: `module`, // 转换模式，取值为 global/module
-          generateScopedName: `[name]__[local]___[hash:base64:5]`,
+          namingPattern: 'module', // 转换模式，取值为 global/module
+          generateScopedName: '[name]__[local]___[hash:base64:5]',
         },
       },
     },
@@ -99,8 +99,8 @@ const config = defineConfig({
 })
 
 module.exports = function (merge) {
-  if (process.env.NODE_ENV === `development`) {
-    return merge({}, config, require(`./dev`))
+  if (process.env.NODE_ENV === 'development') {
+    return merge({}, config, require('./dev'))
   }
-  return merge({}, config, require(`./prod`))
+  return merge({}, config, require('./prod'))
 }

@@ -2,8 +2,7 @@
   <canvas
     type="2d"
     :style="`height: ${height}rpx; width:${width}rpx; position: absolute;
-    ${debug ? '' : 'transform:translate3d(-9999rpx, 0, 0)'}`
-    "
+    ${debug ? '' : 'transform:translate3d(-9999rpx, 0, 0)'}`"
     :id="canvasId"
   />
 </template>
@@ -23,7 +22,7 @@ import {
 } from './utils/tools'
 
 export default defineComponent({
-  name: `PosterBuilder`,
+  name: 'PosterBuilder',
   props: {
     showLoading: {
       type: Boolean,
@@ -34,9 +33,9 @@ export default defineComponent({
       default: () => ({}),
     },
   },
-  emits: [`success`, `fail`],
+  emits: ['success', 'fail'],
   // eslint-disable-next-line max-lines-per-function
-  setup (props, context) {
+  setup(props, context) {
     const count = ref(1)
     const {
       width,
@@ -52,8 +51,8 @@ export default defineComponent({
 
     /**
      * step1: 初始化图片资源
-     * @param  {Array} images = imgTask
-     * @return {Promise} downloadImagePromise
+     * @param images = imgTask
+     * @return downloadImagePromise
      */
     const initImages = (images: Image[]) => {
       const imagesTemp = images.filter(item => item.url)
@@ -67,46 +66,47 @@ export default defineComponent({
      * step2: 初始化 canvas && 获取其 dom 节点和实例
      * @return resolve 里返回其 dom 和实例
      */
-    const initCanvas = () => new Promise(resolve => {
-      setTimeout(() => {
-        const pageInstance = Taro.getCurrentInstance()?.page || {} // 拿到当前页面实例
-        const query = Taro.createSelectorQuery().in(pageInstance) // 确定在当前页面内匹配子元素
-        query
-          .select(`#${canvasId}`)
-          .fields({ node: true, size: true, context: true }, res => {
-            const canvas = res.node
-            const ctx = canvas.getContext(`2d`)
-            resolve({ ctx, canvas })
-          })
-          .exec()
-      }, 300)
-    })
+    const initCanvas = () =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          const pageInstance = Taro.getCurrentInstance()?.page || {} // 拿到当前页面实例
+          const query = Taro.createSelectorQuery().in(pageInstance) // 确定在当前页面内匹配子元素
+          query
+            .select(`#${canvasId}`)
+            .fields({ node: true, size: true, context: true }, res => {
+              const canvas = res.node
+              const ctx = canvas.getContext('2d')
+              resolve({ ctx, canvas })
+            })
+            .exec()
+        }, 300)
+      })
 
     /**
      * @description 保存绘制的图片
      * @param canvas
      */
-    const getTempFile = canvas => {
+    const getTempFile = (canvas: Taro.Canvas) => {
       Taro.canvasToTempFilePath(
         {
           canvas,
           success: result => {
             Taro.hideLoading()
-            context.emit(`success`, result)
+            context.emit('success', result)
           },
           fail: error => {
             const { errMsg } = error
-            if (errMsg === `canvasToTempFilePath:fail:create bitmap failed`) {
+            if (errMsg === 'canvasToTempFilePath:fail:create bitmap failed') {
               count.value += 1
               if (count.value <= 3) {
                 getTempFile(canvas)
               } else {
                 Taro.hideLoading()
                 Taro.showToast({
-                  icon: `none`,
-                  title: errMsg || `绘制海报失败`,
+                  icon: 'none',
+                  title: errMsg || '绘制海报失败',
                 })
-                context.emit(`fail`, errMsg)
+                context.emit('fail', errMsg)
               }
             }
           },
@@ -122,7 +122,7 @@ export default defineComponent({
     const startDrawing = async drawTasks => {
       // TODO: check
       // const configHeight = getHeight(config)
-      const { ctx, canvas } = await initCanvas() as any
+      const { ctx, canvas } = (await initCanvas()) as any
 
       canvas.width = width
       canvas.height = height
@@ -139,21 +139,21 @@ export default defineComponent({
       const queue = drawTasks
         .concat(
           texts.map(item => {
-            item.type = `text`
+            item.type = 'text'
             item.zIndex = item.zIndex || 0
             return item
           }),
         )
         .concat(
           blocks.map(item => {
-            item.type = `block`
+            item.type = 'block'
             item.zIndex = item.zIndex || 0
             return item
           }),
         )
         .concat(
           lines.map(item => {
-            item.type = `line`
+            item.type = 'line'
             item.zIndex = item.zIndex || 0
             return item
           }),
@@ -167,13 +167,13 @@ export default defineComponent({
           toPx,
           toRpx,
         }
-        if (queue[i].type === `image`) {
+        if (queue[i].type === 'image') {
           await drawImage(queue[i], drawOptions)
-        } else if (queue[i].type === `text`) {
+        } else if (queue[i].type === 'text') {
           drawText(queue[i], drawOptions)
-        } else if (queue[i].type === `block`) {
+        } else if (queue[i].type === 'block') {
           drawBlock(queue[i], drawOptions)
-        } else if (queue[i].type === `line`) {
+        } else if (queue[i].type === 'line') {
           drawLine(queue[i], drawOptions)
         }
       }
@@ -186,7 +186,7 @@ export default defineComponent({
     // start: 初始化 canvas 实例 && 下载图片资源
     const init = () => {
       if (props.showLoading) {
-        Taro.showLoading({ mask: true, title: `生成中...` })
+        Taro.showLoading({ mask: true, title: '生成中...' })
       }
       if (props.config?.images?.length) {
         initImages(props.config.images)
@@ -197,10 +197,10 @@ export default defineComponent({
           .catch(err => {
             Taro.hideLoading()
             Taro.showToast({
-              icon: `none`,
-              title: err.errMsg || `下载图片失败`,
+              icon: 'none',
+              title: err.errMsg || '下载图片失败',
             })
-            context.emit(`fail`, err)
+            context.emit('fail', err)
           })
       } else {
         startDrawing([])
