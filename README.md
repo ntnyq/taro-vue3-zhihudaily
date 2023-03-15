@@ -1,8 +1,9 @@
-# starter-taro-vue
+# taro-vue3-zhihudaily
 
-[![CI](https://github.com/ntnyq/starter-taro-vue/workflows/CI/badge.svg)](https://github.com/ntnyq/starter-taro-vue/actions)
+> ZhihuDaily wechat app based on Taro and Vue v3.
 
-> Wechat App starter kit based on Taro and Vue v3.
+[![CI](https://github.com/ntnyq/taro-vue3-zhihudaily/workflows/CI/badge.svg)](https://github.com/ntnyq/taro-vue3-zhihudaily/actions)
+[![LICENSE](https://img.shields.io/github/license/ntnyq/taro-vue3-zhihudaily.svg)](https://github.com/ntnyq/taro-vue3-zhihudaily/blob/main/LICENSE)
 
 ## Development
 
@@ -29,3 +30,7 @@ $ pnpm run build
 - 🎨 UI components build on top of [NutUI](https://nutui.jd.com/#/zh-CN/component/button)
 - 📥 Code style check before git commit via [husky](https://typicode.github.io/husky), [nano-staged](https://github.com/usmanyunusov/nano-staged), [eslint](https://eslint.org)
 - 🦔 Use subPackage to avoid the 2MB limit of wechat app
+
+## License
+
+[MIT](./LICENSE) License © 2022 to PRESENT [ntnyq](https://github.com/ntnyq)
