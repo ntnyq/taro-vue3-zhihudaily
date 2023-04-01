@@ -4,62 +4,75 @@
  */
 import Taro from '@tarojs/taro'
 
-// @ts-expect-error defined constant
-export const apiHost = API_HOST
+/**
+ * Injected by `config.defineConstants`
+ */
+declare const API_HOST: string
 
-const api = {
-  async baseOptions(params: any, method = 'GET') {
+export const apiHost = API_HOST
+export enum HTTPMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  // patch is not supported by wechat app
+}
+
+interface HTTPRequestParams {
+  url: string
+  data?: Record<string, any>
+  contentType?: string
+}
+
+export class HTTPClient {
+  static async baseRequest(method = HTTPMethod.GET, params: HTTPRequestParams) {
     const { url, data, contentType } = params
-    const options = {
-      url: /^https?/.test(url) ? url : apiHost + url,
+    const options: Taro.request.Option = {
+      url: /^https?:\/\//i.test(url) ? url : apiHost + url,
       data,
       method,
       header: {
         contentType,
       },
-    } as Taro.request.Option
+    }
 
-    return Taro.request(options)
-      .then(res => {
-        const { statusCode, errMsg } = res
+    try {
+      const res = await Taro.request(options)
+      const { statusCode, errMsg } = res
 
-        if (statusCode === 200) {
-          return res.data || {}
-        } else {
-          Taro.showToast({
-            title: errMsg || `返回成功，但状态码为${statusCode}`,
-            icon: 'none',
-          })
-        }
-      })
-      .catch(err => {
-        Taro.showToast({
-          title: err.errorMsg || '小程序数据请求失败',
-          icon: 'none',
-        })
-        return Promise.reject(err)
-      })
-  },
+      if (statusCode === 200) {
+        return res.data || {}
+      } else {
+        const title = errMsg || `返回成功，但状态码为${statusCode}`
+        Taro.showToast({ title, icon: 'none' })
+        throw new Error(title)
+      }
+    } catch (err) {
+      const title = err.errorMsg || '小程序数据请求失败'
+      Taro.showToast({ title, icon: 'none' })
+      throw new Error(title)
+    }
+  }
 
-  get(url: string, data = {}) {
+  static get(url: string, data = {}) {
     const options = { url, data }
-    return this.baseOptions(options, 'GET')
-  },
+    return HTTPClient.baseRequest(HTTPMethod.GET, options)
+  }
 
-  post(url: string, data = {}, contentType: string) {
+  static post(url: string, data = {}, contentType: string) {
     const options = { url, data, contentType }
-    return this.baseOptions(options, 'POST')
-  },
+    return HTTPClient.baseRequest(HTTPMethod.POST, options)
+  }
 
-  put(url: string, data = {}) {
+  static put(url: string, data = {}) {
     const options = { url, data }
-    return this.baseOptions(options, 'PUT')
-  },
+    return HTTPClient.baseRequest(HTTPMethod.PUT, options)
+  }
 
-  delete(url: string, data = {}) {
+  static delete(url: string, data = {}) {
     const options = { url, data }
-    return this.baseOptions(options, 'DELETE')
-  },
+    return HTTPClient.baseRequest(HTTPMethod.DELETE, options)
+  }
 }
 
-export default api
+export default HTTPClient

@@ -65,15 +65,21 @@ import { onMounted, ref } from 'vue'
 import Taro, { usePullDownRefresh, useReachBottom } from '@tarojs/taro'
 import { formatTime } from '@/utils'
 import { getLatestNewsList, getNewsListByDate } from '@/services'
+import type { Story, TopStory } from '@/types'
 
 const INIT_DATE_OFFSET = 0
 
-const slides = ref<any>([])
-const newsList = ref<any>([])
+interface INews {
+  date: string
+  stories: Story[]
+}
+
+const slides = ref<TopStory[]>([])
+const newsList = ref<INews[]>([])
 const latestDate = ref('')
 const dateOffset = ref(INIT_DATE_OFFSET)
 
-const onGoNewsDetail = (news: any) => {
+const onGoNewsDetail = (news: Story | TopStory) => {
   if (!news.id) return
   Taro.navigateTo({ url: `/pages/detail/index?id=${news.id}` })
 }

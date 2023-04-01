@@ -140,7 +140,14 @@ import { getNewsDetail } from '@/services'
 import { formatTime } from '@/utils'
 import { normalizeStory } from '@/utils/translators'
 import { useFavoriteStore } from '@/stores/favorite'
+import type { DrawConfig } from '@/components/PosterBuilder/types'
 import type { Question } from '@/types'
+
+const INIT_DRAW_CONFIG: DrawConfig = {
+  width: 750,
+  height: 1100,
+  backgroundColor: '#ffffff',
+}
 
 const router = useRouter()
 const newsId = ref('')
@@ -150,7 +157,7 @@ const questions = ref<Question[]>([])
 const images = ref<string[]>([])
 const nickName = ''
 const isChecked = ref(false)
-const posterConfig = ref<any>(null)
+const posterConfig = ref<DrawConfig>(INIT_DRAW_CONFIG)
 const favoriteStore = useFavoriteStore()
 
 const fetchNewsDetail = async (id: string) => {
@@ -188,15 +195,11 @@ const onToggleFavoriteStory = isChecked => {
 }
 const onGeneratePoster = async () => {
   const time = formatTime(new Date(), { format: 'YYYY年MM月DD日' })
-  const width = 750
-  const height = 1100
   posterConfig.value = {
-    width,
-    height,
-    backgroundColor: '#ffffff',
+    ...posterConfig.value,
     blocks: [
       {
-        y: height - 120,
+        y: INIT_DRAW_CONFIG.height - 120,
         x: 0,
         width: 750,
         height: 120,
@@ -249,10 +252,9 @@ const onGeneratePoster = async () => {
         text: `分享于: ${time}`,
       },
       {
-        x: width - 40 - 200,
+        x: INIT_DRAW_CONFIG.width - 40 - 200,
         y: 700,
         width: 200,
-        height: 200,
         fontSize: 32,
         lineHeight: 48,
         lineNum: 2,
@@ -261,7 +263,7 @@ const onGeneratePoster = async () => {
       },
       {
         x: 40,
-        y: height - 90,
+        y: INIT_DRAW_CONFIG.height - 90,
         fontSize: 24,
         lineHeight: 30,
         lineNum: 1,
@@ -271,7 +273,7 @@ const onGeneratePoster = async () => {
       },
       {
         x: 40,
-        y: height - 50,
+        y: INIT_DRAW_CONFIG.height - 50,
         fontSize: 24,
         lineHeight: 30,
         lineNum: 1,
