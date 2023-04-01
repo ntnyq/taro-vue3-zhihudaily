@@ -7,7 +7,7 @@
 
 ## Development
 
-[pnpm](https://pnpm.io) is required.
+[pnpm v8](https://pnpm.io) and **node >= v16.14.0** is required.
 
 ```sh
 # Install deps
