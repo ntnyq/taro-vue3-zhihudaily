@@ -4,8 +4,10 @@ export interface Story {
   url: string
   title: string
   type: number
-  image_hue: string
+  image: string
+  image_hue: string // color
   images: string[]
+  body: string
 }
 
 export type TopStory = Omit<Story, 'images'> & { image: string }

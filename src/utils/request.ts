@@ -54,7 +54,7 @@ export class HTTPClient {
     }
   }
 
-  static get(url: string, data = {}) {
+  static get<T = any>(url: string, data = {}): Promise<T> {
     const options = { url, data }
     return HTTPClient.baseRequest(HTTPMethod.GET, options)
   }
