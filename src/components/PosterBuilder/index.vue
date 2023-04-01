@@ -9,9 +9,7 @@
 
 <script lang="ts">
 import Taro from '@tarojs/taro'
-import type { PropType } from 'vue'
 import { defineComponent, onMounted, ref } from 'vue'
-import type { DrawConfig, Image } from './types'
 import { drawBlock, drawImage, drawLine, drawText } from './utils/draw'
 import {
   getImageInfo,
@@ -20,6 +18,8 @@ import {
   toPx,
   toRpx,
 } from './utils/tools'
+import type { DrawConfig, Image } from './types'
+import type { PropType } from 'vue'
 
 export default defineComponent({
   name: 'PosterBuilder',
@@ -160,21 +160,21 @@ export default defineComponent({
         )
 
       queue.sort((a, b) => a.zIndex - b.zIndex) // 按照层叠顺序由低至高排序, 先画低的，再画高的
-      for (let i = 0; i < queue.length; i++) {
+      for (const element of queue) {
         const drawOptions = {
           canvas,
           ctx,
           toPx,
           toRpx,
         }
-        if (queue[i].type === 'image') {
-          await drawImage(queue[i], drawOptions)
-        } else if (queue[i].type === 'text') {
-          drawText(queue[i], drawOptions)
-        } else if (queue[i].type === 'block') {
-          drawBlock(queue[i], drawOptions)
-        } else if (queue[i].type === 'line') {
-          drawLine(queue[i], drawOptions)
+        if (element.type === 'image') {
+          await drawImage(element, drawOptions)
+        } else if (element.type === 'text') {
+          drawText(element, drawOptions)
+        } else if (element.type === 'block') {
+          drawBlock(element, drawOptions)
+        } else if (element.type === 'line') {
+          drawLine(element, drawOptions)
         }
       }
 

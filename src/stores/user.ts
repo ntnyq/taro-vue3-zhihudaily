@@ -27,7 +27,7 @@ export const useUserStore = defineStore(StoreModole.user, {
 
     init() {
       const userInfo = Storage.getUserInfo()
-      if (!userInfo && !Object.keys(userInfo).length) return
+      if (!userInfo && Object.keys(userInfo).length === 0) return
       this.$patch({ userInfo, hasAuth: true })
     },
   },

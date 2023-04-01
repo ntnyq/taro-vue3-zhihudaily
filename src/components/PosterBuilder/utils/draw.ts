@@ -190,7 +190,7 @@ export function _drawSingleText(drawData, drawOptions) {
             // 剩余宽度能否放下省略号
             fillText = `${fillText}...`
           } else {
-            fillText = `${fillText.substr(0, fillText.length - 1)}...`
+            fillText = `${fillText.slice(0, Math.max(0, fillText.length - 1))}...`
           }
           textArr.push(fillText)
           break
@@ -476,7 +476,7 @@ export const drawImage = (data, drawOptions) =>
       ctx.fill()
       const img = canvas.createImage() // 创建图片对象
       img.src = imgPath
-      img.onload = () => {
+      img.addEventListener('load', () => {
         ctx.drawImage(img, toPx(sx), toPx(sy), toPx(sw), toPx(sh), x, y, w, h)
         if (borderWidth > 0) {
           ctx.strokeStyle = borderColor
@@ -485,7 +485,7 @@ export const drawImage = (data, drawOptions) =>
         }
         resolve()
         ctx.restore()
-      }
+      })
     } else if (borderRadiusGroup) {
       _drawRadiusGroupRect(
         {
@@ -501,18 +501,18 @@ export const drawImage = (data, drawOptions) =>
       ctx.fill()
       const img = canvas.createImage() // 创建图片对象
       img.src = imgPath
-      img.onload = () => {
+      img.addEventListener('load', () => {
         ctx.drawImage(img, toPx(sx), toPx(sy), toPx(sw), toPx(sh), x, y, w, h)
         resolve()
         ctx.restore()
-      }
+      })
     } else {
       const img = canvas.createImage() // 创建图片对象
       img.src = imgPath
-      img.onload = () => {
+      img.addEventListener('load', () => {
         ctx.drawImage(img, toPx(sx), toPx(sy), toPx(sw), toPx(sh), x, y, w, h)
         resolve()
         ctx.restore()
-      }
+      })
     }
   })

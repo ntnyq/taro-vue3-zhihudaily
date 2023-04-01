@@ -7,10 +7,15 @@
 const path = require('node:path')
 const { defineConfig } = require('taro-define-config')
 
+/**
+ * resolve path
+ * @param  {any[]} args
+ * @returns resolved path
+ */
 const resolve = (...args) => path.resolve(__dirname, '..', ...args)
 
 const config = defineConfig({
-  projectName: 'starter-vue-wechat-app',
+  projectName: 'taro-vue3-zhihudaily',
   date: '2022-5-21',
   designWidth: 750,
   deviceRatio: {

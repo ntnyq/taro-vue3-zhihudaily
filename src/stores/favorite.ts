@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import * as Storage from '@/utils/storage'
-import type { StoryMeta } from '@/types'
 import { StoreModole } from '@/types'
+import type { StoryMeta } from '@/types'
 
 export interface IFavoriteState {
   list: StoryMeta[]
@@ -32,7 +32,7 @@ export const useFavoriteStore = defineStore(StoreModole.favorite, {
 
     init() {
       const list = Storage.getFavoriteStoryList()
-      if (!list || !list.length) return
+      if (!list || list.length === 0) return
       this.$patch({ list })
     },
   },

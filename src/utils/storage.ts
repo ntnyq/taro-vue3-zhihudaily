@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
-import type { StoryMeta, UserInfo } from '@/types'
 import { StorageKey } from '@/types'
+import type { StoryMeta, UserInfo } from '@/types'
 
 export function getUserInfo() {
   return Taro.getStorageSync<UserInfo>(StorageKey.userInfo)

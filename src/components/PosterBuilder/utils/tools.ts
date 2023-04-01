@@ -1,5 +1,5 @@
-import type { CanvasContext, CanvasGradient } from '@tarojs/taro'
 import Taro from '@tarojs/taro'
+import type { CanvasContext, CanvasGradient } from '@tarojs/taro'
 
 declare const wx: any
 
@@ -8,9 +8,9 @@ declare const wx: any
  * @param length - 字符串长度
  */
 export function randomString(length: number) {
-  let str = Math.random().toString(36).substring(2)
+  let str = Math.random().toString(36).slice(2)
   if (str.length >= length) {
-    return str.substring(0, length)
+    return str.slice(0, Math.max(0, length))
   }
   str += randomString(length - str.length)
   return str
@@ -83,11 +83,9 @@ export function getRandomId(prefix = 'canvas', length = 10) {
 export function mapHttpToHttps(rawUrl: string) {
   if (!rawUrl.includes(':') || rawUrl.startsWith('http://tmp')) return rawUrl
   const urlComponent = rawUrl.split(':')
-  if (urlComponent.length === 2) {
-    if (urlComponent[0] === 'http') {
-      urlComponent[0] = 'https'
-      return `${urlComponent[0]}:${urlComponent[1]}`
-    }
+  if (urlComponent.length === 2 && urlComponent[0] === 'http') {
+    urlComponent[0] = 'https'
+    return `${urlComponent[0]}:${urlComponent[1]}`
   }
   return rawUrl
 }
@@ -108,7 +106,7 @@ export const getFactor = () => {
  * @param factor - 转化因子
  * @returns
  */
-export const toPx = (rpx, factor = getFactor()) => parseInt(String(rpx * factor), 10)
+export const toPx = (rpx, factor = getFactor()) => Number.parseInt(String(rpx * factor), 10)
 
 /**
  * px => rpx 单位转换
@@ -116,7 +114,7 @@ export const toPx = (rpx, factor = getFactor()) => parseInt(String(rpx * factor)
  * @param factor - 转化因子
  * @returns
  */
-export const toRpx = (px: number, factor = getFactor()) => parseInt(String(px / factor), 10)
+export const toRpx = (px: number, factor = getFactor()) => Number.parseInt(String(px / factor), 10)
 
 /**
  * 下载图片资源

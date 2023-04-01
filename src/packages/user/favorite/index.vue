@@ -1,7 +1,7 @@
 <template>
   <view class="page-favorite">
     <view
-      v-if="favoriteStore.list.length"
+      v-if="favoriteStore.list.length > 0"
       class="favorite-list"
     >
       <view class="favorite-list-count">

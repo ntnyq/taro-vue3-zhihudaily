@@ -139,8 +139,8 @@ import PosterBuilder from '@/components/PosterBuilder/index.vue'
 import { getNewsDetail } from '@/services'
 import { formatTime } from '@/utils'
 import { normalizeStory } from '@/utils/translators'
-import type { Question } from '@/types'
 import { useFavoriteStore } from '@/stores/favorite'
+import type { Question } from '@/types'
 
 const router = useRouter()
 const newsId = ref('')
@@ -170,7 +170,7 @@ const fetchNewsDetail = async (id: string) => {
 const onPreviewImages = async (image: string) => {
   try {
     await previewImage({ current: image, urls: images.value })
-  } catch (err) {
+  } catch {
     showToast({ title: '预览图片失败，请重试', icon: 'error' })
   }
 }
