@@ -1,88 +1,3 @@
-<template>
-  <view class="page-user">
-    <view class="user-header">
-      <view
-        v-if="userStore.hasAuth"
-        class="has-auth"
-      >
-        <image
-          class="user-avatar"
-          :src="userStore.userInfo.avatarUrl"
-          mode="aspectFill"
-        />
-        <span class="username">{{ userStore.userInfo.nickName }}</span>
-      </view>
-      <view
-        v-else
-        class="no-auth"
-      >
-        <text class="no-auth-text"> 授权后，获取个性化内容 </text>
-        <nut-button
-          @tap="onGetUserInfo"
-          type="primary"
-          size="small"
-        >
-          点击授权
-        </nut-button>
-      </view>
-    </view>
-    <view class="user-section">
-      <view class="user-section-title">
-        <view class="user-section-title-line" />
-        <text>用户设置</text>
-      </view>
-      <nut-cell-group>
-        <nut-cell
-          @click="onCellClick(`favorite`)"
-          title="我的收藏"
-        />
-        <nut-cell
-          @click="onCellClick(`permission`)"
-          title="权限管理"
-        />
-        <nut-cell
-          @click="onCellClick(`cache`)"
-          title="清理缓存"
-        />
-      </nut-cell-group>
-    </view>
-    <view class="user-section">
-      <view class="user-section-title">
-        <view class="user-section-title-line" />
-        <text>关于应用</text>
-      </view>
-      <nut-cell-group>
-        <nut-cell
-          @click="onCellClick(`feedback`)"
-          title="意见反馈"
-        >
-          <view class="feedback-wrap">
-            <button
-              class="feedback-btn"
-              hover-class="none"
-              open-type="feedback"
-            >
-              意见反馈
-            </button>
-          </view>
-        </nut-cell>
-        <nut-cell
-          @click="onCellClick(`copy`)"
-          title="版权声明"
-        />
-        <nut-cell
-          @click="onCellClick(`author`)"
-          title="关于作者"
-        />
-        <nut-cell
-          @click="onCellClick(`thank`)"
-          title="致谢"
-        />
-      </nut-cell-group>
-    </view>
-  </view>
-</template>
-
 <script lang="ts" setup>
 import Taro from '@tarojs/taro'
 import { useUserStore } from '@/stores/user'
@@ -124,6 +39,91 @@ const onCellClick = (key: string) => {
   }
 }
 </script>
+
+<template>
+  <view class="page-user">
+    <view class="user-header">
+      <view
+        v-if="userStore.hasAuth"
+        class="has-auth"
+      >
+        <image
+          :src="userStore.userInfo.avatarUrl"
+          class="user-avatar"
+          mode="aspectFill"
+        />
+        <span class="username">{{ userStore.userInfo.nickName }}</span>
+      </view>
+      <view
+        v-else
+        class="no-auth"
+      >
+        <text class="no-auth-text"> 授权后，获取个性化内容 </text>
+        <NutButton
+          @tap="onGetUserInfo"
+          type="primary"
+          size="small"
+        >
+          点击授权
+        </NutButton>
+      </view>
+    </view>
+    <view class="user-section">
+      <view class="user-section-title">
+        <view class="user-section-title-line" />
+        <text>用户设置</text>
+      </view>
+      <NutCellGroup>
+        <NutCell
+          @click="onCellClick(`favorite`)"
+          title="我的收藏"
+        />
+        <NutCell
+          @click="onCellClick(`permission`)"
+          title="权限管理"
+        />
+        <NutCell
+          @click="onCellClick(`cache`)"
+          title="清理缓存"
+        />
+      </NutCellGroup>
+    </view>
+    <view class="user-section">
+      <view class="user-section-title">
+        <view class="user-section-title-line" />
+        <text>关于应用</text>
+      </view>
+      <NutCellGroup>
+        <NutCell
+          @click="onCellClick(`feedback`)"
+          title="意见反馈"
+        >
+          <view class="feedback-wrap">
+            <button
+              class="feedback-btn"
+              hover-class="none"
+              open-type="feedback"
+            >
+              意见反馈
+            </button>
+          </view>
+        </NutCell>
+        <NutCell
+          @click="onCellClick(`copy`)"
+          title="版权声明"
+        />
+        <NutCell
+          @click="onCellClick(`author`)"
+          title="关于作者"
+        />
+        <NutCell
+          @click="onCellClick(`thank`)"
+          title="致谢"
+        />
+      </NutCellGroup>
+    </view>
+  </view>
+</template>
 
 <style lang="scss">
 .page-user {

@@ -1,23 +1,8 @@
-<template>
-  <canvas
-    type="2d"
-    :style="`height: ${height}rpx; width:${width}rpx; position: absolute;
-    ${debug ? '' : 'transform:translate3d(-9999rpx, 0, 0)'}`"
-    :id="canvasId"
-  />
-</template>
-
 <script lang="ts">
 import Taro from '@tarojs/taro'
 import { defineComponent, onMounted, ref } from 'vue'
 import { drawBlock, drawImage, drawLine, drawText } from './utils/draw'
-import {
-  getImageInfo,
-  getLinearColor,
-  getRandomId,
-  toPx,
-  toRpx,
-} from './utils/tools'
+import { getImageInfo, getLinearColor, getRandomId, toPx, toRpx } from './utils/tools'
 import type { DrawConfig, Image } from './types'
 import type { PropType } from 'vue'
 
@@ -56,9 +41,7 @@ export default defineComponent({
      */
     const initImages = (images: Image[]) => {
       const imagesTemp = images.filter(item => item.url)
-      const drawList = imagesTemp.map((item, index) =>
-        getImageInfo(item, index),
-      )
+      const drawList = imagesTemp.map((item, index) => getImageInfo(item, index))
       return Promise.all(drawList)
     }
 
@@ -220,3 +203,12 @@ export default defineComponent({
   },
 })
 </script>
+
+<template>
+  <canvas
+    :style="`height: ${height}rpx; width:${width}rpx; position: absolute;
+    ${debug ? '' : 'transform:translate3d(-9999rpx, 0, 0)'}`"
+    :id="canvasId"
+    type="2d"
+  />
+</template>

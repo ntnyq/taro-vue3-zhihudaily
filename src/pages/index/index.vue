@@ -1,65 +1,3 @@
-<template>
-  <view class="page-index">
-    <swiper
-      indicator-color="#ccc"
-      indicator-active-color="#ffd300"
-      :autoplay="true"
-      :circular="true"
-      :indicator-dots="true"
-      class="index-swiper"
-    >
-      <swiper-item
-        @tap="onGoNewsDetail(slide)"
-        v-for="slide in slides"
-        :key="slide.id"
-      >
-        <image
-          :src="slide.image"
-          :alt="slide.title"
-          mode="aspectFill"
-          class="index-swiper-image"
-        />
-        <view class="index-swiper-overlay" />
-        <text class="index-swiper-title">
-          {{ slide.title }}
-        </text>
-      </swiper-item>
-    </swiper>
-
-    <view class="index-list-wrap">
-      <view
-        v-for="item in newsList"
-        :key="item.date"
-        class="index-list-item"
-      >
-        <view class="index-list-item-header">
-          <text class="index-list-item-title">
-            {{ item.date }}
-          </text>
-        </view>
-        <view class="index-list-item-main">
-          <view
-            @tap="onGoNewsDetail(story)"
-            v-for="story in item.stories || []"
-            :key="story.id"
-            class="index-list-item-news"
-          >
-            <image
-              v-if="Array.isArray(story.images)"
-              :src="story.images[0]"
-              mode="aspectFill"
-              class="index-list-item-news-image"
-            />
-            <view class="index-list-item-news-title">
-              {{ story.title }}
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-</template>
-
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import Taro, { usePullDownRefresh, useReachBottom } from '@tarojs/taro'
@@ -132,6 +70,68 @@ onMounted(() => {
 })
 </script>
 
+<template>
+  <view class="page-index">
+    <Swiper
+      :autoplay="true"
+      :circular="true"
+      :indicator-dots="true"
+      indicator-color="#ccc"
+      indicator-active-color="#ffd300"
+      class="index-swiper"
+    >
+      <SwiperItem
+        @tap="onGoNewsDetail(slide)"
+        v-for="slide in slides"
+        :key="slide.id"
+      >
+        <image
+          :src="slide.image"
+          :alt="slide.title"
+          mode="aspectFill"
+          class="index-swiper-image"
+        />
+        <view class="index-swiper-overlay" />
+        <text class="index-swiper-title">
+          {{ slide.title }}
+        </text>
+      </SwiperItem>
+    </Swiper>
+
+    <view class="index-list-wrap">
+      <view
+        v-for="item in newsList"
+        :key="item.date"
+        class="index-list-item"
+      >
+        <view class="index-list-item-header">
+          <text class="index-list-item-title">
+            {{ item.date }}
+          </text>
+        </view>
+        <view class="index-list-item-main">
+          <view
+            @tap="onGoNewsDetail(story)"
+            v-for="story in item.stories || []"
+            :key="story.id"
+            class="index-list-item-news"
+          >
+            <image
+              v-if="Array.isArray(story.images)"
+              :src="story.images[0]"
+              mode="aspectFill"
+              class="index-list-item-news-image"
+            />
+            <view class="index-list-item-news-title">
+              {{ story.title }}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
 <style lang="scss">
 .page-index {
   flex-direction: column;
@@ -172,7 +172,7 @@ onMounted(() => {
         text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
 
         &:before {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -20px;
           right: 0;

@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+import { ref } from 'vue'
+import Taro from '@tarojs/taro'
+
+const email = ref('ntnyq@foxmail.com')
+
+const onCopyEmail = async () => {
+  await Taro.setClipboardData({ data: email.value })
+  Taro.showToast({ title: '复制成功', icon: 'success' })
+}
+</script>
+
 <template>
   <view class="page-copy">
     <view class="paragraph">
@@ -11,28 +23,16 @@
         {{ email }}
       </text>
     </view>
-    <nut-button
+    <NutButton
       @click="onCopyEmail()"
       class="btn-copy-email"
       size="small"
       type="primary"
     >
       复制邮箱
-    </nut-button>
+    </NutButton>
   </view>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-import Taro from '@tarojs/taro'
-
-const email = ref('ntnyq@foxmail.com')
-
-const onCopyEmail = async () => {
-  await Taro.setClipboardData({ data: email.value })
-  Taro.showToast({ title: '复制成功', icon: 'success' })
-}
-</script>
 
 <style lang="scss">
 .page-copy {

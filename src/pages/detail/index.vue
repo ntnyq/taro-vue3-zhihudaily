@@ -1,124 +1,3 @@
-<template>
-  <view class="page-detail">
-    <view
-      v-if="newsImage"
-      class="detail-banner"
-    >
-      <image
-        :src="newsImage"
-        mode="aspectFill"
-        class="detail-banner-image"
-      />
-      <view class="detail-banner-overlay" />
-      <text class="detail-banner-title">
-        {{ newsTitle }}
-      </text>
-      <text class="detail-banner-source" />
-    </view>
-    <view
-      v-for="(question, idx) in questions"
-      :key="idx"
-      class="question"
-    >
-      <view class="question-title">
-        <text class="question-title-text">
-          {{ question.title }}
-        </text>
-      </view>
-      <view class="question-main">
-        <view
-          v-for="answer in question.answers"
-          :key="answer.author"
-          class="question-answer"
-        >
-          <view class="question-answer-meta">
-            <image
-              :src="answer.avatar"
-              mode="aspectFill"
-              class="meta-avatar"
-            />
-            <view class="meta-main">
-              <view class="meta-author">
-                {{ answer.author }}
-              </view>
-              <view class="meta-bio">
-                {{ answer.bio }}
-              </view>
-            </view>
-          </view>
-          <view class="question-answer-main">
-            <view
-              v-for="node in answer.contents"
-              :key="node.content"
-              class="paragraph"
-            >
-              <rich-text
-                v-if="node.type === `PARAGRAPH`"
-                :nodes="node.content"
-                class="p-text"
-              />
-              <rich-text
-                v-if="node.type === `LIST`"
-                :nodes="node.content"
-                class="p-list"
-              />
-              <image
-                @tap="onPreviewImages(node.content)"
-                v-if="node.type === `IMAGE`"
-                :src="node.content"
-                mode="widthFix"
-                class="p-image"
-              />
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <nut-divider
-      :dashed="true"
-      :hairline="true"
-    >
-      没有更多了
-    </nut-divider>
-    <template v-if="newsImage">
-      <view class="detail-collection">
-        <nut-checkbox
-          @change="onToggleFavoriteStory"
-          v-model="isChecked"
-          icon-size="20"
-        >
-          收藏此文章
-        </nut-checkbox>
-      </view>
-      <view class="detail-action">
-        <button
-          hover-class="none"
-          class="action-item"
-          open-type="share"
-        >
-          <Share class="action-item-icon" />
-          <text class="action-item-text"> 分享给好友 </text>
-          <view class="action-item-line" />
-        </button>
-        <button
-          @click="onGeneratePoster"
-          hover-class="none"
-          class="action-item"
-        >
-          <Photograph class="action-item-icon" />
-          <text class="action-item-text"> 生成海报 </text>
-        </button>
-      </view>
-    </template>
-    <PosterBuilder
-      @success="onPosterGenerateSuccess"
-      v-if="posterConfig"
-      :config="posterConfig"
-      :show-loading="true"
-    />
-  </view>
-</template>
-
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import {
@@ -344,6 +223,127 @@ onMounted(() => {
   fetchNewsDetail(id)
 })
 </script>
+
+<template>
+  <view class="page-detail">
+    <view
+      v-if="newsImage"
+      class="detail-banner"
+    >
+      <image
+        :src="newsImage"
+        mode="aspectFill"
+        class="detail-banner-image"
+      />
+      <view class="detail-banner-overlay" />
+      <text class="detail-banner-title">
+        {{ newsTitle }}
+      </text>
+      <text class="detail-banner-source" />
+    </view>
+    <view
+      v-for="(question, idx) in questions"
+      :key="idx"
+      class="question"
+    >
+      <view class="question-title">
+        <text class="question-title-text">
+          {{ question.title }}
+        </text>
+      </view>
+      <view class="question-main">
+        <view
+          v-for="answer in question.answers"
+          :key="answer.author"
+          class="question-answer"
+        >
+          <view class="question-answer-meta">
+            <image
+              :src="answer.avatar"
+              mode="aspectFill"
+              class="meta-avatar"
+            />
+            <view class="meta-main">
+              <view class="meta-author">
+                {{ answer.author }}
+              </view>
+              <view class="meta-bio">
+                {{ answer.bio }}
+              </view>
+            </view>
+          </view>
+          <view class="question-answer-main">
+            <view
+              v-for="node in answer.contents"
+              :key="node.content"
+              class="paragraph"
+            >
+              <RichText
+                v-if="node.type === `PARAGRAPH`"
+                :nodes="node.content"
+                class="p-text"
+              />
+              <RichText
+                v-if="node.type === `LIST`"
+                :nodes="node.content"
+                class="p-list"
+              />
+              <image
+                @tap="onPreviewImages(node.content)"
+                v-if="node.type === `IMAGE`"
+                :src="node.content"
+                mode="widthFix"
+                class="p-image"
+              />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <NutDivider
+      :dashed="true"
+      :hairline="true"
+    >
+      没有更多了
+    </NutDivider>
+    <template v-if="newsImage">
+      <view class="detail-collection">
+        <NutCheckbox
+          @change="onToggleFavoriteStory"
+          v-model="isChecked"
+          icon-size="20"
+        >
+          收藏此文章
+        </NutCheckbox>
+      </view>
+      <view class="detail-action">
+        <button
+          hover-class="none"
+          class="action-item"
+          open-type="share"
+        >
+          <Share class="action-item-icon" />
+          <text class="action-item-text"> 分享给好友 </text>
+          <view class="action-item-line" />
+        </button>
+        <button
+          @click="onGeneratePoster"
+          hover-class="none"
+          class="action-item"
+        >
+          <Photograph class="action-item-icon" />
+          <text class="action-item-text"> 生成海报 </text>
+        </button>
+      </view>
+    </template>
+    <PosterBuilder
+      @success="onPosterGenerateSuccess"
+      v-if="posterConfig"
+      :config="posterConfig"
+      :show-loading="true"
+    />
+  </view>
+</template>
 
 <style lang="scss">
 .page-detail {

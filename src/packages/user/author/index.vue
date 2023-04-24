@@ -1,3 +1,16 @@
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { Service } from '@nutui/icons-vue-taro'
+
+const contributors = ref([
+  {
+    name: 'ntnyq',
+    avatar: 'https://avatars1.githubusercontent.com/u/22659150',
+    description: '前端工程师，喜欢技术，喜欢折腾，喜欢小说，喜欢打游戏。',
+  },
+])
+</script>
+
 <template>
   <view class="page-author">
     <view class="contributor-list">
@@ -6,7 +19,7 @@
         :key="item.name"
         class="contributor-item"
       >
-        <nut-avatar :icon="item.avatar" />
+        <NutAvatar :icon="item.avatar" />
         <view class="contributor-item-main">
           <view class="contributor-item-name">
             {{ item.name }}
@@ -26,27 +39,14 @@
         </view>
       </view>
     </view>
-    <nut-divider
+    <NutDivider
       :dashed="true"
       :hairline="true"
     >
       点击图标，直接与作者对话
-    </nut-divider>
+    </NutDivider>
   </view>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-import { Service } from '@nutui/icons-vue-taro'
-
-const contributors = ref([
-  {
-    name: 'ntnyq',
-    avatar: 'https://avatars1.githubusercontent.com/u/22659150',
-    description: '前端工程师，喜欢技术，喜欢折腾，喜欢小说，喜欢打游戏。',
-  },
-])
-</script>
 
 <style lang="scss">
 .page-author {

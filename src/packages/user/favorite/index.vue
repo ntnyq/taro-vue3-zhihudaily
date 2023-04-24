@@ -1,3 +1,26 @@
+<script lang="ts" setup>
+import Taro from '@tarojs/taro'
+import { useFavoriteStore } from '@/stores/favorite'
+
+const favoriteStore = useFavoriteStore()
+
+const clearFaveriteList = async () => {
+  const res = await Taro.showModal({
+    title: '提示',
+    content: '确定清除所有收藏吗，清除后无法恢复？',
+  })
+  if (!res.confirm) return
+  favoriteStore.clearStoryList()
+}
+const goStoryDetail = async (id: string) => {
+  if (!id) return
+  Taro.navigateTo({ url: `/pages/detail/index?id=${id}` })
+}
+const goHome = () => {
+  Taro.switchTab({ url: '/pages/index/index' })
+}
+</script>
+
 <template>
   <view class="page-favorite">
     <view
@@ -6,14 +29,14 @@
     >
       <view class="favorite-list-count">
         <text class="count-text"> 共计 {{ favoriteStore.list.length }} 篇收藏 </text>
-        <nut-button
+        <NutButton
           @tap="clearFaveriteList"
           class="count-clear-btn"
           type="primary"
           size="small"
         >
           清空收藏
-        </nut-button>
+        </NutButton>
       </view>
 
       <view
@@ -37,38 +60,15 @@
       class="no-content"
     >
       <text class="no-content-tip"> 暂无收藏日推 </text>
-      <nut-button
+      <NutButton
         @tap="goHome"
         type="primary"
       >
         点击回到首页
-      </nut-button>
+      </NutButton>
     </view>
   </view>
 </template>
-
-<script lang="ts" setup>
-import Taro from '@tarojs/taro'
-import { useFavoriteStore } from '@/stores/favorite'
-
-const favoriteStore = useFavoriteStore()
-
-const clearFaveriteList = async () => {
-  const res = await Taro.showModal({
-    title: '提示',
-    content: '确定清除所有收藏吗，清除后无法恢复？',
-  })
-  if (!res.confirm) return
-  favoriteStore.clearStoryList()
-}
-const goStoryDetail = async (id: string) => {
-  if (!id) return
-  Taro.navigateTo({ url: `/pages/detail/index?id=${id}` })
-}
-const goHome = () => {
-  Taro.switchTab({ url: '/pages/index/index' })
-}
-</script>
 
 <style lang="scss">
 .page-favorite {
