@@ -36,5 +36,11 @@
     "weapp",
     "zhihu",
     "zhihudaily"
+  ],
+  "json.schemas": [
+    {
+      "fileMatch": ["project.config.json"],
+      "url": "https://unpkg.com/weapp-json-schema/project.schema.json"
+    }
   ]
 }
