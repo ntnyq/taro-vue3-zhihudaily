@@ -22,7 +22,7 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": []
   },
   "include": ["./src", "global.d.ts"],
   "compileOnSave": false
