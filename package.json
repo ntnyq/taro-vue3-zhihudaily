@@ -57,7 +57,7 @@
     "nano-staged": "^0.8.0",
     "pnpm": "^8.6.7",
     "postcss": "^8.4.25",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "taro-define-config": "^0.2.6",
     "typescript": "^5.1.6",
     "unplugin-vue-components": "^0.25.1",
