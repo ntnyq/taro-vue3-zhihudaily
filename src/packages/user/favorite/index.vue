@@ -10,7 +10,7 @@ const clearFaveriteList = async () => {
     content: '确定清除所有收藏吗，清除后无法恢复？',
   })
   if (!res.confirm) return
-  favoriteStore.clearStoryList()
+  favoriteStore.dispose()
 }
 const goStoryDetail = async (id: string) => {
   if (!id) return
@@ -29,14 +29,14 @@ const goHome = () => {
     >
       <view class="favorite-list-count">
         <text class="count-text"> 共计 {{ favoriteStore.list.length }} 篇收藏 </text>
-        <NutButton
+        <nut-button
           @tap="clearFaveriteList"
           class="count-clear-btn"
           type="primary"
           size="small"
         >
           清空收藏
-        </NutButton>
+        </nut-button>
       </view>
 
       <view
@@ -60,12 +60,12 @@ const goHome = () => {
       class="no-content"
     >
       <text class="no-content-tip"> 暂无收藏日推 </text>
-      <NutButton
+      <nut-button
         @tap="goHome"
         type="primary"
       >
         点击回到首页
-      </NutButton>
+      </nut-button>
     </view>
   </view>
 </template>

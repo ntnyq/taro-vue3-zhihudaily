@@ -19,7 +19,7 @@ const contributors = ref([
         :key="item.name"
         class="contributor-item"
       >
-        <NutAvatar :icon="item.avatar" />
+        <nut-avatar :icon="item.avatar" />
         <view class="contributor-item-main">
           <view class="contributor-item-name">
             {{ item.name }}
@@ -34,17 +34,17 @@ const contributors = ref([
             hover-class="none"
             open-type="contact"
           >
-            <Service class="contributor-item-wechat-icon" />
+            <service class="contributor-item-wechat-icon" />
           </button>
         </view>
       </view>
     </view>
-    <NutDivider
+    <nut-divider
       :dashed="true"
       :hairline="true"
     >
       点击图标，直接与作者对话
-    </NutDivider>
+    </nut-divider>
   </view>
 </template>
 

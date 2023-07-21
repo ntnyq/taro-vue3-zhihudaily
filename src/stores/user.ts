@@ -1,34 +1,39 @@
 import { defineStore } from 'pinia'
 import * as Storage from '@/utils/storage'
 import { StoreModole } from '@/types'
-import type { UserInfo } from '@/types'
 
 export interface IUserState {
-  hasAuth: boolean
-  userInfo: Partial<UserInfo>
+  avatar: string
+  nickname: string
 }
 
 export const useUserStore = defineStore(StoreModole.user, {
   state: (): IUserState => ({
-    hasAuth: false,
-    userInfo: {},
+    avatar: '',
+    nickname: '',
   }),
 
   actions: {
-    setUserInfo(userInfo: UserInfo) {
-      this.$patch({ userInfo, hasAuth: true })
-      Storage.setUserInfo(userInfo)
+    setNickname(nickname = '') {
+      this.$patch({ nickname })
+      Storage.setNickname(nickname)
     },
 
-    clearUserInfo() {
-      Storage.removeUserInfo()
+    setAvatar(avatar = '') {
+      this.$patch({ avatar })
+      Storage.setAvatar(avatar)
+    },
+
+    dispose() {
+      Storage.removeNickname()
+      Storage.removeAvatar()
       this.$reset()
     },
 
     init() {
-      const userInfo = Storage.getUserInfo()
-      if (!userInfo && Object.keys(userInfo).length === 0) return
-      this.$patch({ userInfo, hasAuth: true })
+      const nickname = Storage.getNickname() ?? ''
+      const avatar = Storage.getAvatar() ?? ''
+      this.$patch({ avatar, nickname })
     },
   },
 })

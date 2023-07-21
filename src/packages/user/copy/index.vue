@@ -23,14 +23,14 @@ const onCopyEmail = async () => {
         {{ email }}
       </text>
     </view>
-    <NutButton
+    <nut-button
       @click="onCopyEmail()"
       class="btn-copy-email"
       size="small"
       type="primary"
     >
       复制邮箱
-    </NutButton>
+    </nut-button>
   </view>
 </template>
 

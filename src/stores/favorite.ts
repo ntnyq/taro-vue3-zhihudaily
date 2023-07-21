@@ -25,7 +25,7 @@ export const useFavoriteStore = defineStore(StoreModole.favorite, {
       Storage.setFavoriteStoryList(list)
     },
 
-    clearStoryList() {
+    dispose() {
       Storage.removeFavoriteStoryList()
       this.$reset()
     },

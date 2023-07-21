@@ -72,7 +72,7 @@ onMounted(() => {
 
 <template>
   <view class="page-index">
-    <Swiper
+    <swiper
       :autoplay="true"
       :circular="true"
       :indicator-dots="true"
@@ -80,7 +80,7 @@ onMounted(() => {
       indicator-active-color="#ffd300"
       class="index-swiper"
     >
-      <SwiperItem
+      <swiper-item
         @tap="onGoNewsDetail(slide)"
         v-for="slide in slides"
         :key="slide.id"
@@ -95,8 +95,8 @@ onMounted(() => {
         <text class="index-swiper-title">
           {{ slide.title }}
         </text>
-      </SwiperItem>
-    </Swiper>
+      </swiper-item>
+    </swiper>
 
     <view class="index-list-wrap">
       <view

@@ -2,21 +2,33 @@
 import Taro from '@tarojs/taro'
 import { useUserStore } from '@/stores/user'
 import { useFavoriteStore } from '@/stores/favorite'
+import type { MpEvent } from '@tarojs/taro'
 
 const userStore = useUserStore()
 const favoriteStore = useFavoriteStore()
-const onGetUserInfo = async () => {
-  try {
-    const res = await Taro.getUserProfile({ desc: '用于展示用户信息' })
-    if (!res.userInfo) return
-    userStore.setUserInfo(res.userInfo)
-  } catch (err) {
-    console.log(err)
-  }
+
+const handleChooseAvatar = (evt: MpEvent) => {
+  const { avatarUrl } = evt.detail as { avatarUrl: string }
+  if (!avatarUrl) return
+  userStore.setAvatar(avatarUrl)
+}
+const handleNicknameChange = async (evt: MpEvent) => {
+  const { value: nickname } = evt.detail as { value: string }
+  const res = await Taro.showModal({
+    title: '提示',
+    content: `确定设置该昵称吗？`,
+  })
+  if (!res.confirm) return
+  userStore.setNickname(nickname)
 }
 const onClearAllCache = async () => {
-  userStore.clearUserInfo()
-  favoriteStore.clearStoryList()
+  const res = await Taro.showModal({
+    title: '提示',
+    content: `确定清理全部缓存吗？`,
+  })
+  if (!res.confirm) return
+  userStore.dispose()
+  favoriteStore.dispose()
   await Taro.clearStorage()
   Taro.showToast({ title: '清理成功', icon: 'success' })
 }
@@ -43,29 +55,39 @@ const onCellClick = (key: string) => {
 <template>
   <view class="page-user">
     <view class="user-header">
-      <view
-        v-if="userStore.hasAuth"
-        class="has-auth"
-      >
-        <image
-          :src="userStore.userInfo.avatarUrl"
-          class="user-avatar"
-          mode="aspectFill"
-        />
-        <span class="username">{{ userStore.userInfo.nickName }}</span>
-      </view>
-      <view
-        v-else
-        class="no-auth"
-      >
-        <text class="no-auth-text"> 授权后，获取个性化内容 </text>
-        <NutButton
-          @tap="onGetUserInfo"
-          type="primary"
-          size="small"
-        >
-          点击授权
-        </NutButton>
+      <view class="user-meta">
+        <div class="user-avatar">
+          <image
+            v-if="userStore.avatar"
+            :src="userStore.avatar"
+            class="user-avatar-image"
+            mode="aspectFill"
+          />
+          <nut-button
+            @chooseavatar="handleChooseAvatar"
+            v-else
+            open-type="chooseAvatar"
+            type="primary"
+            size="small"
+          >
+            获取头像
+          </nut-button>
+        </div>
+        <view class="user-name">
+          <text
+            v-if="userStore.nickname"
+            class="user-name-text"
+          >
+            {{ userStore.nickname }}
+          </text>
+          <input
+            @confirm="handleNicknameChange"
+            v-else
+            type="nickname"
+            placeholder="请输入昵称"
+            class="user-name-input"
+          />
+        </view>
       </view>
     </view>
     <view class="user-section">
@@ -73,29 +95,29 @@ const onCellClick = (key: string) => {
         <view class="user-section-title-line" />
         <text>用户设置</text>
       </view>
-      <NutCellGroup>
-        <NutCell
-          @click="onCellClick(`favorite`)"
+      <nut-cell-group>
+        <nut-cell
+          @click="onCellClick('favorite')"
           title="我的收藏"
         />
-        <NutCell
-          @click="onCellClick(`permission`)"
+        <nut-cell
+          @click="onCellClick('permission')"
           title="权限管理"
         />
-        <NutCell
-          @click="onCellClick(`cache`)"
+        <nut-cell
+          @click="onCellClick('cache')"
           title="清理缓存"
         />
-      </NutCellGroup>
+      </nut-cell-group>
     </view>
     <view class="user-section">
       <view class="user-section-title">
         <view class="user-section-title-line" />
         <text>关于应用</text>
       </view>
-      <NutCellGroup>
-        <NutCell
-          @click="onCellClick(`feedback`)"
+      <nut-cell-group>
+        <nut-cell
+          @click="onCellClick('feedback')"
           title="意见反馈"
         >
           <view class="feedback-wrap">
@@ -107,20 +129,20 @@ const onCellClick = (key: string) => {
               意见反馈
             </button>
           </view>
-        </NutCell>
-        <NutCell
-          @click="onCellClick(`copy`)"
+        </nut-cell>
+        <nut-cell
+          @click="onCellClick('copy')"
           title="版权声明"
         />
-        <NutCell
-          @click="onCellClick(`author`)"
+        <nut-cell
+          @click="onCellClick('author')"
           title="关于作者"
         />
-        <NutCell
-          @click="onCellClick(`thank`)"
+        <nut-cell
+          @click="onCellClick('thank')"
           title="致谢"
         />
-      </NutCellGroup>
+      </nut-cell-group>
     </view>
   </view>
 </template>
@@ -131,52 +153,50 @@ const onCellClick = (key: string) => {
     position: relative;
     height: 100%;
     background-color: #f9faff;
+    overflow-y: auto;
 
     &-header {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 160px;
       margin-bottom: 30px;
       background-color: #fff;
 
-      .has-auth {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 0 30px;
+      .user-meta {
+        position: relative;
+        padding: 20px 30px;
 
         .user-avatar {
-          display: block;
-          width: 120px;
-          height: 120px;
-          margin-right: 20px;
-          border-radius: 50%;
-          padding: 4px;
-          border: 1px solid #f1f2f3;
+          position: relative;
+          margin-bottom: 20px;
+          text-align: center;
+
+          &-image {
+            position: relative;
+            display: block;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            padding: 4px;
+            border: 1px solid #f1f2f3;
+          }
         }
 
-        .username {
-          flex: 1 0;
-          margin-left: 20px;
-          font-size: 40px;
-          color: #666;
-        }
-      }
+        .user-name {
+          position: relative;
+          text-align: center;
 
-      .no-auth {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+          &-text {
+            position: relative;
+            font-size: 36px;
+            color: #333;
+          }
 
-        &-text {
-          display: block;
-          margin-bottom: 24px;
-          font-size: 28px;
-          color: #999;
+          &-input {
+            position: relative;
+          }
         }
       }
     }

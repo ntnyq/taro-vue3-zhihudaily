@@ -30,12 +30,15 @@ const config = defineConfig({
   compiler: {
     type: 'webpack5',
     prebundle: {
-      exclude: ['@nutui/nutui-taro'],
+      enable: false,
     },
+    // prebundle: {
+    //   exclude: ['@nutui/nutui-taro'],
+    // },
   },
   framework: 'vue3',
   cache: {
-    enable: true,
+    enable: false,
   },
   jsMinimizer: 'esbuild',
   esbuild: {

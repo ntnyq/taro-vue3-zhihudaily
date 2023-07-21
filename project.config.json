@@ -5,9 +5,9 @@
   "appid": "wx9d6b29dabbb43222",
   "setting": {
     "urlCheck": true,
-    "es6": false,
+    "es6": true,
     "postcss": false,
-    "minified": false
+    "minified": true
   },
   "compileType": "miniprogram"
 }

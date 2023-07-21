@@ -3,6 +3,7 @@
  */
 
 export enum StorageKey {
-  userInfo = 'USER_INFO',
   favoriteList = 'FAVORITE_LIST',
+  nickname = 'NICKNAME',
+  avatar = 'AVATAR',
 }

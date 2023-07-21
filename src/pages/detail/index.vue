@@ -278,12 +278,12 @@ onMounted(() => {
               :key="node.content"
               class="paragraph"
             >
-              <RichText
+              <rich-text
                 v-if="node.type === `PARAGRAPH`"
                 :nodes="node.content"
                 class="p-text"
               />
-              <RichText
+              <rich-text
                 v-if="node.type === `LIST`"
                 :nodes="node.content"
                 class="p-list"
@@ -300,21 +300,21 @@ onMounted(() => {
         </view>
       </view>
     </view>
-    <NutDivider
+    <nut-divider
       :dashed="true"
       :hairline="true"
     >
       没有更多了
-    </NutDivider>
+    </nut-divider>
     <template v-if="newsImage">
       <view class="detail-collection">
-        <NutCheckbox
+        <nut-checkbox
           @change="onToggleFavoriteStory"
           v-model="isChecked"
           icon-size="20"
         >
           收藏此文章
-        </NutCheckbox>
+        </nut-checkbox>
       </view>
       <view class="detail-action">
         <button
@@ -322,7 +322,7 @@ onMounted(() => {
           class="action-item"
           open-type="share"
         >
-          <Share class="action-item-icon" />
+          <share class="action-item-icon" />
           <text class="action-item-text"> 分享给好友 </text>
           <view class="action-item-line" />
         </button>
@@ -331,12 +331,12 @@ onMounted(() => {
           hover-class="none"
           class="action-item"
         >
-          <Photograph class="action-item-icon" />
+          <photograph class="action-item-icon" />
           <text class="action-item-text"> 生成海报 </text>
         </button>
       </view>
     </template>
-    <PosterBuilder
+    <poster-builder
       @success="onPosterGenerateSuccess"
       v-if="posterConfig"
       :config="posterConfig"
