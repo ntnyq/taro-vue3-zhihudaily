@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import {
   authorize,
   getSetting,
@@ -38,6 +38,12 @@ const nickName = ''
 const isChecked = ref(false)
 const posterConfig = ref<DrawConfig>(INIT_DRAW_CONFIG)
 const favoriteStore = useFavoriteStore()
+const shouldRenderPoster = computed(
+  () =>
+    posterConfig.value.blocks?.length ||
+    posterConfig.value.images?.length ||
+    posterConfig.value.texts?.length,
+)
 
 const fetchNewsDetail = async (id: string) => {
   try {
@@ -60,13 +66,13 @@ const onPreviewImages = async (image: string) => {
     showToast({ title: '预览图片失败，请重试', icon: 'error' })
   }
 }
-const onToggleFavoriteStory = isChecked => {
+const onToggleFavoriteStory = () => {
   const storyMeta = {
     id: newsId.value,
     title: newsTitle.value,
     image: newsImage.value,
   }
-  if (isChecked) {
+  if (isChecked.value) {
     favoriteStore.addStory(storyMeta)
   } else {
     favoriteStore.removeStory(newsId.value)
@@ -338,7 +344,7 @@ onMounted(() => {
     </template>
     <poster-builder
       @success="onPosterGenerateSuccess"
-      v-if="posterConfig"
+      v-if="shouldRenderPoster"
       :config="posterConfig"
       :show-loading="true"
     />
