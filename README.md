@@ -9,7 +9,7 @@
 
 [pnpm v8](https://pnpm.io) and **node >= v16.14.0** is required.
 
-```sh
+```bash
 # Install deps
 $ pnpm install
 
@@ -30,6 +30,10 @@ $ pnpm run build
 - 🎨 UI components build on top of [NutUI](https://nutui.jd.com/#/zh-CN/component/button)
 - 📥 Code style check before git commit via [husky](https://typicode.github.io/husky), [nano-staged](https://github.com/usmanyunusov/nano-staged), [eslint](https://eslint.org)
 - 🦔 Use subPackage to avoid the 2MB limit of wechat app
+
+## QRCode
+
+![](./res/qr_code.jpg)
 
 ## License
 
