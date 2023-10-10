@@ -5,11 +5,12 @@
 // @ts-check
 
 const path = require('node:path')
+const process = require('node:process')
 const { defineConfig } = require('taro-define-config')
 
 /**
  * resolve path
- * @param  {any[]} args
+ * @param  {string[]} args
  * @returns resolved path
  */
 const resolve = (...args) => path.resolve(__dirname, '..', ...args)
@@ -26,7 +27,11 @@ const config = defineConfig({
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: ['@tarojs/plugin-html', 'taro-plugin-pinia'],
+  plugins: [
+    '@tarojs/plugin-html',
+    // @ts-expect-error not supported by defineConfig
+    'taro-plugin-pinia',
+  ],
   compiler: {
     type: 'webpack5',
     prebundle: {
