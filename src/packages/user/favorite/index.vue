@@ -25,6 +25,7 @@ const goHome = () => {
   <view class="page-favorite">
     <view
       v-if="favoriteStore.list.length > 0"
+      key="list"
       class="favorite-list"
     >
       <view class="favorite-list-count">
@@ -57,6 +58,7 @@ const goHome = () => {
     </view>
     <view
       v-else
+      key="default"
       class="no-content"
     >
       <text class="no-content-tip"> 暂无收藏日推 </text>

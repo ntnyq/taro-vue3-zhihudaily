@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
-    "@ntnyq/eslint-config": "1.17.0",
+    "@ntnyq/eslint-config": "^1.20.0",
     "@ntnyq/prettier-config": "^1.20.0",
     "@tarojs/cli": "^3.6.22",
     "@tarojs/helper": "^3.6.22",
@@ -57,7 +57,7 @@
     "nano-staged": "^0.8.0",
     "pnpm": "^8.13.1",
     "postcss": "^8.4.32",
-    "prettier": "3.0.3",
+    "prettier": "^3.1.1",
     "taro-define-config": "^0.5.2",
     "typescript": "^5.3.3",
     "unplugin-vue-components": "^0.26.0",
@@ -66,7 +66,7 @@
     "webpack": "^5.89.0"
   },
   "engines": {
-    "node": ">=16.14.0"
+    "node": ">=18.18"
   },
   "prettier": "@ntnyq/prettier-config",
   "nano-staged": {
