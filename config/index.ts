@@ -2,20 +2,17 @@
  * @file config
  */
 
-// @ts-check
-
-const path = require('node:path')
-const process = require('node:process')
-const { defineConfig } = require('taro-define-config')
+import path from 'node:path'
+import { defineConfig } from 'taro-define-config'
 
 /**
  * resolve path
- * @param  {string[]} args
+ * @param args
  * @returns resolved path
  */
-const resolve = (...args) => path.resolve(__dirname, '..', ...args)
+const resolve = (...args: string[]) => path.resolve(__dirname, '..', ...args)
 
-const config = defineConfig({
+export default defineConfig({
   projectName: 'taro-vue3-zhihudaily',
   date: '2022-5-21',
   designWidth: 750,
@@ -82,13 +79,6 @@ const config = defineConfig({
           limit: 1024, // 设定转换尺寸上限
         },
       },
-      cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-        config: {
-          namingPattern: 'module', // 转换模式，取值为 global/module
-          generateScopedName: '[name]__[local]___[hash:base64:5]',
-        },
-      },
     },
   },
   h5: {
@@ -100,20 +90,6 @@ const config = defineConfig({
         enable: true,
         config: {},
       },
-      cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-        config: {
-          namingPattern: 'module', // 转换模式，取值为 global/module
-          generateScopedName: '[name]__[local]___[hash:base64:5]',
-        },
-      },
     },
   },
 })
-
-module.exports = function (merge) {
-  if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
-  }
-  return merge({}, config, require('./prod'))
-}
