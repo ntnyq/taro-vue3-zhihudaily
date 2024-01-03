@@ -2,7 +2,7 @@
   "name": "taro-vue3-zhihudaily",
   "version": "0.3.0",
   "private": true,
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.14.0",
   "description": "taro-vue3-zhihudaily",
   "templateInfo": {
     "name": "vue3-NutUI",
@@ -55,7 +55,7 @@
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.13.1",
+    "pnpm": "^8.14.0",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
     "taro-define-config": "^0.5.2",
