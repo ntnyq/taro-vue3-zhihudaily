@@ -4,6 +4,7 @@
 
 import path from 'node:path'
 import { defineConfig } from 'taro-define-config'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
 /**
  * resolve path
@@ -80,6 +81,9 @@ export default defineConfig({
         },
       },
     },
+    webpackChain(chain) {
+      chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+    },
   },
   h5: {
     publicPath: '/',
@@ -90,6 +94,9 @@ export default defineConfig({
         enable: true,
         config: {},
       },
+    },
+    webpackChain(chain) {
+      chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
     },
   },
 })

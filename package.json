@@ -7,7 +7,8 @@
   "templateInfo": {
     "name": "vue3-NutUI",
     "typescript": true,
-    "css": "sass"
+    "css": "sass",
+    "framework": "Vue3"
   },
   "license": "MIT",
   "author": {
@@ -16,7 +17,7 @@
   },
   "scripts": {
     "build": "taro build --type weapp",
-    "dev": "npm run build -- --watch",
+    "dev": "pnpm run build --watch",
     "format": "prettier --write .",
     "lint": "eslint .",
     "prepare": "husky install",
@@ -59,6 +60,7 @@
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
     "taro-define-config": "^0.5.2",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.3.3",
     "unplugin-vue-components": "^0.26.0",
     "vue-loader": "^17.4.2",
