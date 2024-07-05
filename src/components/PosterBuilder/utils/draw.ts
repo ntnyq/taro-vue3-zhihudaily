@@ -1,4 +1,7 @@
+// TODO: remove JSDoc comments
+
 import { getLinearColor, getTextX, toPx } from './tools'
+import type { DrawBlockData, DrawImageData, DrawOptions } from './types'
 
 /**
  * 绘制圆角矩形
@@ -8,13 +11,11 @@ import { getLinearColor, getTextX, toPx } from './tools'
  * @param { number } drawData.w - 矩形的宽
  * @param { number } drawData.h - 矩形的高
  * @param { number } drawData.r - 圆角半径
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
  * @description arcTo 比 arc 更加简洁，三点画弧，但是比较难理解 参考资料：http://www.yanghuiqing.com/web/346
  * ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise(是否逆时针画弧))
  * ctx.arcTo(x1, y1, x2, y2, radius); // 当前点-x1点 画切线 x1点到x2点画切线， 用半径为radius的圆弧替换掉切线部分
  */
-export function _drawRadiusRect({ x, y, w, h, r }, { ctx }) {
+export function _drawRadiusRect({ x, y, w, h, r }, { ctx }: DrawOptions) {
   const minSize = Math.min(w, h)
   if (r > minSize / 2) r = minSize / 2
   ctx.beginPath()
@@ -34,10 +35,8 @@ export function _drawRadiusRect({ x, y, w, h, r }, { ctx }) {
  * @param { number } drawData.w - 矩形的宽
  * @param { number } drawData.h - 矩形的高
  * @param { number } drawData.g - 圆角半径数组
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
  */
-export function _drawRadiusGroupRect({ x, y, w, h, g }, { ctx }) {
+export function _drawRadiusGroupRect({ x, y, w, h, g }, { ctx }: DrawOptions) {
   const [
     borderTopLeftRadius,
     borderTopRightRadius,
@@ -89,11 +88,9 @@ export function _drawRadiusGroupRect({ x, y, w, h, g }, { ctx }) {
 
 /**
  * 计算文本长度
- * @param { Array | Object } text 数组 或者 对象
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
+ * @param {Array | object} text 数组 或者 对象
  */
-export function _getTextWidth(text, drawOptions) {
+export function _getTextWidth(text, drawOptions: DrawOptions) {
   const { ctx } = drawOptions
   let texts: any[] = []
   if (Object.prototype.toString.call(text) === '[object Object]') {
@@ -127,21 +124,18 @@ export function _getTextWidth(text, drawOptions) {
  * @param { number } drawData.fontSize - 文字大小 rpx
  * @param { number } [drawData.color] - 颜色
  * @param { string } [drawData.baseLine] - 基线对齐方式 top| middle|bottom|...
- * @param { string } [drawData.textAlign='left'] - 对齐方式 left|center|right
+ * @param { string } [drawData.textAlign] - 对齐方式 left|center|right
  * @param { string } drawData.text - 当Object类型时，参数为 text 字段的参数，marginLeft、marginRight这两个字段可用
- * @param { number } [drawData.opacity=1] - 1为不透明，0为透明
- * @param { string } [drawData.textDecoration='none']
+ * @param { number } [drawData.opacity] - 1为不透明，0为透明
+ * @param { string } [drawData.textDecoration]
  * @param { number } [drawData.width] - 文字宽度 没有指定为画布宽度
- * @param { number } [drawData.lineNum=1] - 根据宽度换行，最多的行数
- * @param { number } [drawData.lineHeight=0] - 行高
- * @param { string } [drawData.fontWeight='normal'] - 'bold' 加粗字体，目前小程序不支持 100 - 900 加粗
- * @param { string } [drawData.fontStyle='normal'] - 'italic' 倾斜字体
- * @param { string } [drawData.fontFamily="sans-serif"] - 小程序默认字体为 'sans-serif', 请输入小程序支持的字体
- *
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
+ * @param { number } [drawData.lineNum] - 根据宽度换行，最多的行数
+ * @param { number } [drawData.lineHeight] - 行高
+ * @param { string } [drawData.fontWeight] - 'bold' 加粗字体，目前小程序不支持 100 - 900 加粗
+ * @param { string } [drawData.fontStyle] - 'italic' 倾斜字体
+ * @param { string } [drawData.fontFamily] - 小程序默认字体为 'sans-serif', 请输入小程序支持的字体
  */
-export function _drawSingleText(drawData, drawOptions) {
+export function _drawSingleText(drawData, drawOptions: DrawOptions) {
   const {
     x = 0,
     y = 0,
@@ -244,21 +238,18 @@ export function _drawSingleText(drawData, drawOptions) {
  * @param { number } params.fontSize - 文字大小 rpx
  * @param { number } [params.color] - 颜色
  * @param { string } [params.baseLine] - 基线对齐方式 top| middle|bottom
- * @param { string } [params.textAlign='left'] - 对齐方式 left|center|right
+ * @param { string } [params.textAlign] - 对齐方式 left|center|right
  * @param { string } params.text - 当Object类型时，参数为 text 字段的参数，marginLeft、marginRight这两个字段可用
- * @param { number } [params.opacity=1] - 1为不透明，0为透明
- * @param { string } [params.textDecoration='none']
+ * @param { number } [params.opacity] - 1为不透明，0为透明
+ * @param { string } [params.textDecoration]
  * @param { number } [params.width] - 文字宽度 没有指定为画布宽度
- * @param { number } [params.lineNum=1] - 根据宽度换行，最多的行数
- * @param { number } [params.lineHeight=0] - 行高
- * @param { string } [params.fontWeight='normal'] - 'bold' 加粗字体，目前小程序不支持 100 - 900 加粗
- * @param { string } [params.fontStyle='normal'] - 'italic' 倾斜字体
- * @param { string } [params.fontFamily="sans-serif"] - 小程序默认字体为 'sans-serif', 请输入小程序支持的字体
- *
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
+ * @param { number } [params.lineNum] - 根据宽度换行，最多的行数
+ * @param { number } [params.lineHeight] - 行高
+ * @param { string } [params.fontWeight] - 'bold' 加粗字体，目前小程序不支持 100 - 900 加粗
+ * @param { string } [params.fontStyle] - 'italic' 倾斜字体
+ * @param { string } [params.fontFamily] - 小程序默认字体为 'sans-serif', 请输入小程序支持的字体
  */
-export function drawText(params, drawOptions) {
+export function drawText(params, drawOptions: DrawOptions) {
   const { x = 0, y = 0, text, baseLine } = params
   if (Object.prototype.toString.call(text) === '[object Array]') {
     const preText = { x, y, baseLine }
@@ -278,19 +269,18 @@ export function drawText(params, drawOptions) {
   }
 }
 
+//  * @param  { number } startX - 起始坐标
+//  * @param  { number } startY - 起始坐标
+//  * @param  { number } endX - 终结坐标
+//  * @param  { number } endY - 终结坐标
+//  * @param  { number } width - 线的宽度
+//  * @param  { string } color - 线的颜色
+//  @param { object } drawOptions.ctx - ctx对象
+
 /**
  * @description 渲染线
- * @param  { number } startX - 起始坐标
- * @param  { number } startY - 起始坐标
- * @param  { number } endX - 终结坐标
- * @param  { number } endY - 终结坐标
- * @param  { number } width - 线的宽度
- * @param  { string } [color] - 线的颜色
- *
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
  */
-export function drawLine(drawData, drawOptions) {
+export function drawLine(drawData, drawOptions: DrawOptions) {
   const { startX, startY, endX, endY, color, width } = drawData
   const { ctx } = drawOptions
   if (!width) return
@@ -307,24 +297,21 @@ export function drawLine(drawData, drawOptions) {
 
 /**
  * 渲染矩形
- * @param  { number } x - x坐标
- * @param  { number } y - y坐标
- * @param  { number } height -高
- * @param  { string|object } [text] - 块里面可以填充文字，参考texts字段
- * @param  { number } [width=0] - 宽 如果内部有文字，由文字宽度和内边距决定
- * @param  { number } [paddingLeft=0] - 内左边距
- * @param  { number } [paddingRight=0] - 内右边距
- * @param  { number } [borderWidth] - 边框宽度
- * @param  { string } [backgroundColor] - 背景颜色
- * @param  { string } [borderColor] - 边框颜色
- * @param  { number } [borderRadius=0] - 圆角
- * @param  { array | null } [borderRadiusGroup= null] - 圆角数组
- * @param  { number } [opacity=1] - 透明度
- *
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
+ *  { number } x - x坐标
+ *  { number } y - y坐标
+ *  { number } height -高
+ *  { string|object } [text] - 块里面可以填充文字，参考texts字段
+ *  { number } [width] - 宽 如果内部有文字，由文字宽度和内边距决定
+ *  { number } [paddingLeft] - 内左边距
+ *  { number } [paddingRight] - 内右边距
+ *  { number } [borderWidth] - 边框宽度
+ *  { string } [backgroundColor] - 背景颜色
+ *  { string } [borderColor] - 边框颜色
+ *  { number } [borderRadius] - 圆角
+ *  {Array | null} [borderRadiusGroup] - 圆角数组
+ *  { number } [opacity] - 透明度
  */
-export function drawBlock(data, drawOptions) {
+export function drawBlock(data: DrawBlockData, drawOptions: DrawOptions) {
   const {
     x,
     y,
@@ -425,23 +412,20 @@ export function drawBlock(data, drawOptions) {
 
 /**
  * @description 渲染图片
- * @param { object } data
- * @param { number } sx - 源图像的矩形选择框的左上角 x 坐标 裁剪
- * @param { number } sy - 源图像的矩形选择框的左上角 y 坐标 裁剪
- * @param { number } sw - 源图像的矩形选择框的宽度 裁剪
- * @param { number } sh - 源图像的矩形选择框的高度 裁剪
- * @param { number } x - 图像的左上角在目标 canvas 上 x 轴的位置 定位
- * @param { number } y - 图像的左上角在目标 canvas 上 y 轴的位置 定位
- * @param { number } w - 在目标画布上绘制图像的宽度，允许对绘制的图像进行缩放 定位
- * @param { number } h - 在目标画布上绘制图像的高度，允许对绘制的图像进行缩放 定位
- * @param { number } [borderRadius=0] - 圆角
- * @param  { array | null } [borderRadiusGroup= null] - 圆角数组
- * @param { number } [borderWidth=0] - 边框
- *
- * @param { object } drawOptions - 绘制对象
- * @param { object } drawOptions.ctx - ctx对象
+ *{ object } data
+ *{ number } sx - 源图像的矩形选择框的左上角 x 坐标 裁剪
+ *{ number } sy - 源图像的矩形选择框的左上角 y 坐标 裁剪
+ *{ number } sw - 源图像的矩形选择框的宽度 裁剪
+ *{ number } sh - 源图像的矩形选择框的高度 裁剪
+ *{ number } x - 图像的左上角在目标 canvas 上 x 轴的位置 定位
+ *{ number } y - 图像的左上角在目标 canvas 上 y 轴的位置 定位
+ *{ number } w - 在目标画布上绘制图像的宽度，允许对绘制的图像进行缩放 定位
+ *{ number } h - 在目标画布上绘制图像的高度，允许对绘制的图像进行缩放 定位
+ *{ number } [borderRadius] - 圆角
+ * {Array | null} [borderRadiusGroup] - 圆角数组
+ *{ number } [borderWidth] - 边框
  */
-export const drawImage = (data, drawOptions) =>
+export const drawImage = (data: DrawImageData, drawOptions: DrawOptions) =>
   new Promise<void>(resolve => {
     const { canvas, ctx } = drawOptions
     const {

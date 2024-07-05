@@ -285,18 +285,18 @@ onMounted(() => {
               class="paragraph"
             >
               <rich-text
-                v-if="node.type === `PARAGRAPH`"
+                v-if="node.type === 'PARAGRAPH'"
                 :nodes="node.content"
                 class="p-text"
               />
               <rich-text
-                v-if="node.type === `LIST`"
+                v-if="node.type === 'LIST'"
                 :nodes="node.content"
                 class="p-list"
               />
               <image
                 @tap="onPreviewImages(node.content)"
-                v-if="node.type === `IMAGE`"
+                v-if="node.type === 'IMAGE'"
                 :src="node.content"
                 mode="widthFix"
                 class="p-image"

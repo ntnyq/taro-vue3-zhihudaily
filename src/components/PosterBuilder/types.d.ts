@@ -1,23 +1,5 @@
 export type DrawType = 'text' | 'image' | 'block' | 'line'
 
-export interface Block {
-  type?: DrawType
-  x: number
-  y: number
-  width?: number
-  height: number
-  paddingLeft?: number
-  paddingRight?: number
-  borderWidth?: number
-  borderColor?: string
-  backgroundColor?: string
-  borderRadius?: number
-  borderRadiusGroup?: number[]
-  text?: Text
-  opacity?: number
-  zIndex?: number
-}
-
 export interface Text {
   type?: DrawType
   x?: number
@@ -38,6 +20,24 @@ export interface Text {
   fontFamily?: string
   fontWeight?: string
   fontStyle?: string
+  zIndex?: number
+}
+
+export interface Block {
+  type?: DrawType
+  x: number
+  y: number
+  width?: number
+  height: number
+  paddingLeft?: number
+  paddingRight?: number
+  borderWidth?: number
+  borderColor?: string
+  backgroundColor?: string
+  borderRadius?: number
+  borderRadiusGroup?: number[]
+  text?: Text
+  opacity?: number
   zIndex?: number
 }
 

@@ -18,8 +18,9 @@ export function randomString(length: number) {
 
 /**
  * 随机创造一个id
- * @param  { number } length - 字符串长度
- * @returns { string }
+ * @param  prefix - ID 前缀
+ * @param length - 字符串长度
+ * @returns id
  */
 export function getRandomId(prefix = 'canvas', length = 10) {
   return prefix + randomString(length)
@@ -104,15 +105,15 @@ export const getFactor = () => {
  * rpx => px 单位转换
  * @param rpx - 需要转换的数值
  * @param factor - 转化因子
- * @returns
+ * @returns px
  */
-export const toPx = (rpx, factor = getFactor()) => Number.parseInt(String(rpx * factor), 10)
+export const toPx = (rpx: number, factor = getFactor()) => Number.parseInt(String(rpx * factor), 10)
 
 /**
  * px => rpx 单位转换
  * @param px - 需要转换的数值
  * @param factor - 转化因子
- * @returns
+ * @returns rpx
  */
 export const toRpx = (px: number, factor = getFactor()) => Number.parseInt(String(px / factor), 10)
 
@@ -201,13 +202,13 @@ export const getImageInfo = (item, index) =>
 
 /**
  * 获取线性渐变色
- * @param {CanvasContext} ctx canvas 实例对象
- * @param {String} color 线性渐变色,如 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%)'
- * @param {Number} startX 起点 x 坐标
- * @param {Number} startY 起点 y 坐标
- * @param {Number} w 宽度
- * @param {Number} h 高度
- * @returns  {}
+ * @param ctx canvas 实例对象
+ * @param color 线性渐变色,如 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%)'
+ * @param startX 起点 x 坐标
+ * @param startY 起点 y 坐标
+ * @param w 宽度
+ * @param h 高度
+ * @returns grd
  */
 // TODO: 待优化, 支持所有角度，多个颜色的线性渐变
 // eslint-disable-next-line max-params
@@ -229,7 +230,7 @@ export function getLinearColor(ctx: CanvasContext, color, startX, startY, w, h) 
     const color1 = colorList[2]
     const color2 = colorList[3]
 
-    const L = Math.sqrt(w * w + h * h)
+    const L = Math.hypot(w, h)
     const x = Math.ceil(Math.sin(180 - radian) * L)
     const y = Math.ceil(Math.cos(180 - radian) * L)
 

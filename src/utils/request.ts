@@ -24,8 +24,8 @@ interface HTTPRequestParams {
   contentType?: string
 }
 
-export class HTTPClient {
-  static async baseRequest(method = HTTPMethod.GET, params: HTTPRequestParams) {
+export const HTTPClient = {
+  async baseRequest(method = HTTPMethod.GET, params: HTTPRequestParams) {
     const { url, data, contentType } = params
     const options: Taro.request.Option = {
       url: /^https?:\/\//i.test(url) ? url : apiHost + url,
@@ -52,27 +52,27 @@ export class HTTPClient {
       Taro.showToast({ title, icon: 'none' })
       throw new Error(title)
     }
-  }
+  },
 
-  static get<T = any>(url: string, data = {}): Promise<T> {
+  get<T = any>(url: string, data = {}): Promise<T> {
     const options = { url, data }
     return HTTPClient.baseRequest(HTTPMethod.GET, options)
-  }
+  },
 
-  static post(url: string, data = {}, contentType: string) {
+  post(url: string, data = {}, contentType: string) {
     const options = { url, data, contentType }
     return HTTPClient.baseRequest(HTTPMethod.POST, options)
-  }
+  },
 
-  static put(url: string, data = {}) {
+  put(url: string, data = {}) {
     const options = { url, data }
     return HTTPClient.baseRequest(HTTPMethod.PUT, options)
-  }
+  },
 
-  static delete(url: string, data = {}) {
+  delete(url: string, data = {}) {
     const options = { url, data }
     return HTTPClient.baseRequest(HTTPMethod.DELETE, options)
-  }
+  },
 }
 
 export default HTTPClient

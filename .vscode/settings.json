@@ -1,4 +1,6 @@
 {
+  "eslint.enable": true,
+  "prettier.enable": true,
   "editor.formatOnSave": true,
   "eslint.validate": [
     "vue",
@@ -13,9 +15,6 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  "[vue]": {
-    "editor.formatOnSave": false
-  },
   "cSpell.allowCompoundWords": true,
   "cSpell.words": [
     "avenir",

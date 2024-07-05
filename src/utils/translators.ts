@@ -1,3 +1,5 @@
+/* eslint-disable regexp/no-super-linear-backtracking */
+/* eslint-disable regexp/match-any */
 import type { Question } from '@/types'
 
 /**
