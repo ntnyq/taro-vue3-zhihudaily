@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.6",
-    "@ntnyq/eslint-config": "^1.21.2",
+    "@ntnyq/eslint-config": "^2.5.1",
     "@ntnyq/prettier-config": "^1.21.2",
     "@tarojs/cli": "^3.6.30",
     "@tarojs/helper": "^3.6.30",
