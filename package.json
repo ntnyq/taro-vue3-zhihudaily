@@ -43,7 +43,7 @@
     "@ntnyq/eslint-config": "^2.7.3",
     "@ntnyq/prettier-config": "^1.21.2",
     "@tarojs/cli": "^4.0.3",
-    "@tarojs/helper": "^3.6.34",
+    "@tarojs/helper": "^4.0.3",
     "@tarojs/plugin-platform-weapp": "^3.6.34",
     "@tarojs/router": "^3.6.34",
     "@tarojs/shared": "^3.6.34",
