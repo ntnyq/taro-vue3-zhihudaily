@@ -61,8 +61,8 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       '@tarojs/plugin-platform-weapp':
-        specifier: ^3.6.34
-        version: 3.6.34(@tarojs/components@3.6.34(@tarojs/helper@4.0.3)(@tarojs/runtime@3.6.34(@tarojs/shared@3.6.34))(@tarojs/shared@3.6.34)(postcss@8.4.40)(vue@3.4.34(typescript@5.5.4)))(@tarojs/shared@3.6.34)(@tarojs/taro@3.6.34(@tarojs/helper@4.0.3)(@tarojs/runtime@3.6.34(@tarojs/shared@3.6.34))(postcss@8.4.40)(vue@3.4.34(typescript@5.5.4)))
+        specifier: ^4.0.3
+        version: 4.0.3(@tarojs/service@4.0.3)(@tarojs/shared@3.6.34)
       '@tarojs/router':
         specifier: ^3.6.34
         version: 3.6.34(@tarojs/runtime@3.6.34(@tarojs/shared@3.6.34))(@tarojs/shared@3.6.34)(@tarojs/taro@3.6.34(@tarojs/helper@4.0.3)(@tarojs/runtime@3.6.34(@tarojs/shared@3.6.34))(postcss@8.4.40)(vue@3.4.34(typescript@5.5.4)))
@@ -1689,6 +1689,13 @@ packages:
     peerDependencies:
       '@tarojs/components': ~3.6.34
       '@tarojs/shared': ~3.6.34
+
+  '@tarojs/plugin-platform-weapp@4.0.3':
+    resolution: {integrity: sha512-i9DwtN828G1XnCPuZnG5sop1NdmeoSZlvgg9ow2i5i+deY00ZB/3pQM+5ZFhLX2qvihVzrXGcpzD7d5pi8LB2Q==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      '@tarojs/service': 4.0.3
+      '@tarojs/shared': 4.0.3
 
   '@tarojs/router@3.6.34':
     resolution: {integrity: sha512-tFuDt/q5Ca+ABibMIQN+bcvvcqiMpuiAN1PDfyRCT11b6zJpM6A8FYwyNbBWRX088rp+zZ37dSI9SISPox1m6w==}
@@ -8332,6 +8339,11 @@ snapshots:
       - '@swc/helpers'
       - '@tarojs/taro'
       - supports-color
+
+  '@tarojs/plugin-platform-weapp@4.0.3(@tarojs/service@4.0.3)(@tarojs/shared@3.6.34)':
+    dependencies:
+      '@tarojs/service': 4.0.3
+      '@tarojs/shared': 3.6.34
 
   '@tarojs/router@3.6.34(@tarojs/runtime@3.6.34(@tarojs/shared@3.6.34))(@tarojs/shared@3.6.34)(@tarojs/taro@3.6.34(@tarojs/helper@4.0.3)(@tarojs/runtime@3.6.34(@tarojs/shared@3.6.34))(postcss@8.4.40)(vue@3.4.34(typescript@5.5.4)))':
     dependencies:
