@@ -33,11 +33,9 @@ export default defineConfig({
   compiler: {
     type: 'webpack5',
     prebundle: {
-      enable: false,
+      enable: true,
+      exclude: ['@nutui/nutui-taro', '@nutui/icons-vue-taro'],
     },
-    // prebundle: {
-    //   exclude: ['@nutui/nutui-taro'],
-    // },
   },
   framework: 'vue3',
   cache: {

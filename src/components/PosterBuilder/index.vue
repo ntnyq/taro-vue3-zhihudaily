@@ -19,7 +19,6 @@ export default defineComponent({
     },
   },
   emits: ['success', 'fail'],
-  // eslint-disable-next-line max-lines-per-function
   setup(props, context) {
     const count = ref(1)
     const {

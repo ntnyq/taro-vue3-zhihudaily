@@ -16,7 +16,7 @@ const handleNicknameChange = async (evt: MpEvent) => {
   const { value: nickname } = evt.detail as { value: string }
   const res = await Taro.showModal({
     title: '提示',
-    content: `确定设置该昵称吗？`,
+    content: '确定设置该昵称吗？',
   })
   if (!res.confirm) return
   userStore.setNickname(nickname)
@@ -24,7 +24,7 @@ const handleNicknameChange = async (evt: MpEvent) => {
 const onClearAllCache = async () => {
   const res = await Taro.showModal({
     title: '提示',
-    content: `确定清理全部缓存吗？`,
+    content: '确定清理全部缓存吗？',
   })
   if (!res.confirm) return
   userStore.dispose()
