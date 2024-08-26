@@ -2,7 +2,7 @@
   "name": "taro-vue3-zhihudaily",
   "version": "0.3.0",
   "private": true,
-  "packageManager": "pnpm@9.7.1",
+  "packageManager": "pnpm@9.8.0",
   "description": "taro-vue3-zhihudaily",
   "templateInfo": {
     "name": "vue3-NutUI",
@@ -25,7 +25,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.0",
+    "@babel/runtime": "^7.25.4",
     "@nutui/icons-vue-taro": "^0.0.9",
     "@nutui/nutui-taro": "^4.3.12",
     "@tarojs/components": "^4.0.4",
@@ -33,7 +33,7 @@
     "@tarojs/plugin-html": "^4.0.4",
     "@tarojs/runtime": "^4.0.4",
     "@tarojs/taro": "^4.0.4",
-    "dayjs": "^1.11.12",
+    "dayjs": "^1.11.13",
     "pinia": "^2.2.2",
     "taro-plugin-pinia": "^1.0.0",
     "vue": "^3.4.38"
@@ -53,11 +53,11 @@
     "@vue/babel-plugin-jsx": "^1.2.2",
     "@vue/compiler-sfc": "^3.4.38",
     "babel-preset-taro": "^4.0.4",
-    "bumpp": "^9.5.1",
-    "eslint": "^9.9.0",
-    "husky": "^9.1.4",
+    "bumpp": "^9.5.2",
+    "eslint": "^9.9.1",
+    "husky": "^9.1.5",
     "nano-staged": "^0.8.0",
-    "pnpm": "^9.7.1",
+    "pnpm": "^9.8.0",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
     "taro-define-config": "^0.6.2",
@@ -66,7 +66,7 @@
     "unplugin-vue-components": "^0.27.4",
     "vue-loader": "^17.4.2",
     "vue-tsc": "^2.0.29",
-    "webpack": "^5.93.0"
+    "webpack": "^5.94.0"
   },
   "prettier": "@ntnyq/prettier-config",
   "nano-staged": {
