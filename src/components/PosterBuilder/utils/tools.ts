@@ -202,6 +202,7 @@ export const getImageInfo = (item, index) =>
 
 /**
  * 获取线性渐变色
+ * TODO: 待优化, 支持所有角度，多个颜色的线性渐变
  * @param ctx canvas 实例对象
  * @param color 线性渐变色,如 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%)'
  * @param startX 起点 x 坐标
@@ -210,8 +211,6 @@ export const getImageInfo = (item, index) =>
  * @param h 高度
  * @returns grd
  */
-// TODO: 待优化, 支持所有角度，多个颜色的线性渐变
-// eslint-disable-next-line max-params
 export function getLinearColor(ctx: CanvasContext, color, startX, startY, w, h) {
   if (
     typeof startX !== 'number' ||

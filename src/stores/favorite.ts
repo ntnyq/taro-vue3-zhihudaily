@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
+import { StoreModule } from '@/types'
 import * as Storage from '@/utils/storage'
-import { StoreModole } from '@/types'
 import type { StoryMeta } from '@/types'
 
 export interface IFavoriteState {
   list: StoryMeta[]
 }
 
-export const useFavoriteStore = defineStore(StoreModole.favorite, {
+export const useFavoriteStore = defineStore(StoreModule.favorite, {
   state: (): IFavoriteState => ({
     list: [],
   }),

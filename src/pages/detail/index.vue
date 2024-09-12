@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
+import { Photograph, Share } from '@nutui/icons-vue-taro'
 import {
   authorize,
   getSetting,
@@ -13,12 +13,12 @@ import {
   useShareAppMessage,
   useShareTimeline,
 } from '@tarojs/taro'
-import { Photograph, Share } from '@nutui/icons-vue-taro'
+import { computed, onMounted, ref } from 'vue'
 import PosterBuilder from '@/components/PosterBuilder/index.vue'
 import { getNewsDetail } from '@/services'
+import { useFavoriteStore } from '@/stores/favorite'
 import { formatTime } from '@/utils'
 import { normalizeStory } from '@/utils/translators'
-import { useFavoriteStore } from '@/stores/favorite'
 import type { DrawConfig } from '@/components/PosterBuilder/types'
 import type { Question } from '@/types'
 

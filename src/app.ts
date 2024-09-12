@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import '@nutui/nutui-taro/dist/style.css'
+import '@/app.scss'
 import {
   Avatar,
   Button,
@@ -10,10 +10,10 @@ import {
   Noticebar,
   Toast,
 } from '@nutui/nutui-taro'
-import '@nutui/nutui-taro/dist/style.css'
-import { useUserStore } from '@/stores/user'
+import { createPinia } from 'pinia'
+import { createApp } from 'vue'
 import { useFavoriteStore } from '@/stores/favorite'
-import '@/app.scss'
+import { useUserStore } from '@/stores/user'
 
 const App = createApp({
   onShow() {

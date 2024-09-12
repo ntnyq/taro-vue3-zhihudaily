@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
+import { StoreModule } from '@/types'
 import * as Storage from '@/utils/storage'
-import { StoreModole } from '@/types'
 
 export interface IUserState {
   avatar: string
   nickname: string
 }
 
-export const useUserStore = defineStore(StoreModole.user, {
+export const useUserStore = defineStore(StoreModule.user, {
   state: (): IUserState => ({
     avatar: '',
     nickname: '',

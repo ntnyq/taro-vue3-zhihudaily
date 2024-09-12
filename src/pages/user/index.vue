@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Taro from '@tarojs/taro'
-import { useUserStore } from '@/stores/user'
 import { useFavoriteStore } from '@/stores/favorite'
+import { useUserStore } from '@/stores/user'
 import type { MpEvent } from '@tarojs/taro'
 
 const userStore = useUserStore()

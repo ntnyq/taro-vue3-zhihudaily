@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { Service } from '@nutui/icons-vue-taro'
+import { ref } from 'vue'
 
 const contributors = ref([
   {

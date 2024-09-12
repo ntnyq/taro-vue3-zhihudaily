@@ -2,7 +2,7 @@
  * @file Store
  */
 
-export enum StoreModole {
+export enum StoreModule {
   user = 'USER',
   favorite = 'FAVORITE',
 }

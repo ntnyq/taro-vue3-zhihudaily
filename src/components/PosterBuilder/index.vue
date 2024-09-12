@@ -3,8 +3,8 @@ import Taro from '@tarojs/taro'
 import { defineComponent, onMounted, ref } from 'vue'
 import { drawBlock, drawImage, drawLine, drawText } from './utils/draw'
 import { getImageInfo, getLinearColor, getRandomId, toPx, toRpx } from './utils/tools'
-import type { DrawConfig, Image } from './types'
 import type { PropType } from 'vue'
+import type { DrawConfig, Image } from './types'
 
 export default defineComponent({
   name: 'PosterBuilder',

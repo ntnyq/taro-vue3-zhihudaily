@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import Taro from '@tarojs/taro'
+import { ref } from 'vue'
 
 const email = ref('ntnyq@foxmail.com')
 
