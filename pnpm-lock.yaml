@@ -55,8 +55,8 @@ importers:
         specifier: ^3.0.0-beta.12
         version: 3.0.0-beta.12(@types/eslint@9.6.0)(@typescript-eslint/eslint-plugin@8.5.0(@typescript-eslint/parser@8.5.0(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2))(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2))(@typescript-eslint/utils@8.5.0(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2))(eslint-config-prettier@9.1.0(eslint@9.10.0(jiti@1.21.6)))(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2)
       '@ntnyq/prettier-config':
-        specifier: ^1.21.2
-        version: 1.21.2
+        specifier: ^1.21.3
+        version: 1.21.3
       '@tarojs/cli':
         specifier: ^4.0.5
         version: 4.0.5
@@ -1081,8 +1081,8 @@ packages:
     peerDependencies:
       eslint: ^9.0.0
 
-  '@ntnyq/prettier-config@1.21.2':
-    resolution: {integrity: sha512-XbSrutNQzfLXq7yqhcI/9w6AoQpGJulE2Nhj52GXL6XkmHENA7WG3ZzTPjfPEGHpC4GGwtEWCXk3qDSqsB7auQ==}
+  '@ntnyq/prettier-config@1.21.3':
+    resolution: {integrity: sha512-gqnraIdHvjZnyd2JqBPiys+XNoHV4J/L9mzOLrVEyyxPCOBP8NSc9lNbqo2gvf7sDgVtffR+eLYov/c321W9cw==}
 
   '@nutui/icons-vue-taro@0.0.9':
     resolution: {integrity: sha512-10VYAtFC+o1X0anGs+y2PgF1NWMeLFz2JVMRw4BWLg6wbtVbYy9wukLxyGhZC6Yf6t39DcwaGVda8paV7K6/Ew==}
@@ -7281,7 +7281,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@ntnyq/prettier-config@1.21.2': {}
+  '@ntnyq/prettier-config@1.21.3': {}
 
   '@nutui/icons-vue-taro@0.0.9': {}
 

@@ -6,6 +6,12 @@ import path from 'node:path'
 import { defineConfig } from 'taro-define-config'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
+declare module 'taro-define-config' {
+  interface CustomPluginOptionsMap {
+    'taro-plugin-pinia': {}
+  }
+}
+
 /**
  * resolve path
  * @param args
@@ -25,11 +31,7 @@ export default defineConfig({
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [
-    '@tarojs/plugin-html',
-    // @ts-expect-error not supported by defineConfig
-    'taro-plugin-pinia',
-  ],
+  plugins: ['@tarojs/plugin-html', 'taro-plugin-pinia'],
   compiler: {
     type: 'webpack5',
     prebundle: {
