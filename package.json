@@ -36,7 +36,7 @@
     "dayjs": "^1.11.13",
     "pinia": "^2.2.2",
     "taro-plugin-pinia": "^1.0.0",
-    "vue": "^3.5.8"
+    "vue": "^3.5.10"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -51,22 +51,22 @@
     "@tarojs/webpack5-runner": "^4.0.6",
     "@types/webpack-env": "^1.18.5",
     "@vue/babel-plugin-jsx": "^1.2.5",
-    "@vue/compiler-sfc": "^3.5.8",
+    "@vue/compiler-sfc": "^3.5.10",
     "babel-preset-taro": "^4.0.6",
-    "bumpp": "^9.5.2",
+    "bumpp": "^9.6.1",
     "eslint": "^9.11.1",
     "husky": "^9.1.6",
     "nano-staged": "^0.8.0",
     "pnpm": "^9.11.0",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
-    "taro-define-config": "^0.6.2",
+    "taro-define-config": "^0.8.0",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.6.2",
     "unplugin-vue-components": "^0.27.4",
     "vue-loader": "^17.4.2",
     "vue-tsc": "^2.1.6",
-    "webpack": "^5.94.0"
+    "webpack": "^5.95.0"
   },
   "prettier": "@ntnyq/prettier-config",
   "nano-staged": {
