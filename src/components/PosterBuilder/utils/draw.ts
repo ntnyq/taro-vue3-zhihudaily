@@ -339,7 +339,7 @@ export function drawBlock(data: DrawBlockData, drawOptions: DrawOptions) {
   if (text) {
     // 如果文字宽度超出块宽度，则块的宽度为：文字的宽度 + 内边距
     const textWidth = _getTextWidth(typeof text.text === 'string' ? text : text.text, drawOptions)
-    blockWidth = textWidth > width ? textWidth : width
+    blockWidth = Math.max(textWidth, width)
     blockWidth += paddingLeft + paddingLeft
 
     const { textAlign = 'left' } = text

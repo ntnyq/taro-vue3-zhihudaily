@@ -11,13 +11,13 @@
 
 ```bash
 # Install deps
-$ pnpm install
+pnpm install
 
 # Build for development
-$ pnpm run dev
+pnpm run dev
 
 # Build for production
-$ pnpm run build
+pnpm run build
 ```
 
 ## Features
