@@ -35,10 +35,9 @@ const fetchNewsByDate = async () => {
 const fetchLatestNews = async () => {
   try {
     const res = await getLatestNewsList()
-    // eslint-disable-next-line camelcase
-    const { date, top_stories = [] } = res
-    // eslint-disable-next-line camelcase
-    slides.value = top_stories
+    const { date, top_stories: topStories = [] } = res
+
+    slides.value = topStories
     latestDate.value = date
     newsList.value = [res]
     if (res.stories.length > 3) return

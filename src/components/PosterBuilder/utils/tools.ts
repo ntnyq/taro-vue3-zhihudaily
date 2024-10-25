@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import type { CanvasContext, CanvasGradient } from '@tarojs/taro'
+import type { DrawImageData, Image } from './types'
 
 declare const wx: any
 
@@ -18,7 +19,7 @@ export function randomString(length: number) {
 
 /**
  * 随机创造一个id
- * @param  prefix - ID 前缀
+ * @param prefix - ID 前缀
  * @param length - 字符串长度
  * @returns id
  */
@@ -27,9 +28,8 @@ export function getRandomId(prefix = 'canvas', length = 10) {
 }
 
 /**
- * @description 获取最大高度
- * @param  {} config
- * @returns { number }
+ * 获取最大高度
+ * @param config
  */
 // export function getHeight (config) {
 //   const getTextHeight = text => {
@@ -81,14 +81,11 @@ export function getRandomId(prefix = 'canvas', length = 10) {
 /**
  * 将 http转为https
  */
-export function mapHttpToHttps(rawUrl: string) {
-  if (!rawUrl.includes(':') || rawUrl.startsWith('http://tmp')) return rawUrl
-  const urlComponent = rawUrl.split(':')
-  if (urlComponent.length === 2 && urlComponent[0] === 'http') {
-    urlComponent[0] = 'https'
-    return `${urlComponent[0]}:${urlComponent[1]}`
+export function ensureHttps(url: string) {
+  if (!url.includes(':') || url.startsWith('http://tmp')) {
+    return url
   }
-  return rawUrl
+  return url.replace('http://', 'https://')
 }
 
 /**
@@ -119,86 +116,72 @@ export const toRpx = (px: number, factor = getFactor()) => Number.parseInt(Strin
 
 /**
  * 下载图片资源
- * @param  url
+ * @param url
  */
-export function downImage(url: string) {
-  return new Promise<string>((resolve, reject) => {
-    if (url.startsWith('http') && !new RegExp(wx.env.USER_DATA_PATH).test(url)) {
-      // wx.env.USER_DATA_PATH 文件系统中的用户目录路径
-      Taro.downloadFile({
-        url: mapHttpToHttps(url),
-        success: res => {
-          if (res.statusCode === 200) {
-            resolve(res.tempFilePath)
-          } else {
-            console.log('下载失败', res)
-            reject(res)
-          }
-        },
-        fail(err) {
-          console.log('下载失败了', err)
-          reject(err)
-        },
-      })
-    } else {
-      resolve(url) // 支持本地地址
+export async function downloadFile(url: string) {
+  // wx.env.USER_DATA_PATH 文件系统中的用户目录路径
+  if (url.startsWith('http') && !new RegExp(wx.env.USER_DATA_PATH).test(url)) {
+    const res = await Taro.downloadFile({ url: ensureHttps(url) })
+    if (res.statusCode === 0) {
+      return res.tempFilePath
     }
-  })
+  } else {
+    // 本地地址文件
+    return url
+  }
 }
 
 /**
  * 下载图片并获取图片信息
- * @param  {} item 图片参数信息
- * @param  {} index 图片下标
- * @returns  { Promise } result 整理后的图片信息
+ * @param item 图片参数信息
+ * @param index 图片下标
+ * @returns 整理后的图片信息
  */
-export const getImageInfo = (item, index) =>
-  new Promise((resolve, reject) => {
-    const { x, y, width, height, url, zIndex } = item
-    downImage(url).then(imgPath =>
-      Taro.getImageInfo({ src: imgPath })
-        .then(imgInfo => {
-          // 获取图片信息
-          // 根据画布的宽高计算出图片绘制的大小，这里会保证图片绘制不变形， 即宽高比不变，截取再拉伸
-          let sx // 截图的起点 x 坐标
-          let sy // 截图的起点 y 坐标
-          const borderRadius = item.borderRadius || 0
-          const imgWidth = toRpx(imgInfo.width) // 图片真实宽度 单位 px
-          const imgHeight = toRpx(imgInfo.height) // 图片真实高度 单位 px
-          // 根据宽高比截取图片
-          if (imgWidth / imgHeight <= width / height) {
-            sx = 0
-            sy = (imgHeight - (imgWidth / width) * height) / 2
-          } else {
-            sy = 0
-            sx = (imgWidth - (imgHeight / height) * width) / 2
-          }
-          // 给 canvas 画图准备参数，详见 ./draw.ts-drawImage
-          const result = {
-            type: 'image',
-            borderRadius,
-            borderWidth: item.borderWidth,
-            borderColor: item.borderColor,
-            borderRadiusGroup: item.borderRadiusGroup,
-            zIndex: zIndex !== undefined ? zIndex : index,
-            imgPath: url,
-            sx,
-            sy,
-            sw: imgWidth - sx * 2,
-            sh: imgHeight - sy * 2,
-            x,
-            y,
-            w: width,
-            h: height,
-          }
-          resolve(result)
-        })
-        .catch(err => {
-          console.log('读取图片信息失败', err)
-          reject(err)
-        }),
-    )
-  })
+export async function getImageInfo(item: Image, index: number) {
+  const { x, y, width, height, url, zIndex } = item
+
+  const imgPath = await downloadFile(url)
+
+  if (!imgPath) return
+
+  const imageInfo = await Taro.getImageInfo({ src: imgPath })
+
+  // 获取图片信息
+  // 根据画布的宽高计算出图片绘制的大小，这里会保证图片绘制不变形， 即宽高比不变，截取再拉伸
+  let sx: number // 截图的起点 x 坐标
+  let sy: number // 截图的起点 y 坐标
+  const borderRadius = item.borderRadius || 0
+  const imgWidth = toRpx(imageInfo.width) // 图片真实宽度 单位 px
+  const imgHeight = toRpx(imageInfo.height) // 图片真实高度 单位 px
+  // 根据宽高比截取图片
+  if (imgWidth / imgHeight <= width / height) {
+    sx = 0
+    sy = (imgHeight - (imgWidth / width) * height) / 2
+  } else {
+    sy = 0
+    sx = (imgWidth - (imgHeight / height) * width) / 2
+  }
+  // 给 canvas 画图准备参数，详见 ./draw.ts-drawImage
+  const result: DrawImageData = {
+    type: 'image',
+    borderRadius,
+    borderWidth: item.borderWidth,
+    borderColor: item.borderColor,
+    borderRadiusGroup: item.borderRadiusGroup,
+    zIndex: zIndex !== undefined ? zIndex : index,
+    imgPath: url,
+    sx,
+    sy,
+    sw: imgWidth - sx * 2,
+    sh: imgHeight - sy * 2,
+    x,
+    y,
+    w: width,
+    h: height,
+  }
+
+  return result
+}
 
 /**
  * 获取线性渐变色
@@ -211,7 +194,14 @@ export const getImageInfo = (item, index) =>
  * @param h 高度
  * @returns grd
  */
-export function getLinearColor(ctx: CanvasContext, color, startX, startY, w, h) {
+export function getLinearColor(
+  ctx: CanvasContext,
+  color: string,
+  startX: number,
+  startY: number,
+  w: number,
+  h: number,
+) {
   if (
     typeof startX !== 'number' ||
     typeof startY !== 'number' ||
@@ -225,7 +215,8 @@ export function getLinearColor(ctx: CanvasContext, color, startX, startY, w, h) 
   if (color.includes('linear-gradient')) {
     // fillStyle 不支持线性渐变色
     const colorList = color.match(/\((\d+)deg,\s(.+)\s\d+%,\s(.+)\s\d+%/)
-    const radian = colorList[1] // 渐变弧度（角度）
+    if (!colorList) return
+    const radian = Number.parseInt(colorList[1]) // 渐变弧度（角度）
     const color1 = colorList[2]
     const color2 = colorList[3]
 
@@ -256,11 +247,10 @@ export function getLinearColor(ctx: CanvasContext, color, startX, startY, w, h) 
  * 根据文字对齐方式设置坐标
  */
 export function getTextX(textAlign: string, x: number, width: number) {
-  let newX = x
   if (textAlign === 'center') {
-    newX = width / 2 + x
+    return width / 2 + x
   } else if (textAlign === 'right') {
-    newX = width + x
+    return width + x
   }
-  return newX
+  return x
 }

@@ -19,7 +19,7 @@ import { getNewsDetail } from '@/services'
 import { useFavoriteStore } from '@/stores/favorite'
 import { formatTime } from '@/utils'
 import { normalizeStory } from '@/utils/translators'
-import type { DrawConfig } from '@/components/PosterBuilder/types'
+import type { DrawConfig } from '@/components/PosterBuilder/utils/types'
 import type { Question } from '@/types'
 
 const INIT_DRAW_CONFIG: DrawConfig = {

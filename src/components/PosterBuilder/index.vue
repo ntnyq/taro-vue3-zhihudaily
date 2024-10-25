@@ -4,7 +4,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import { drawBlock, drawImage, drawLine, drawText } from './utils/draw'
 import { getImageInfo, getLinearColor, getRandomId, toPx, toRpx } from './utils/tools'
 import type { PropType } from 'vue'
-import type { DrawConfig, Image } from './types'
+import type { DrawConfig, Image } from './utils/types'
 
 export default defineComponent({
   name: 'PosterBuilder',
@@ -39,8 +39,8 @@ export default defineComponent({
      * @return downloadImagePromise
      */
     const initImages = (images: Image[]) => {
-      const imagesTemp = images.filter(item => item.url)
-      const drawList = imagesTemp.map((item, index) => getImageInfo(item, index))
+      const imageList = images.filter(item => item.url)
+      const drawList = imageList.map((item, index) => getImageInfo(item, index))
       return Promise.all(drawList)
     }
 
@@ -99,9 +99,9 @@ export default defineComponent({
 
     /**
      * step2: 开始绘制任务
-     * @param  { Array } drawTasks 待绘制任务
+     * @param  drawTasks 待绘制任务
      */
-    const startDrawing = async drawTasks => {
+    const startDrawing = async (drawTasks: any[]) => {
       // TODO: check
       // const configHeight = getHeight(config)
       const { ctx, canvas } = (await initCanvas()) as any
@@ -142,6 +142,7 @@ export default defineComponent({
         )
 
       queue.sort((a, b) => a.zIndex - b.zIndex) // 按照层叠顺序由低至高排序, 先画低的，再画高的
+
       for (const element of queue) {
         const drawOptions = {
           canvas,
@@ -177,12 +178,14 @@ export default defineComponent({
             startDrawing(result)
           })
           .catch(err => {
-            Taro.hideLoading()
             Taro.showToast({
               icon: 'none',
               title: err.errMsg || '下载图片失败',
             })
             context.emit('fail', err)
+          })
+          .finally(() => {
+            Taro.hideLoading()
           })
       } else {
         startDrawing([])
