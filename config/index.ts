@@ -63,8 +63,7 @@ export default defineConfig({
     options: {},
   },
   sass: {
-    resource: [resolve('src/assets/styles/core.scss')],
-    data: '@import "@nutui/nutui-taro/dist/styles/variables.scss";',
+    data: `@use "@/assets/styles/core.scss" as *;`,
   },
   mini: {
     postcss: {
@@ -83,6 +82,11 @@ export default defineConfig({
     },
     webpackChain(chain) {
       chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+    },
+    sassLoaderOption: {
+      sassOptions: {
+        silenceDeprecations: ['import'],
+      },
     },
   },
   h5: {
