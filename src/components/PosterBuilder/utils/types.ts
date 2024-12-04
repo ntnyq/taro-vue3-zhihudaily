@@ -1,257 +1,189 @@
-export type DrawType = 'text' | 'image' | 'block' | 'line'
+export type DrawType = 'block' | 'image' | 'line' | 'text'
 
-export interface Text {
-  type?: DrawType
-  x?: number
-  y?: number
-  text: string | Text[]
-  fontSize?: number
-  color?: string
-  opacity?: 1 | 0
-  lineHeight?: number
-  lineNum?: number
-  width?: number
-  marginTop?: number
-  marginLeft?: number
-  marginRight?: number
-  textDecoration?: 'line-through' | 'none'
-  baseLine?: 'top' | 'middle' | 'bottom'
-  textAlign?: 'left' | 'center' | 'right'
-  fontFamily?: string
-  fontWeight?: string
-  fontStyle?: string
-  zIndex?: number
-}
-
+/**
+ * Shape
+ */
 export interface Block {
-  type?: DrawType
+  height: number
   x: number
   y: number
-  width?: number
-  height: number
+  backgroundColor?: string
+  borderColor?: string
+  borderRadius?: number
+  borderRadiusGroup?: number[]
+  borderWidth?: number
+  opacity?: number
   paddingLeft?: number
   paddingRight?: number
-  borderWidth?: number
-  borderColor?: string
-  backgroundColor?: string
-  borderRadius?: number
-  borderRadiusGroup?: number[]
   text?: Text
-  opacity?: number
+  type?: DrawType
+  width?: number
   zIndex?: number
 }
-
 export interface Image {
-  type?: DrawType
-  x: number
-  y: number
+  height: number
   url: string
   width: number
-  height: number
+  x: number
+  y: number
+  borderColor?: string
   borderRadius?: number
   borderRadiusGroup?: number[]
   borderWidth?: number
-  borderColor?: string
+  type?: DrawType
   zIndex?: number
 }
-
 export interface Line {
-  type?: DrawType
-  startX: number
-  startY: number
   endX: number
   endY: number
+  startX: number
+  startY: number
   width: number
   color?: string
+  type?: DrawType
   zIndex?: number
 }
-
-export interface DrawConfig {
-  width: number
-  height: number
-  backgroundColor?: string
-  debug?: boolean
-  blocks?: Block[]
-  texts?: Text[]
-  images?: Image[]
-  lines?: Line[]
+export interface Text {
+  text: string | Text[]
+  baseLine?: 'bottom' | 'middle' | 'top'
+  color?: string
+  fontFamily?: string
+  fontSize?: number
+  fontStyle?: string
+  fontWeight?: string
+  lineHeight?: number
+  lineNum?: number
+  marginLeft?: number
+  marginRight?: number
+  marginTop?: number
+  opacity?: 0 | 1
+  textAlign?: 'center' | 'left' | 'right'
+  textDecoration?: 'line-through' | 'none'
+  type?: DrawType
+  width?: number
+  x?: number
+  y?: number
+  zIndex?: number
 }
 
 /**
  * Draw Rect config
  */
 export type DrawRadiusRectConfig = {
+  h: number
+  r: number
+  w: number
   x: number
   y: number
-  /**
-   * width
-   */
-  w: number
-  /**
-   * height
-   */
-  h: number
-  /**
-   * borderRadius
-   */
-  r: number
 }
 
 /**
  * Draw Radius Group Rect config
  */
 export type DrawRadiusGroupRectConfig = {
+  g: number[]
+  h: number
+  w: number
   x: number
   y: number
-  /**
-   * width
-   */
-  w: number
-  /**
-   * height
-   */
-  h: number
-
-  /**
-   * borderRadius group
-   */
-  g: number[]
 }
 
 /**
  * Draw Line data
  */
 export type DrawLineData = {
-  type?: DrawType
-  zIndex?: number
-  startX: number
-  startY: number
+  color: string
   endX: number
   endY: number
+  startX: number
+  startY: number
   width: number
-  color: string
+  type?: DrawType
+  zIndex?: number
 }
 
 /**
  * Draw Block data
  */
 export type DrawBlockData = {
-  type?: DrawType
-  zIndex?: number
-  x: number
-  y: number
-  /**
-   * @default 0
-   */
-  width?: number
-  height: number
-  /**
-   * @default 0
-   */
-  paddingLeft?: number
-  /**
-   * @default 0
-   */
-  paddingRight?: number
-  text?: DrawTextData
-  /**
-   * @default 1
-   */
-  opacity?: number
-  borderWidth: number
   backgroundColor: string
   borderColor: string
-  /**
-   * @default 0
-   */
+  borderWidth: number
+  height: number
+  x: number
+  y: number
   borderRadius?: number
   borderRadiusGroup?: number[]
+  opacity?: number
+  paddingLeft?: number
+  paddingRight?: number
+  text?: DrawTextData
+  type?: DrawType
+  width?: number
+  zIndex?: number
 }
 
 /**
  * Draw Text data
  */
 export type DrawTextData = {
-  type?: DrawType
-  zIndex?: number
-  /**
-   * 单位：rpx
-   */
-  x: number
-  /**
-   * 单位：rpx
-   */
-  y: number
-  /**
-   * 单位：rpx
-   */
-  fontSize: number
+  baseLine: 'bottom' | 'middle' | 'top'
   color: string
-  baseLine: 'top' | 'middle' | 'bottom'
-  textAlign: 'left' | 'right' | 'center'
-  text: string | DrawTextData[]
+  fontFamily: string
+  fontSize: number
+  lineHeight: number
+  lineNum: number
   opacity: number
+  text: string | DrawTextData[]
+  textAlign: 'center' | 'left' | 'right'
   textDecoration: string
   width: number
-  lineNum: number
-  lineHeight: number
-
-  /**
-   * 仅在文本为数组时生效
-   */
-  marginTop?: number
+  x: number
+  y: number
+  fontStyle?: 'italic'
+  fontWeight?: 'bold'
   marginLeft?: number
   marginRight?: number
-
-  /**
-   * 字重，小程序暂时不支持 100 - 900
-   */
-  fontWeight?: 'bold'
-
-  /**
-   * 字体样式
-   */
-  fontStyle?: 'italic'
-
-  /**
-   * 字族
-   * @default `sans-serif`
-   */
-  fontFamily: string
+  marginTop?: number
+  type?: DrawType
+  zIndex?: number
 }
 
 /**
  * Draw Image data
  */
 export type DrawImageData = {
-  type?: DrawType
-  zIndex?: number
-  x: number
-  y: number
-  w: number
+  borderRadius: number
   h: number
+  imgPath: string
+  sh: number
+  sw: number
   sx: number
   sy: number
-  sw: number
-  sh: number
-  imgPath: string
-  /**
-   * @default 0
-   */
-  borderRadius: number
-  /**
-   * @default 0
-   */
-  borderWidth?: number
+  w: number
+  x: number
+  y: number
   borderColor?: string
   borderRadiusGroup?: number[]
+  borderWidth?: number
+  type?: DrawType
+  zIndex?: number
 }
 
+/**
+ * Draw
+ */
+export interface DrawConfig {
+  height: number
+  width: number
+  backgroundColor?: string
+  blocks?: Block[]
+  debug?: boolean
+  images?: Image[]
+  lines?: Line[]
+  texts?: Text[]
+}
 export interface DrawOptions {
-  /**
-   * ctx对象
-   */
-  ctx: any
-
   canvas: any
+  ctx: any
 }

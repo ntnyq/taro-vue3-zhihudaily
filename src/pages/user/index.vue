@@ -125,6 +125,7 @@ const onCellClick = (key: string) => {
               class="feedback-btn"
               hover-class="none"
               open-type="feedback"
+              type="button"
             >
               意见反馈
             </button>

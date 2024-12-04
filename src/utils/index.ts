@@ -14,7 +14,7 @@ export function formatTime(
 
 /**
  * Check if given object is empty
- * @param obj object to be checked
+ * @param obj - object to be checked
  * @returns `true` if the object is empty
  */
 export const isEmptyObject = (obj: Record<string, any>) => Object.keys(obj).length > 0

@@ -133,8 +133,8 @@ export async function downloadFile(url: string) {
 
 /**
  * 下载图片并获取图片信息
- * @param item 图片参数信息
- * @param index 图片下标
+ * @param item - 图片参数信息
+ * @param index - 图片下标
  * @returns 整理后的图片信息
  */
 export async function getImageInfo(item: Image, index: number) {
@@ -186,12 +186,12 @@ export async function getImageInfo(item: Image, index: number) {
 /**
  * 获取线性渐变色
  * TODO: 待优化, 支持所有角度，多个颜色的线性渐变
- * @param ctx canvas 实例对象
- * @param color 线性渐变色,如 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%)'
- * @param startX 起点 x 坐标
- * @param startY 起点 y 坐标
- * @param w 宽度
- * @param h 高度
+ * @param ctx - canvas 实例对象
+ * @param color - 线性渐变色,如 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%)'
+ * @param startX - 起点 x 坐标
+ * @param startY - 起点 y 坐标
+ * @param w - 宽度
+ * @param h - 高度
  * @returns grd
  */
 export function getLinearColor(

@@ -327,6 +327,7 @@ onMounted(() => {
           hover-class="none"
           class="action-item"
           open-type="share"
+          type="button"
         >
           <share class="action-item-icon" />
           <text class="action-item-text"> 分享给好友 </text>
@@ -336,6 +337,7 @@ onMounted(() => {
           @click="onGeneratePoster"
           hover-class="none"
           class="action-item"
+          type="button"
         >
           <photograph class="action-item-icon" />
           <text class="action-item-text"> 生成海报 </text>

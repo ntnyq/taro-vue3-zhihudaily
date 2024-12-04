@@ -3,40 +3,40 @@
  */
 
 export default defineAppConfig({
+  lazyCodeLoading: 'requiredComponents',
   pages: ['pages/index/index', 'pages/detail/index', 'pages/user/index'],
-  window: {
-    backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: '喔喔日推',
-    navigationBarTextStyle: 'black',
-  },
-  tabBar: {
-    color: '#bfbfbf',
-    selectedColor: '#ffd300',
-    backgroundColor: '#fff',
-    borderStyle: 'white',
-    list: [
-      {
-        pagePath: 'pages/index/index',
-        iconPath: './assets/images/tabbar/news.png',
-        selectedIconPath: './assets/images/tabbar/news_active.png',
-        text: '日推',
-      },
-      {
-        pagePath: 'pages/user/index',
-        iconPath: './assets/images/tabbar/user.png',
-        selectedIconPath: './assets/images/tabbar/user_active.png',
-        text: '个人',
-      },
-    ],
-  },
   subPackages: [
     {
-      root: 'packages/user',
       pages: ['author/index', 'copy/index', 'thank/index', 'favorite/index'],
+      root: 'packages/user',
       // name: `user`,
       // independent: true,
     },
   ],
-  lazyCodeLoading: 'requiredComponents',
+  tabBar: {
+    backgroundColor: '#fff',
+    borderStyle: 'white',
+    color: '#bfbfbf',
+    list: [
+      {
+        iconPath: './assets/images/tabbar/news.png',
+        pagePath: 'pages/index/index',
+        selectedIconPath: './assets/images/tabbar/news_active.png',
+        text: '日推',
+      },
+      {
+        iconPath: './assets/images/tabbar/user.png',
+        pagePath: 'pages/user/index',
+        selectedIconPath: './assets/images/tabbar/user_active.png',
+        text: '个人',
+      },
+    ],
+    selectedColor: '#ffd300',
+  },
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTextStyle: 'black',
+    navigationBarTitleText: '喔喔日推',
+  },
 })

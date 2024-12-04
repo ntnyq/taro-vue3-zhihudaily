@@ -35,8 +35,8 @@ export default defineComponent({
 
     /**
      * step1: 初始化图片资源
-     * @param images = imgTask
-     * @return downloadImagePromise
+     * @param images - = imgTask
+     * @returns downloadImagePromise
      */
     const initImages = (images: Image[]) => {
       const imageList = images.filter(item => item.url)
@@ -46,7 +46,7 @@ export default defineComponent({
 
     /**
      * step2: 初始化 canvas && 获取其 dom 节点和实例
-     * @return resolve 里返回其 dom 和实例
+     * @returns resolve 里返回其 dom 和实例
      */
     const initCanvas = () =>
       new Promise(resolve => {
@@ -99,7 +99,7 @@ export default defineComponent({
 
     /**
      * step2: 开始绘制任务
-     * @param  drawTasks 待绘制任务
+     * @param drawTasks - 待绘制任务
      */
     const startDrawing = async (drawTasks: any[]) => {
       // TODO: check

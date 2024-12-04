@@ -33,6 +33,7 @@ const contributors = ref([
             class="contributor-item-wechat-btn"
             hover-class="none"
             open-type="contact"
+            type="button"
           >
             <service class="contributor-item-wechat-icon" />
           </button>

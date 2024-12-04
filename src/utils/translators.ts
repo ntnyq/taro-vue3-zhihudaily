@@ -4,7 +4,7 @@ import type { Question } from '@/types'
 
 /**
  * Get matched String
- * @param matches REGEXP match result
+ * @param matches - REGEXP match result
  * @returns matched string
  */
 export function getMatchedString(matches: string[] | null) {
