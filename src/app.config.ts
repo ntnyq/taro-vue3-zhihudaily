@@ -17,6 +17,7 @@ export default defineAppConfig({
     backgroundColor: '#fff',
     borderStyle: 'white',
     color: '#bfbfbf',
+    selectedColor: '#ffd300',
     list: [
       {
         iconPath: './assets/images/tabbar/news.png',
@@ -31,7 +32,6 @@ export default defineAppConfig({
         text: '个人',
       },
     ],
-    selectedColor: '#ffd300',
   },
   window: {
     backgroundTextStyle: 'light',

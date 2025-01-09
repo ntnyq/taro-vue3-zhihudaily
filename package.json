@@ -2,7 +2,7 @@
   "name": "taro-vue3-zhihudaily",
   "version": "0.3.0",
   "private": true,
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@9.15.3",
   "description": "taro-vue3-zhihudaily",
   "templateInfo": {
     "name": "vue3-NutUI",
@@ -41,8 +41,8 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@ntnyq/eslint-config": "^3.9.2",
-    "@ntnyq/prettier-config": "^1.22.0",
+    "@ntnyq/eslint-config": "^3.11.0",
+    "@ntnyq/prettier-config": "^1.22.1",
     "@tarojs/cli": "^4.0.8",
     "@tarojs/helper": "^4.0.8",
     "@tarojs/plugin-platform-weapp": "^4.0.8",
@@ -53,25 +53,20 @@
     "@vue/babel-plugin-jsx": "^1.2.5",
     "@vue/compiler-sfc": "^3.5.13",
     "babel-preset-taro": "^4.0.8",
-    "bumpp": "^9.9.1",
+    "bumpp": "^9.9.3",
     "eslint": "^9.17.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
-    "pnpm": "^9.15.0",
+    "pnpm": "^9.15.3",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
-    "taro-define-config": "^0.10.2",
+    "taro-define-config": "^0.10.3",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
-    "typescript": "^5.7.2",
-    "unplugin-vue-components": "^0.27.5",
+    "typescript": "^5.7.3",
+    "unplugin-vue-components": "^28.0.0",
     "vue-loader": "^17.4.2",
-    "vue-tsc": "^2.1.10",
+    "vue-tsc": "^2.2.0",
     "webpack": "^5.97.1"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "vue-tsc@2.1.10": "patches/vue-tsc@2.1.10.patch"
-    }
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,vue,yml,yaml,md,json}": "eslint --fix"

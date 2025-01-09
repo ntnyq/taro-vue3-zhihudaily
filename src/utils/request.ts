@@ -2,6 +2,7 @@
  * @file HTTP Request
  * @module utils/request
  */
+
 import Taro from '@tarojs/taro'
 
 /**
@@ -10,6 +11,7 @@ import Taro from '@tarojs/taro'
 declare const API_HOST: string
 
 export const apiHost = API_HOST
+
 export enum HTTPMethod {
   GET = 'GET',
   POST = 'POST',
@@ -25,7 +27,7 @@ interface HTTPRequestParams {
 }
 
 export const HTTPClient = {
-  async baseRequest(method = HTTPMethod.GET, params: HTTPRequestParams) {
+  async baseRequest(method: HTTPMethod, params: HTTPRequestParams) {
     const { url, data, contentType } = params
     const options: Taro.request.Option = {
       url: /^https?:\/\//i.test(url) ? url : apiHost + url,
@@ -59,8 +61,8 @@ export const HTTPClient = {
     return HTTPClient.baseRequest(HTTPMethod.GET, options)
   },
 
-  post(url: string, data = {}, contentType: string) {
-    const options = { url, data, contentType }
+  post(url: string, data = {}) {
+    const options = { url, data }
     return HTTPClient.baseRequest(HTTPMethod.POST, options)
   },
 
