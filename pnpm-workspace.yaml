@@ -1,0 +1,15 @@
+catalog:
+  '@tarojs/taro': &taro ^4.0.9
+  '@tarojs/cli': *taro
+  '@tarojs/components': *taro
+  '@tarojs/helper': *taro
+  '@tarojs/plugin-framework-vue3': *taro
+  '@tarojs/plugin-html': *taro
+  '@tarojs/plugin-platform-weapp': *taro
+  '@tarojs/router': *taro
+  '@tarojs/runtime': *taro
+  '@tarojs/shared': *taro
+  '@tarojs/webpack5-runner': *taro
+  babel-preset-taro: *taro
+packages:
+  - .
