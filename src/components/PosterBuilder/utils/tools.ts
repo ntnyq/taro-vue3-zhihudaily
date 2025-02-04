@@ -104,7 +104,8 @@ export const getFactor = () => {
  * @param factor - 转化因子
  * @returns px
  */
-export const toPx = (rpx: number, factor = getFactor()) => Number.parseInt(String(rpx * factor), 10)
+export const toPx = (rpx: number, factor = getFactor()) =>
+  Number.parseInt(String(rpx * factor), 10)
 
 /**
  * px => rpx 单位转换
@@ -112,7 +113,8 @@ export const toPx = (rpx: number, factor = getFactor()) => Number.parseInt(Strin
  * @param factor - 转化因子
  * @returns rpx
  */
-export const toRpx = (px: number, factor = getFactor()) => Number.parseInt(String(px / factor), 10)
+export const toRpx = (px: number, factor = getFactor()) =>
+  Number.parseInt(String(px / factor), 10)
 
 /**
  * 下载图片资源
@@ -203,10 +205,10 @@ export function getLinearColor(
   h: number,
 ) {
   if (
-    typeof startX !== 'number' ||
-    typeof startY !== 'number' ||
-    typeof w !== 'number' ||
-    typeof h !== 'number'
+    typeof startX !== 'number'
+    || typeof startY !== 'number'
+    || typeof w !== 'number'
+    || typeof h !== 'number'
   ) {
     console.warn('坐标或者宽高只支持数字')
     return color

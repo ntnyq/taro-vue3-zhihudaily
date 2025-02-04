@@ -29,7 +29,9 @@ const goHome = () => {
       class="favorite-list"
     >
       <view class="favorite-list-count">
-        <text class="count-text"> 共计 {{ favoriteStore.list.length }} 篇收藏 </text>
+        <text class="count-text">
+          共计 {{ favoriteStore.list.length }} 篇收藏
+        </text>
         <nut-button
           @tap="clearFaveriteList"
           class="count-clear-btn"
