@@ -24,6 +24,12 @@
     "noUnusedParameters": true,
     "skipLibCheck": true
   },
-  "include": ["./src", "./types", "./config"],
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.vue",
+    "./types/**/*.ts",
+    "./config/**/*.ts",
+    "./scripts/**/*.ts"
+  ],
   "compileOnSave": false
 }
