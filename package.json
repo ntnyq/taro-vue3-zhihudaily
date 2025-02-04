@@ -35,7 +35,6 @@
     "@tarojs/taro": "catalog:",
     "dayjs": "^1.11.13",
     "pinia": "^2.3.1",
-    "taro-plugin-pinia": "^1.0.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
@@ -48,8 +47,9 @@
     "@tarojs/plugin-platform-weapp": "catalog:",
     "@tarojs/router": "catalog:",
     "@tarojs/shared": "catalog:",
-    "@tarojs/webpack5-runner": "catalog:",
-    "@types/webpack-env": "^1.18.8",
+    "@tarojs/vite-runner": "catalog:",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/babel-plugin-jsx": "^1.2.5",
     "@vue/compiler-sfc": "^3.5.13",
     "babel-preset-taro": "catalog:",
@@ -60,19 +60,16 @@
     "postcss": "^8.5.1",
     "prettier": "^3.4.2",
     "taro-define-config": "^0.10.3",
-    "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.7.3",
     "unplugin-vue-components": "^28.0.0",
-    "vue-loader": "^17.4.2",
-    "vue-tsc": "^2.2.0",
-    "webpack": "^5.97.1"
+    "vite": "^4.5.9",
+    "vue-tsc": "^2.2.0"
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,vue,yml,yaml,md,json}": "eslint --fix"
   },
   "browserslist": [
-    "last 3 versions",
-    "Android >= 4.1",
-    "ios >= 8"
+    "defaults and fully supports es6-module",
+    "maintained node versions"
   ]
 }

@@ -9,7 +9,7 @@ catalog:
   '@tarojs/runtime': ^4.0.9
   '@tarojs/shared': ^4.0.9
   '@tarojs/taro': ^4.0.9
-  '@tarojs/webpack5-runner': ^4.0.9
+  '@tarojs/vite-runner': ^4.0.9
   babel-preset-taro: ^4.0.9
 packages:
   - .
