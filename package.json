@@ -2,7 +2,7 @@
   "name": "taro-vue3-zhihudaily",
   "version": "0.3.0",
   "private": true,
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.2.1",
   "description": "taro-vue3-zhihudaily",
   "templateInfo": {
     "name": "vue3-NutUI",
@@ -39,7 +39,7 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.7",
+    "@babel/core": "^7.26.8",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@ntnyq/eslint-config": "^3.12.3",
     "@ntnyq/prettier-config": "^1.22.1",
@@ -53,12 +53,12 @@
     "@vue/babel-plugin-jsx": "^1.2.5",
     "@vue/compiler-sfc": "^3.5.13",
     "babel-preset-taro": "catalog:",
-    "bumpp": "^10.0.1",
-    "eslint": "^9.19.0",
+    "bumpp": "^10.0.2",
+    "eslint": "^9.20.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "postcss": "^8.5.1",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.0",
     "taro-define-config": "^0.10.3",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.7.3",
