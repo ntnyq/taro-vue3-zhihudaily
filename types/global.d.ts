@@ -13,7 +13,16 @@ declare namespace NodeJS {
     /** NODE 内置环境变量, 会影响到最终构建生成产物 */
     NODE_ENV: 'development' | 'production'
     /** 当前构建的平台 */
-    TARO_ENV: 'alipay' | 'h5' | 'jd' | 'qq' | 'quickapp' | 'rn' | 'swan' | 'tt' | 'weapp'
+    TARO_ENV:
+      | 'alipay'
+      | 'h5'
+      | 'jd'
+      | 'qq'
+      | 'quickapp'
+      | 'rn'
+      | 'swan'
+      | 'tt'
+      | 'weapp'
     /**
      * 当前构建的小程序 appid
      * @description 若不同环境有不同的小程序，可通过在 env 文件中配置环境变量`TARO_APP_ID`来方便快速切换 appid， 而不必手动去修改 dist/project.config.json 文件

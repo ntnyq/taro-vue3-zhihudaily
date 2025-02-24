@@ -4,13 +4,6 @@
 
 import path from 'node:path'
 import { defineConfig } from 'taro-define-config'
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
-
-declare module 'taro-define-config' {
-  interface CustomPluginOptionsMap {
-    'taro-plugin-pinia': {}
-  }
-}
 
 /**
  * resolve path
@@ -21,7 +14,7 @@ const resolve = (...args: string[]) => path.resolve(__dirname, '..', ...args)
 
 export default defineConfig({
   projectName: 'taro-vue3-zhihudaily',
-  date: '2022-5-21',
+  date: '2025-02-24',
   designWidth: 750,
   deviceRatio: {
     640: 2.34 / 2,
@@ -31,9 +24,9 @@ export default defineConfig({
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: ['@tarojs/plugin-html', 'taro-plugin-pinia'],
+  plugins: ['@tarojs/plugin-html'],
   compiler: {
-    type: 'webpack5',
+    type: 'vite',
     prebundle: {
       enable: false,
       exclude: ['@nutui/nutui-taro', '@nutui/icons-vue-taro'],
@@ -80,9 +73,6 @@ export default defineConfig({
         },
       },
     },
-    webpackChain(chain) {
-      chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
-    },
     sassLoaderOption: {
       sassOptions: {
         silenceDeprecations: ['import'],
@@ -98,9 +88,6 @@ export default defineConfig({
         enable: true,
         config: {},
       },
-    },
-    webpackChain(chain) {
-      chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
     },
   },
 })

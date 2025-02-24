@@ -9,7 +9,9 @@ export function formatTime(
   date: dayjs.ConfigType,
   { isUnix = false, format = 'YYYY-MM-DD HH:mm:ss' } = {},
 ) {
-  return isUnix ? dayjs.unix(date as number).format(format) : dayjs(date).format(format)
+  return isUnix
+    ? dayjs.unix(date as number).format(format)
+    : dayjs(date).format(format)
 }
 
 /**
@@ -17,4 +19,5 @@ export function formatTime(
  * @param obj - object to be checked
  * @returns `true` if the object is empty
  */
-export const isEmptyObject = (obj: Record<string, any>) => Object.keys(obj).length > 0
+export const isEmptyObject = (obj: Record<string, any>) =>
+  Object.keys(obj).length > 0

@@ -15,7 +15,10 @@ import type {
  * ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise(是否逆时针画弧))
  * ctx.arcTo(x1, y1, x2, y2, radius); // 当前点-x1点 画切线 x1点到x2点画切线， 用半径为radius的圆弧替换掉切线部分
  */
-export function _drawRadiusRect(config: DrawRadiusRectConfig, { ctx }: DrawOptions) {
+export function _drawRadiusRect(
+  config: DrawRadiusRectConfig,
+  { ctx }: DrawOptions,
+) {
   let { x, y, w, h, r } = config
 
   const minSize = Math.min(w, h)
@@ -36,7 +39,10 @@ export function _drawRadiusRect(config: DrawRadiusRectConfig, { ctx }: DrawOptio
 /**
  * 绘制圆角矩形
  */
-export function _drawRadiusGroupRect(config: DrawRadiusGroupRectConfig, { ctx }: DrawOptions) {
+export function _drawRadiusGroupRect(
+  config: DrawRadiusGroupRectConfig,
+  { ctx }: DrawOptions,
+) {
   const { x, y, w, h, g } = config
   const [
     borderTopLeftRadius,
@@ -91,7 +97,10 @@ export function _drawRadiusGroupRect(config: DrawRadiusGroupRectConfig, { ctx }:
 /**
  * 计算文本长度
  */
-export function _getTextWidth(text: DrawTextData | DrawTextData[], drawOptions: DrawOptions) {
+export function _getTextWidth(
+  text: DrawTextData | DrawTextData[],
+  drawOptions: DrawOptions,
+) {
   const { ctx } = drawOptions
   let texts: any[] = []
   if (Array.isArray(text)) {
@@ -169,7 +178,10 @@ export function _drawSingleText(data: DrawTextData, drawOptions: DrawOptions) {
         // 如果拼接下一个字就超出宽度则添加者省略号或者换行
         if (line === lineNum) {
           // 已经是最后一行，就拼接省略号
-          if (restWidth + ctx.measureText(text[i + 1]).width > ctx.measureText('...').width) {
+          if (
+            restWidth + ctx.measureText(text[i + 1]).width
+            > ctx.measureText('...').width
+          ) {
             // 剩余宽度能否放下省略号
             fillText = `${fillText}...`
           } else {
@@ -293,7 +305,10 @@ export function drawBlock(data: DrawBlockData, drawOptions: DrawOptions) {
   // 渲染块内文字
   if (text) {
     // 如果文字宽度超出块宽度，则块的宽度为：文字的宽度 + 内边距
-    const textWidth = _getTextWidth(typeof text.text === 'string' ? text : text.text, drawOptions)
+    const textWidth = _getTextWidth(
+      typeof text.text === 'string' ? text : text.text,
+      drawOptions,
+    )
     blockWidth = Math.max(textWidth, width)
     blockWidth += paddingLeft + paddingLeft
 
