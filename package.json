@@ -34,7 +34,7 @@
     "@tarojs/runtime": "catalog:",
     "@tarojs/taro": "catalog:",
     "dayjs": "^1.11.13",
-    "pinia": "^2.3.1",
+    "pinia": "^3.0.1",
     "taro-plugin-pinia": "^1.0.0",
     "vue": "^3.5.13"
   },
