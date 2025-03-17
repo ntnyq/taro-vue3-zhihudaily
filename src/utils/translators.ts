@@ -12,14 +12,16 @@ export function getMatchedString(matches: string[] | null) {
 }
 
 // ([\s\S]*?) 可以匹配换行等字符，(.*?) 是不可以的
-export const RE_QUESTION = /<div class="question">([\S\s]*?)<\/a>(\n*)<\/div>(\n*)<\/div>/g
+export const RE_QUESTION =
+  /<div class="question">([\S\s]*?)<\/a>(\n*)<\/div>(\n*)<\/div>/g
 export const RE_TITLE = /<h2.*?<\/h2>/g
 export const RE_ANSWER = /<div class="answer">([\S\s]*?)<\/div>(\n*)<\/div>/g
 export const RE_AVATAR = /<img class="avatar"(.*?).((jpe?g)|(png))([\S\s]*?)">/g
 export const RE_AUTHOR = /<span class="author">(.*?)<\/span>/g
 export const RE_BIO = /<span class="bio">(.*?)<\/span>/g
 // TODO 正文，段落列表，需要添加兼容性，p标签是段落正文，figure 标签有可能内嵌图片信息
-export const RE_CONTENT = /(<p>|<figure>|<ul>|<ol>)([\S\s]*?)(<\/p>|<\/figure>|<\/ul>|<\/ol>)/g
+export const RE_CONTENT =
+  /(<p>|<figure>|<ul>|<ol>)([\S\s]*?)(<\/p>|<\/figure>|<\/ul>|<\/ol>)/g
 export const RE_IMAGE = /<img.*?>/i
 export const RE_OL = /<ol.*?>([\S\s]*?)<\/ol>/i
 export const RE_UL = /<ul.*?>([\S\s]*?)<\/ul>/i
@@ -30,7 +32,9 @@ export function normalizeStory(html: string) {
   const images: string[] = []
   const questions: Question[] = []
   const questionHtmlList = html.match(RE_QUESTION)
-  if (!questionHtmlList || questionHtmlList.length === 0) return { images, questions }
+  if (!questionHtmlList || questionHtmlList.length === 0) {
+    return { images, questions }
+  }
 
   questionHtmlList.forEach(question => {
     const titleHtml = getMatchedString(question.match(RE_TITLE))
@@ -50,7 +54,9 @@ export function normalizeStory(html: string) {
         const hasList = RE_OL.test(content) || RE_UL.test(content)
         const temp = { type: '', content: '' }
         if (hasImage) {
-          const tempContentHtml = getMatchedString(content.match(RE_IMAGE_SOURCE))
+          const tempContentHtml = getMatchedString(
+            content.match(RE_IMAGE_SOURCE),
+          )
           const imageSrc = tempContentHtml.slice(5, -1)
           temp.content = imageSrc
           temp.type = 'IMAGE'

@@ -2,14 +2,8 @@
   "name": "taro-vue3-zhihudaily",
   "version": "0.3.0",
   "private": true,
-  "packageManager": "pnpm@10.6.3",
+  "packageManager": "pnpm@10.6.4",
   "description": "taro-vue3-zhihudaily",
-  "templateInfo": {
-    "name": "vue3-NutUI",
-    "typescript": true,
-    "css": "sass",
-    "framework": "Vue3"
-  },
   "license": "MIT",
   "author": {
     "name": "ntnyq",
@@ -19,60 +13,66 @@
     "build": "taro build --type weapp",
     "dev": "pnpm run build --watch",
     "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "eslint",
     "prepare": "husky",
     "release": "bumpp",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10",
-    "@nutui/icons-vue-taro": "^0.0.9",
-    "@nutui/nutui-taro": "^4.3.13",
+    "@babel/runtime": "catalog:",
+    "@nutui/icons-vue-taro": "catalog:",
+    "@nutui/nutui-taro": "catalog:",
     "@tarojs/components": "catalog:",
     "@tarojs/plugin-framework-vue3": "catalog:",
     "@tarojs/plugin-html": "catalog:",
     "@tarojs/runtime": "catalog:",
     "@tarojs/taro": "catalog:",
-    "dayjs": "^1.11.13",
-    "pinia": "^3.0.1",
-    "taro-plugin-pinia": "^1.0.0",
-    "vue": "^3.5.13"
+    "dayjs": "catalog:",
+    "pinia": "catalog:",
+    "taro-plugin-pinia": "catalog:",
+    "vue": "catalog:"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@ntnyq/eslint-config": "^3.12.3",
-    "@ntnyq/prettier-config": "^2.0.0",
+    "@babel/core": "catalog:",
+    "@babel/plugin-proposal-class-properties": "catalog:",
+    "@ntnyq/eslint-config": "catalog:",
+    "@ntnyq/prettier-config": "catalog:",
     "@tarojs/cli": "catalog:",
     "@tarojs/helper": "catalog:",
     "@tarojs/plugin-platform-weapp": "catalog:",
     "@tarojs/router": "catalog:",
     "@tarojs/shared": "catalog:",
     "@tarojs/webpack5-runner": "catalog:",
-    "@types/webpack-env": "^1.18.8",
-    "@vue/babel-plugin-jsx": "^1.4.0",
-    "@vue/compiler-sfc": "^3.5.13",
+    "@types/webpack-env": "catalog:",
+    "@vue/babel-plugin-jsx": "catalog:",
+    "@vue/compiler-sfc": "catalog:",
     "babel-preset-taro": "catalog:",
-    "bumpp": "^10.1.0",
-    "eslint": "^9.22.0",
-    "husky": "^9.1.7",
-    "nano-staged": "^0.8.0",
-    "postcss": "^8.5.3",
-    "prettier": "^3.5.3",
-    "taro-define-config": "^0.10.5",
-    "tsconfig-paths-webpack-plugin": "^4.2.0",
-    "typescript": "^5.8.2",
-    "unplugin-vue-components": "^28.4.1",
-    "vue-loader": "^17.4.2",
-    "vue-tsc": "^2.2.8",
-    "webpack": "^5.98.0"
+    "bumpp": "catalog:",
+    "eslint": "catalog:",
+    "husky": "catalog:",
+    "nano-staged": "catalog:",
+    "postcss": "catalog:",
+    "prettier": "catalog:",
+    "taro-define-config": "catalog:",
+    "tsconfig-paths-webpack-plugin": "catalog:",
+    "typescript": "catalog:",
+    "unplugin-vue-components": "catalog:",
+    "vue-loader": "catalog:",
+    "vue-tsc": "catalog:",
+    "webpack": "catalog:"
   },
   "nano-staged": {
-    "*.{js,ts,cjs,mjs,vue,yml,yaml,md,json}": "eslint --fix"
+    "*.{js,ts,cjs,mjs,vue,md,yml,yaml,json}": "eslint --fix"
   },
   "browserslist": [
     "last 3 versions",
     "Android >= 4.1",
     "ios >= 8"
-  ]
+  ],
+  "templateInfo": {
+    "name": "vue3-NutUI",
+    "typescript": true,
+    "css": "sass",
+    "framework": "Vue3"
+  }
 }

@@ -2,8 +2,8 @@
  * @file Storage
  */
 
-export enum StorageKey {
-  favoriteList = 'FAVORITE_LIST',
-  nickname = 'NICKNAME',
-  avatar = 'AVATAR',
-}
+export const StorageKey = Object.freeze({
+  avatar: 'AVATAR',
+  favoriteList: 'FAVORITE_LIST',
+  nickname: 'NICKNAME',
+})

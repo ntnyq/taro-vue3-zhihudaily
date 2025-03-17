@@ -40,9 +40,9 @@ const posterConfig = ref<DrawConfig>(INIT_DRAW_CONFIG)
 const favoriteStore = useFavoriteStore()
 const shouldRenderPoster = computed(
   () =>
-    posterConfig.value.blocks?.length ||
-    posterConfig.value.images?.length ||
-    posterConfig.value.texts?.length,
+    posterConfig.value.blocks?.length
+    || posterConfig.value.images?.length
+    || posterConfig.value.texts?.length,
 )
 
 const fetchNewsDetail = async (id: string) => {

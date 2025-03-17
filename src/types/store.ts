@@ -2,7 +2,7 @@
  * @file Store
  */
 
-export enum StoreModule {
-  user = 'USER',
-  favorite = 'FAVORITE',
-}
+export const StoreModule = Object.freeze({
+  favorite: 'FAVORITE',
+  user: 'USER',
+})

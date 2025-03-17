@@ -9,7 +9,9 @@ const onCopyLink = async (link: string) => {
 
 <template>
   <div class="page-thank">
-    <nut-noticebar :close-mode="true"> 点击链接，即可复制 URL 至浏览器中打开。 </nut-noticebar>
+    <nut-noticebar :close-mode="true">
+      点击链接，即可复制 URL 至浏览器中打开。
+    </nut-noticebar>
     <view class="card">
       感谢
       <text

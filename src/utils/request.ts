@@ -12,13 +12,14 @@ declare const API_HOST: string
 
 export const apiHost = API_HOST
 
-export enum HTTPMethod {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
+export const HTTPMethod = Object.freeze({
+  GET: 'GET',
+  POST: 'POST',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
   // patch is not supported by wechat app
-}
+})
+export type HttpMethod = keyof typeof HTTPMethod
 
 interface HTTPRequestParams {
   url: string
@@ -27,7 +28,7 @@ interface HTTPRequestParams {
 }
 
 export const HTTPClient = {
-  async baseRequest(method: HTTPMethod, params: HTTPRequestParams) {
+  async baseRequest(method: HttpMethod, params: HTTPRequestParams) {
     const { url, data, contentType } = params
     const options: Taro.request.Option = {
       url: /^https?:\/\//i.test(url) ? url : apiHost + url,

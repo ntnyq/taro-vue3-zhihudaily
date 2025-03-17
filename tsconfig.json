@@ -12,6 +12,8 @@
     },
     "typeRoots": [],
     "resolveJsonModule": true,
+    "erasableSyntaxOnly": true,
+    "libReplacement": false,
     "allowJs": true,
     "sourceMap": true,
     "outDir": "lib",
