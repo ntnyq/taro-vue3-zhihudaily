@@ -32,7 +32,9 @@ export const useFavoriteStore = defineStore(StoreModule.favorite, {
 
     init() {
       const list = Storage.getFavoriteStoryList()
-      if (!list || list.length === 0) return
+      if (!list || list.length === 0) {
+        return
+      }
       this.$patch({ list })
     },
   },

@@ -9,11 +9,15 @@ const clearFaveriteList = async () => {
     title: '提示',
     content: '确定清除所有收藏吗，清除后无法恢复？',
   })
-  if (!res.confirm) return
+  if (!res.confirm) {
+    return
+  }
   favoriteStore.dispose()
 }
 const goStoryDetail = async (id: string) => {
-  if (!id) return
+  if (!id) {
+    return
+  }
   Taro.navigateTo({ url: `/pages/detail/index?id=${id}` })
 }
 const goHome = () => {

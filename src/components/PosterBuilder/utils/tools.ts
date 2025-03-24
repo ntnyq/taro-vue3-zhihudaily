@@ -144,7 +144,9 @@ export async function getImageInfo(item: Image, index: number) {
 
   const imgPath = await downloadFile(url)
 
-  if (!imgPath) return
+  if (!imgPath) {
+    return
+  }
 
   const imageInfo = await Taro.getImageInfo({ src: imgPath })
 
@@ -170,7 +172,7 @@ export async function getImageInfo(item: Image, index: number) {
     borderWidth: item.borderWidth,
     borderColor: item.borderColor,
     borderRadiusGroup: item.borderRadiusGroup,
-    zIndex: zIndex !== undefined ? zIndex : index,
+    zIndex: zIndex ?? index,
     imgPath: url,
     sx,
     sy,
@@ -217,7 +219,9 @@ export function getLinearColor(
   if (color.includes('linear-gradient')) {
     // fillStyle 不支持线性渐变色
     const colorList = color.match(/\((\d+)deg,\s(.+)\s\d+%,\s(.+)\s\d+%/)
-    if (!colorList) return
+    if (!colorList) {
+      return
+    }
     const radian = Number.parseInt(colorList[1]) // 渐变弧度（角度）
     const color1 = colorList[2]
     const color2 = colorList[3]

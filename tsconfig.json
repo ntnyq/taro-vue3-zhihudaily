@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
+    "lib": ["ESNext"],
     "jsx": "preserve",
     "experimentalDecorators": true,
     "module": "CommonJS",

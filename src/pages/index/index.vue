@@ -18,7 +18,9 @@ const latestDate = ref('')
 const dateOffset = ref(INIT_DATE_OFFSET)
 
 const onGoNewsDetail = (news: Story | TopStory) => {
-  if (!news.id) return
+  if (!news.id) {
+    return
+  }
   Taro.navigateTo({ url: `/pages/detail/index?id=${news.id}` })
 }
 const fetchNewsByDate = async () => {
@@ -40,7 +42,9 @@ const fetchLatestNews = async () => {
     slides.value = topStories
     latestDate.value = date
     newsList.value = [res]
-    if (res.stories.length > 3) return
+    if (res.stories.length > 3) {
+      return
+    }
     fetchNewsByDate()
   } catch (err) {
     console.log(err)

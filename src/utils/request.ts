@@ -53,7 +53,9 @@ export const HTTPClient = {
     } catch (err) {
       const title = err.errorMsg || '小程序数据请求失败'
       Taro.showToast({ title, icon: 'none' })
-      throw new Error(title)
+      throw new Error(title, {
+        cause: err,
+      })
     }
   },
 
