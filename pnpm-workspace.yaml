@@ -8,27 +8,27 @@ catalog:
   '@ntnyq/prettier-config': ^2.0.0
   '@nutui/icons-vue-taro': ^0.0.9
   '@nutui/nutui-taro': ^4.3.13
-  '@tarojs/cli': ^4.0.9
-  '@tarojs/components': ^4.0.9
-  '@tarojs/helper': ^4.0.9
-  '@tarojs/plugin-framework-vue3': ^4.0.9
-  '@tarojs/plugin-html': ^4.0.9
-  '@tarojs/plugin-platform-weapp': ^4.0.9
-  '@tarojs/router': ^4.0.9
-  '@tarojs/runtime': ^4.0.9
-  '@tarojs/shared': ^4.0.9
-  '@tarojs/taro': ^4.0.9
-  '@tarojs/webpack5-runner': ^4.0.9
+  '@tarojs/cli': ^4.0.10
+  '@tarojs/components': ^4.0.10
+  '@tarojs/helper': ^4.0.10
+  '@tarojs/plugin-framework-vue3': ^4.0.10
+  '@tarojs/plugin-html': ^4.0.10
+  '@tarojs/plugin-platform-weapp': ^4.0.10
+  '@tarojs/router': ^4.0.10
+  '@tarojs/runtime': ^4.0.10
+  '@tarojs/shared': ^4.0.10
+  '@tarojs/taro': ^4.0.10
+  '@tarojs/webpack5-runner': ^4.0.10
   '@types/webpack-env': ^1.18.8
   '@vue/babel-plugin-jsx': ^1.4.0
   '@vue/compiler-sfc': ^3.5.13
-  babel-preset-taro: ^4.0.9
+  babel-preset-taro: ^4.0.10
   bumpp: ^10.1.0
   dayjs: ^1.11.13
   eslint: ^9.24.0
   husky: ^9.1.7
   nano-staged: ^0.8.0
-  pinia: ^3.0.1
+  pinia: ^3.0.2
   postcss: ^8.5.3
   prettier: ^3.5.3
   taro-define-config: ^0.10.5
@@ -38,8 +38,8 @@ catalog:
   unplugin-vue-components: ^28.4.1
   vue: ^3.5.13
   vue-loader: ^17.4.2
-  vue-tsc: ^3.0.0-alpha.2
-  webpack: ^5.98.0
+  vue-tsc: ^3.0.0-alpha.4
+  webpack: ^5.99.5
 overrides:
   esbuild: ^0.25.1
 onlyBuiltDependencies:
