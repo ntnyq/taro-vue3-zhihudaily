@@ -149,7 +149,9 @@ export function _drawSingleText(data: DrawTextData, drawOptions: DrawOptions) {
   } = data
   const { ctx } = drawOptions
 
-  if (Array.isArray(text)) return
+  if (Array.isArray(text)) {
+    return
+  }
 
   // 画笔初始化
   ctx.save()
@@ -261,7 +263,9 @@ export function drawLine(data: DrawLineData, drawOptions: DrawOptions) {
   const { startX, startY, endX, endY, color, width } = data
   const { ctx } = drawOptions
 
-  if (!width) return
+  if (!width) {
+    return
+  }
 
   ctx.save()
   ctx.beginPath()

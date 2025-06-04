@@ -189,7 +189,9 @@ const onPosterGenerateSuccess = async (result: { tempFilePath: string }) => {
   if (!filePath) {
     return showToast({ title: '图片生成失败，请重试', icon: 'error' })
   }
-  if (authSetting['scope.writePhotosAlbum']) return saveImage(filePath)
+  if (authSetting['scope.writePhotosAlbum']) {
+    return saveImage(filePath)
+  }
   authorize({
     scope: 'scope.writePhotosAlbum',
     success() {
@@ -205,7 +207,9 @@ const onPosterGenerateSuccess = async (result: { tempFilePath: string }) => {
         confirmText: '去设置',
         confirmColor: '#2d8cf0',
       })
-      if (!res.confirm) return
+      if (!res.confirm) {
+        return
+      }
       openSetting()
     },
   })
@@ -223,7 +227,9 @@ useShareTimeline(() => ({
 
 onMounted(() => {
   const id = router.params.id
-  if (!id) return
+  if (!id) {
+    return
+  }
   newsId.value = id
   isChecked.value = favoriteStore.list.map(item => item.id).includes(id)
   fetchNewsDetail(id)

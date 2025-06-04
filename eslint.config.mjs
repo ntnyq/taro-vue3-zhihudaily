@@ -3,8 +3,6 @@
 import { defineESLintConfig } from '@ntnyq/eslint-config'
 
 export default defineESLintConfig({
-  ignores: ['./src/index.html'],
-  pnpm: true,
   vue: {
     overrides: {
       'vue/prefer-true-attribute-shorthand': 'off',

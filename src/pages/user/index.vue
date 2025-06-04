@@ -9,7 +9,9 @@ const favoriteStore = useFavoriteStore()
 
 const handleChooseAvatar = (evt: MpEvent) => {
   const { avatarUrl } = evt.detail as { avatarUrl: string }
-  if (!avatarUrl) return
+  if (!avatarUrl) {
+    return
+  }
   userStore.setAvatar(avatarUrl)
 }
 const handleNicknameChange = async (evt: MpEvent) => {
@@ -18,7 +20,9 @@ const handleNicknameChange = async (evt: MpEvent) => {
     title: '提示',
     content: '确定设置该昵称吗？',
   })
-  if (!res.confirm) return
+  if (!res.confirm) {
+    return
+  }
   userStore.setNickname(nickname)
 }
 const onClearAllCache = async () => {
@@ -26,7 +30,9 @@ const onClearAllCache = async () => {
     title: '提示',
     content: '确定清理全部缓存吗？',
   })
-  if (!res.confirm) return
+  if (!res.confirm) {
+    return
+  }
   userStore.dispose()
   favoriteStore.dispose()
   await Taro.clearStorage()
