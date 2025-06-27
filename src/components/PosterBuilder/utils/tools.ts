@@ -172,7 +172,7 @@ export async function getImageInfo(item: Image, index: number) {
     borderWidth: item.borderWidth,
     borderColor: item.borderColor,
     borderRadiusGroup: item.borderRadiusGroup,
-    zIndex: zIndex !== undefined ? zIndex : index,
+    zIndex: zIndex ?? index,
     imgPath: url,
     sx,
     sy,
