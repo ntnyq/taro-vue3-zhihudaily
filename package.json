@@ -2,7 +2,7 @@
   "name": "taro-vue3-zhihudaily",
   "version": "0.3.0",
   "private": true,
-  "packageManager": "pnpm@10.12.2",
+  "packageManager": "pnpm@10.12.4",
   "description": "taro-vue3-zhihudaily",
   "license": "MIT",
   "author": {
@@ -33,7 +33,7 @@
     "vue": "^3.5.17"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.27.7",
     "@ntnyq/eslint-config": "^5.0.0-beta.8",
     "@ntnyq/prettier-config": "^3.0.1",
     "@tarojs/cli": "^4.1.2",
@@ -47,17 +47,17 @@
     "@vue/compiler-sfc": "^3.5.17",
     "babel-preset-taro": "^4.1.2",
     "bumpp": "^10.2.0",
-    "eslint": "^9.29.0",
+    "eslint": "^9.30.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "postcss": "^8.5.6",
-    "prettier": "^3.6.0",
+    "prettier": "^3.6.2",
     "taro-define-config": "^0.11.0",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.8.3",
-    "unplugin-vue-components": "^28.7.0",
+    "unplugin-vue-components": "^28.8.0",
     "vue-loader": "^17.4.2",
-    "vue-tsc": "^3.0.0-beta.3",
+    "vue-tsc": "^3.0.0-beta.5",
     "webpack": "^5.99.9"
   },
   "nano-staged": {
