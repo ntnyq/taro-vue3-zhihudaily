@@ -19,9 +19,9 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6",
+    "@babel/runtime": "^7.28.2",
     "@nutui/icons-vue-taro": "^0.0.9",
-    "@nutui/nutui-taro": "^4.3.13",
+    "@nutui/nutui-taro": "^4.3.14",
     "@tarojs/components": "^4.1.4",
     "@tarojs/plugin-framework-vue3": "^4.1.4",
     "@tarojs/plugin-html": "^4.1.4",
@@ -30,11 +30,11 @@
     "dayjs": "^1.11.13",
     "pinia": "^3.0.3",
     "taro-plugin-pinia": "^1.0.0",
-    "vue": "^3.5.17"
+    "vue": "^3.5.18"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
-    "@ntnyq/eslint-config": "^5.1.0",
+    "@ntnyq/eslint-config": "^5.2.0",
     "@ntnyq/prettier-config": "^3.0.1",
     "@tarojs/cli": "^4.1.4",
     "@tarojs/helper": "^4.1.4",
@@ -44,10 +44,10 @@
     "@tarojs/webpack5-runner": "^4.1.4",
     "@types/webpack-env": "^1.18.8",
     "@vue/babel-plugin-jsx": "^1.4.0",
-    "@vue/compiler-sfc": "^3.5.17",
+    "@vue/compiler-sfc": "^3.5.18",
     "babel-preset-taro": "^4.1.4",
     "bumpp": "^10.2.0",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "postcss": "^8.5.6",
@@ -57,7 +57,7 @@
     "typescript": "^5.8.3",
     "unplugin-vue-components": "^28.8.0",
     "vue-loader": "^17.4.2",
-    "vue-tsc": "^3.0.3",
+    "vue-tsc": "^3.0.4",
     "webpack": "^5.100.2"
   },
   "nano-staged": {
