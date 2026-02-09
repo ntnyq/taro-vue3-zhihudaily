@@ -17,13 +17,13 @@ const newsList = ref<INews[]>([])
 const latestDate = ref('')
 const dateOffset = ref(INIT_DATE_OFFSET)
 
-const onGoNewsDetail = (news: Story | TopStory) => {
+function onGoNewsDetail(news: Story | TopStory) {
   if (!news.id) {
     return
   }
   Taro.navigateTo({ url: `/pages/detail/index?id=${news.id}` })
 }
-const fetchNewsByDate = async () => {
+async function fetchNewsByDate() {
   const year = latestDate.value.slice(0, 4)
   const month = latestDate.value.slice(4, 6)
   const day = latestDate.value.slice(-2)
@@ -34,7 +34,7 @@ const fetchNewsByDate = async () => {
   const res = await getNewsListByDate(date)
   newsList.value.push(res)
 }
-const fetchLatestNews = async () => {
+async function fetchLatestNews() {
   try {
     const res = await getLatestNewsList()
     const { date, top_stories: topStories = [] } = res

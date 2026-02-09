@@ -40,12 +40,12 @@ const posterConfig = ref<DrawConfig>(INIT_DRAW_CONFIG)
 const favoriteStore = useFavoriteStore()
 const shouldRenderPoster = computed(
   () =>
-    posterConfig.value.blocks?.length
-    || posterConfig.value.images?.length
-    || posterConfig.value.texts?.length,
+    posterConfig.value.blocks?.length ||
+    posterConfig.value.images?.length ||
+    posterConfig.value.texts?.length,
 )
 
-const fetchNewsDetail = async (id: string) => {
+async function fetchNewsDetail(id: string) {
   try {
     const res = await getNewsDetail(id)
     const { title, image, body } = res
@@ -59,14 +59,14 @@ const fetchNewsDetail = async (id: string) => {
     console.log(err)
   }
 }
-const onPreviewImages = async (image: string) => {
+async function onPreviewImages(image: string) {
   try {
     await previewImage({ current: image, urls: images.value })
   } catch {
     showToast({ title: '预览图片失败，请重试', icon: 'error' })
   }
 }
-const onToggleFavoriteStory = () => {
+function onToggleFavoriteStory() {
   const storyMeta = {
     id: newsId.value,
     title: newsTitle.value,
@@ -78,7 +78,7 @@ const onToggleFavoriteStory = () => {
     favoriteStore.removeStory(newsId.value)
   }
 }
-const onGeneratePoster = async () => {
+async function onGeneratePoster() {
   const time = formatTime(new Date(), { format: 'YYYY年MM月DD日' })
   posterConfig.value = {
     ...posterConfig.value,
@@ -169,7 +169,7 @@ const onGeneratePoster = async () => {
     ],
   }
 }
-const saveImage = async (filePath: string) => {
+async function saveImage(filePath: string) {
   try {
     await saveImageToPhotosAlbum({ filePath })
     showModal({
@@ -183,7 +183,7 @@ const saveImage = async (filePath: string) => {
     console.log(err)
   }
 }
-const onPosterGenerateSuccess = async (result: { tempFilePath: string }) => {
+async function onPosterGenerateSuccess(result: { tempFilePath: string }) {
   const { authSetting = {} } = await getSetting()
   const filePath = result.tempFilePath
   if (!filePath) {

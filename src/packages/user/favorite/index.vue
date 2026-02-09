@@ -4,7 +4,7 @@ import { useFavoriteStore } from '@/stores/favorite'
 
 const favoriteStore = useFavoriteStore()
 
-const clearFaveriteList = async () => {
+async function clearFaveriteList() {
   const res = await Taro.showModal({
     title: '提示',
     content: '确定清除所有收藏吗，清除后无法恢复？',
@@ -14,13 +14,13 @@ const clearFaveriteList = async () => {
   }
   favoriteStore.dispose()
 }
-const goStoryDetail = async (id: string) => {
+async function goStoryDetail(id: string) {
   if (!id) {
     return
   }
   Taro.navigateTo({ url: `/pages/detail/index?id=${id}` })
 }
-const goHome = () => {
+function goHome() {
   Taro.switchTab({ url: '/pages/index/index' })
 }
 </script>

@@ -181,8 +181,8 @@ export function _drawSingleText(data: DrawTextData, drawOptions: DrawOptions) {
         if (line === lineNum) {
           // 已经是最后一行，就拼接省略号
           if (
-            restWidth + ctx.measureText(text[i + 1]).width
-            > ctx.measureText('...').width
+            restWidth + ctx.measureText(text[i + 1]).width >
+            ctx.measureText('...').width
           ) {
             // 剩余宽度能否放下省略号
             fillText = `${fillText}...`
@@ -302,9 +302,9 @@ export function drawBlock(data: DrawBlockData, drawOptions: DrawOptions) {
   ctx.save() // 先保存画笔样式，等下恢复回来
   ctx.globalAlpha = opacity
 
-  let blockWidth = 0 // 块的宽度
-  let textX = 0
-  let textY = 0
+  let blockWidth: number // 块的宽度
+  let textX: number
+  let textY: number
 
   // 渲染块内文字
   if (text) {

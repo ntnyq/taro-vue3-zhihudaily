@@ -1,4 +1,0 @@
-**/node_modules/**
-**/dist/**
-**/.swc/**
-pnpm-lock.yaml

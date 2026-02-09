@@ -3,6 +3,8 @@
 import { defineESLintConfig } from '@ntnyq/eslint-config'
 
 export default defineESLintConfig({
+  oxfmt: true,
+  prettier: false,
   vue: {
     overrides: {
       'vue/prefer-true-attribute-shorthand': 'off',

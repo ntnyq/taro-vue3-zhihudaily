@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Taro from '@tarojs/taro'
 
-const onCopyLink = async (link: string) => {
+async function onCopyLink(link: string) {
   await Taro.setClipboardData({ data: link })
   Taro.showToast({ title: '复制 URL 成功', icon: 'success' })
 }

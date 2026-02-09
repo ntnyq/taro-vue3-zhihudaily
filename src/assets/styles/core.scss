@@ -1,6 +1,6 @@
 /* Global variables, mixins and functions */
 
-@forward "@nutui/nutui-taro/dist/styles/variables.scss" with (
+@forward '@nutui/nutui-taro/dist/styles/variables.scss' with (
   $primary-color: #ffd300,
   $primary-color-end: #ffd300
 );
@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-@mixin safe-area-bottom($bottom: 0px, $attr: "padding-bottom") {
+@mixin safe-area-bottom($bottom: 0px, $attr: 'padding-bottom') {
   #{$attr}: $bottom;
   #{$attr}: calc(#{$bottom} + constant(safe-area-inset-bottom));
   #{$attr}: calc(#{$bottom} + env(safe-area-inset-bottom));

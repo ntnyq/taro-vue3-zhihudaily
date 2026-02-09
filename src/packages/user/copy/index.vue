@@ -4,7 +4,7 @@ import { ref } from 'vue'
 
 const email = ref('ntnyq@foxmail.com')
 
-const onCopyEmail = async () => {
+async function onCopyEmail() {
   await Taro.setClipboardData({ data: email.value })
   Taro.showToast({ title: '复制成功', icon: 'success' })
 }

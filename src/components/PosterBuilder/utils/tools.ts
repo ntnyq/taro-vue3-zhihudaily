@@ -207,10 +207,10 @@ export function getLinearColor(
   h: number,
 ) {
   if (
-    typeof startX !== 'number'
-    || typeof startY !== 'number'
-    || typeof w !== 'number'
-    || typeof h !== 'number'
+    typeof startX !== 'number' ||
+    typeof startY !== 'number' ||
+    typeof w !== 'number' ||
+    typeof h !== 'number'
   ) {
     console.warn('坐标或者宽高只支持数字')
     return color

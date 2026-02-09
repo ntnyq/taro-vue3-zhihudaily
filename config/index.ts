@@ -57,6 +57,7 @@ export default defineConfig({
   },
   defineConstants: {
     API_HOST: '"https://news-at.zhihu.com/api/4"',
+    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify('true'),
   },
   copy: {
     patterns: [],
@@ -70,7 +71,7 @@ export default defineConfig({
       pxtransform: {
         enable: true,
         config: {
-          selectorBlackList: ['nut-'],
+          selectorBlackList: ['nut-', 'nutui-iconfont'],
         },
       },
       url: {

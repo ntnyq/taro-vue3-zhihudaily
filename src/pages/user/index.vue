@@ -7,14 +7,14 @@ import type { MpEvent } from '@tarojs/taro'
 const userStore = useUserStore()
 const favoriteStore = useFavoriteStore()
 
-const handleChooseAvatar = (evt: MpEvent) => {
+function handleChooseAvatar(evt: MpEvent) {
   const { avatarUrl } = evt.detail as { avatarUrl: string }
   if (!avatarUrl) {
     return
   }
   userStore.setAvatar(avatarUrl)
 }
-const handleNicknameChange = async (evt: MpEvent) => {
+async function handleNicknameChange(evt: MpEvent) {
   const { value: nickname } = evt.detail as { value: string }
   const res = await Taro.showModal({
     title: '提示',
@@ -25,7 +25,7 @@ const handleNicknameChange = async (evt: MpEvent) => {
   }
   userStore.setNickname(nickname)
 }
-const onClearAllCache = async () => {
+async function onClearAllCache() {
   const res = await Taro.showModal({
     title: '提示',
     content: '确定清理全部缓存吗？',
@@ -38,7 +38,7 @@ const onClearAllCache = async () => {
   await Taro.clearStorage()
   Taro.showToast({ title: '清理成功', icon: 'success' })
 }
-const onCellClick = (key: string) => {
+function onCellClick(key: string) {
   switch (key) {
     case 'copy':
     case 'author':
