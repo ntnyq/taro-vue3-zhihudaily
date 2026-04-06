@@ -55,7 +55,7 @@
     "taro-define-config": "^0.14.1",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.9.3",
-    "unplugin-vue-components": "^31.0.0",
+    "unplugin-vue-components": "^32.0.0",
     "vue-loader": "^17.4.2",
     "vue-tsc": "^3.2.5",
     "webpack": "^5.105.2"
