@@ -43,7 +43,7 @@ export default defineConfig({
   cache: {
     enable: false,
   },
-  jsMinimizer: 'esbuild',
+  jsMinimizer: 'terser',
   esbuild: {
     minify: {
       config: {
@@ -82,6 +82,7 @@ export default defineConfig({
       },
     },
     webpackChain(chain) {
+      chain.plugins.delete('webpackbar')
       chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
     },
     sassLoaderOption: {
@@ -101,6 +102,7 @@ export default defineConfig({
       },
     },
     webpackChain(chain) {
+      chain.plugins.delete('webpackbar')
       chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
     },
   },

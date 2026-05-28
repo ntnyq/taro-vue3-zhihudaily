@@ -1,11 +1,14 @@
 overrides:
-  esbuild: ^0.27.3
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
-  - '@tarojs/binding'
-  - '@tarojs/cli'
-  - core-js
-  - core-js-pure
-  - esbuild
-  - unrs-resolver
+  esbuild: ^0.28.0
+
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  '@tarojs/binding': true
+  '@tarojs/cli': true
+  core-js: true
+  core-js-pure: true
+  esbuild: true
+  unrs-resolver: true
+
+minimumReleaseAge: 0

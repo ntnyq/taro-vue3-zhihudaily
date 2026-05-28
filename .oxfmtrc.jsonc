@@ -13,7 +13,7 @@
     "**/.swc/**",
     "pnpm-lock.yaml",
     "**/*.min.*",
-    "**/tests/fixtures/**"
+    "**/tests/fixtures/**",
   ],
   "insertFinalNewline": true,
   "jsxSingleQuote": true,
@@ -22,9 +22,9 @@
     {
       "files": ["**/*.html"],
       "options": {
-        "singleAttributePerLine": false
-      }
-    }
+        "singleAttributePerLine": false,
+      },
+    },
   ],
   "printWidth": 80,
   "proseWrap": "preserve",
@@ -35,5 +35,5 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false
+  "vueIndentScriptAndStyle": false,
 }

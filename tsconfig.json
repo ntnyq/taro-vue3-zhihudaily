@@ -6,8 +6,7 @@
     "experimentalDecorators": true,
     "module": "CommonJS",
     "rootDir": ".",
-    "moduleResolution": "node",
-    "baseUrl": ".",
+    "moduleResolution": "Bundler",
     "paths": {
       "@/*": ["./src/*"]
     },
