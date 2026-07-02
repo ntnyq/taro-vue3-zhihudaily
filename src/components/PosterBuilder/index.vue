@@ -183,12 +183,12 @@ export default defineComponent({
             // 1. 下载图片资源
             startDrawing(result)
           })
-          .catch(err => {
+          .catch(error => {
             Taro.showToast({
               icon: 'none',
-              title: err.errMsg || '下载图片失败',
+              title: error.errMsg || '下载图片失败',
             })
-            context.emit('fail', err)
+            context.emit('fail', error)
           })
           .finally(() => {
             Taro.hideLoading()

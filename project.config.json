@@ -3,6 +3,7 @@
   "projectname": "taro-vue3-zhihudaily",
   "description": "taro-vue3-zhihudaily",
   "appid": "wx9d6b29dabbb43222",
+  "libVersion": "2.33.0",
   "setting": {
     "urlCheck": true,
     "es6": true,

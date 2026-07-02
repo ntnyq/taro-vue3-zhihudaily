@@ -92,7 +92,7 @@ export function ensureHttps(url: string) {
  * 获取 rpx => px 的转换系数
  * @returns factor 单位转换系数 1rpx = factor * px
  */
-export const getFactor = () => {
+export function getFactor() {
   const sysInfo = Taro.getSystemInfoSync()
   const { screenWidth } = sysInfo
   return screenWidth / 750
@@ -104,8 +104,9 @@ export const getFactor = () => {
  * @param factor - 转化因子
  * @returns px
  */
-export const toPx = (rpx: number, factor = getFactor()) =>
-  Number.parseInt(String(rpx * factor), 10)
+export function toPx(rpx: number, factor = getFactor()) {
+  return Math.trunc(rpx * factor)
+}
 
 /**
  * px => rpx 单位转换
@@ -113,8 +114,9 @@ export const toPx = (rpx: number, factor = getFactor()) =>
  * @param factor - 转化因子
  * @returns rpx
  */
-export const toRpx = (px: number, factor = getFactor()) =>
-  Number.parseInt(String(px / factor), 10)
+export function toRpx(px: number, factor = getFactor()) {
+  return Math.trunc(px / factor)
+}
 
 /**
  * 下载图片资源
@@ -255,7 +257,8 @@ export function getLinearColor(
 export function getTextX(textAlign: string, x: number, width: number) {
   if (textAlign === 'center') {
     return width / 2 + x
-  } else if (textAlign === 'right') {
+  }
+  if (textAlign === 'right') {
     return width + x
   }
   return x

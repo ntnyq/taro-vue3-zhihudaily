@@ -1,39 +1,38 @@
 import Taro from '@tarojs/taro'
-import { StorageKey } from '@/types'
 import type { StoryMeta } from '@/types'
 
 export function getNickname() {
-  return Taro.getStorageSync<string>(StorageKey.nickname)
+  return Taro.getStorageSync<string>('nickname')
 }
 
 export function setNickname(nickname: string) {
-  return Taro.setStorageSync(StorageKey.nickname, nickname)
+  return Taro.setStorageSync('nickname', nickname)
 }
 
 export function removeNickname() {
-  return Taro.removeStorageSync(StorageKey.nickname)
+  return Taro.removeStorageSync('nickname')
 }
 
 export function getAvatar() {
-  return Taro.getStorageSync<string>(StorageKey.avatar)
+  return Taro.getStorageSync<string>('avatar')
 }
 
 export function setAvatar(avatar: string) {
-  return Taro.setStorageSync(StorageKey.avatar, avatar)
+  return Taro.setStorageSync('avatar', avatar)
 }
 
 export function removeAvatar() {
-  return Taro.removeStorageSync(StorageKey.avatar)
+  return Taro.removeStorageSync('avatar')
 }
 
 export function getFavoriteStoryList() {
-  return Taro.getStorageSync<StoryMeta[]>(StorageKey.favoriteList)
+  return Taro.getStorageSync<StoryMeta[]>('favorite-list')
 }
 
 export function setFavoriteStoryList(list: StoryMeta[]) {
-  return Taro.setStorageSync(StorageKey.favoriteList, list)
+  return Taro.setStorageSync('favorite-list', list)
 }
 
 export function removeFavoriteStoryList() {
-  return Taro.removeStorageSync(StorageKey.favoriteList)
+  return Taro.removeStorageSync('favorite-list')
 }

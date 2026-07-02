@@ -191,12 +191,11 @@ export function _drawSingleText(data: DrawTextData, drawOptions: DrawOptions) {
           }
           textArr.push(fillText)
           break
-        } else {
-          // 如果不是最后一行，就换行
-          textArr.push(fillText)
-          line++
-          fillText = ''
         }
+        // 如果不是最后一行，就换行
+        textArr.push(fillText)
+        line++
+        fillText = ''
       } else if (i === text.length - 1) {
         textArr.push(fillText)
       }
@@ -393,8 +392,8 @@ export function drawBlock(data: DrawBlockData, drawOptions: DrawOptions) {
 /**
  * 渲染图片
  */
-export const drawImage = (data: DrawImageData, drawOptions: DrawOptions) =>
-  new Promise<void>(resolve => {
+export function drawImage(data: DrawImageData, drawOptions: DrawOptions) {
+  return new Promise<void>(resolve => {
     const { canvas, ctx } = drawOptions
     const {
       x,
@@ -468,3 +467,4 @@ export const drawImage = (data: DrawImageData, drawOptions: DrawOptions) =>
       })
     }
   })
+}

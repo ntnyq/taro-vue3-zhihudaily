@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { Service } from '@nutui/icons-vue-taro'
-import { ref } from 'vue'
+import { readonly } from 'vue'
 
-const contributors = ref([
+const contributors = readonly([
   {
     name: 'ntnyq',
     avatar: 'https://avatars1.githubusercontent.com/u/22659150',

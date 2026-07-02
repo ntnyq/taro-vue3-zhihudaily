@@ -1,39 +1,44 @@
 import { defineStore } from 'pinia'
-import { StoreModule } from '@/types'
+import { shallowRef } from 'vue'
 import * as Storage from '@/utils/storage'
 
-export interface IUserState {
-  avatar: string
-  nickname: string
-}
+export const useUserStore = defineStore('user', () => {
+  const avatar = shallowRef('')
+  const nickname = shallowRef('')
 
-export const useUserStore = defineStore(StoreModule.user, {
-  state: (): IUserState => ({
-    avatar: '',
-    nickname: '',
-  }),
+  function reset() {
+    avatar.value = ''
+    nickname.value = ''
+  }
 
-  actions: {
-    setNickname(nickname = '') {
-      this.$patch({ nickname })
-      Storage.setNickname(nickname)
-    },
+  function setNickname(value = '') {
+    nickname.value = value
+    Storage.setNickname(value)
+  }
 
-    setAvatar(avatar = '') {
-      this.$patch({ avatar })
-      Storage.setAvatar(avatar)
-    },
+  function setAvatar(value = '') {
+    avatar.value = value
+    Storage.setAvatar(value)
+  }
 
-    dispose() {
-      Storage.removeNickname()
-      Storage.removeAvatar()
-      this.$reset()
-    },
+  function dispose() {
+    Storage.removeNickname()
+    Storage.removeAvatar()
+    reset()
+  }
 
-    init() {
-      const nickname = Storage.getNickname() ?? ''
-      const avatar = Storage.getAvatar() ?? ''
-      this.$patch({ avatar, nickname })
-    },
-  },
+  function init() {
+    nickname.value = Storage.getNickname() ?? ''
+    avatar.value = Storage.getAvatar() ?? ''
+  }
+
+  return {
+    avatar,
+    nickname,
+    reset,
+    setNickname,
+    setAvatar,
+    dispose,
+    init,
+  }
 })

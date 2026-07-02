@@ -5,6 +5,8 @@
 
 import Taro from '@tarojs/taro'
 
+const STATUS_CODE_SUCCESS = 200
+
 /**
  * Injected by `config.defineConstants`
  */
@@ -43,19 +45,18 @@ export const HTTPClient = {
       const res = await Taro.request(options)
       const { statusCode, errMsg } = res
 
-      if (statusCode === 200) {
+      if (statusCode === STATUS_CODE_SUCCESS) {
         return res.data || {}
-      } else {
-        const title = errMsg || `返回成功，但状态码为${statusCode}`
-        Taro.showToast({ title, icon: 'none' })
-        throw new Error(title)
       }
-    } catch (err) {
-      const title = err.errorMsg || '小程序数据请求失败'
+
+      const title = errMsg || `返回成功，但状态码为${statusCode}`
       Taro.showToast({ title, icon: 'none' })
-      throw new Error(title, {
-        cause: err,
-      })
+      throw new Error(title)
+    } catch (error) {
+      const title =
+        (error as { errorMsg: string }).errorMsg || '小程序数据请求失败'
+      Taro.showToast({ title, icon: 'none' })
+      throw new Error(title, { cause: error })
     }
   },
 

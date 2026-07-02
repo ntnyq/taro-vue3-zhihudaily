@@ -1,41 +1,46 @@
 import { defineStore } from 'pinia'
-import { StoreModule } from '@/types'
+import { shallowRef } from 'vue'
 import * as Storage from '@/utils/storage'
 import type { StoryMeta } from '@/types'
 
-export interface IFavoriteState {
-  list: StoryMeta[]
-}
+export const useFavoriteStore = defineStore('favorite', () => {
+  const list = shallowRef<StoryMeta[]>([])
 
-export const useFavoriteStore = defineStore(StoreModule.favorite, {
-  state: (): IFavoriteState => ({
-    list: [],
-  }),
+  function reset() {
+    list.value = []
+  }
 
-  actions: {
-    addStory(story: StoryMeta) {
-      const list = [story, ...this.list]
-      this.$patch({ list })
-      Storage.setFavoriteStoryList(list)
-    },
+  function addStory(story: StoryMeta) {
+    const nextList = [story, ...list.value]
+    list.value = nextList
+    Storage.setFavoriteStoryList(nextList)
+  }
 
-    removeStory(id: string) {
-      const list = this.list.filter(item => item.id !== id)
-      this.$patch({ list })
-      Storage.setFavoriteStoryList(list)
-    },
+  function removeStory(id: string) {
+    const nextList = list.value.filter(item => item.id !== id)
+    list.value = nextList
+    Storage.setFavoriteStoryList(nextList)
+  }
 
-    dispose() {
-      Storage.removeFavoriteStoryList()
-      this.$reset()
-    },
+  function dispose() {
+    Storage.removeFavoriteStoryList()
+    reset()
+  }
 
-    init() {
-      const list = Storage.getFavoriteStoryList()
-      if (!list || list.length === 0) {
-        return
-      }
-      this.$patch({ list })
-    },
-  },
+  function init() {
+    const favoriteStoryList = Storage.getFavoriteStoryList()
+    if (!favoriteStoryList || favoriteStoryList.length === 0) {
+      return
+    }
+    list.value = favoriteStoryList
+  }
+
+  return {
+    list,
+    reset,
+    addStory,
+    removeStory,
+    dispose,
+    init,
+  }
 })

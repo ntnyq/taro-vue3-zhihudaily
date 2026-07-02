@@ -55,8 +55,8 @@ async function fetchNewsDetail(id: string) {
     images.value = story.images
     questions.value = story.questions
     setNavigationBarTitle({ title: newsTitle.value })
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
   }
 }
 async function onPreviewImages(image: string) {
@@ -179,8 +179,8 @@ async function saveImage(filePath: string) {
       confirmText: '我知道了',
       confirmColor: '#2d8cf0',
     })
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
   }
 }
 async function onPosterGenerateSuccess(result: { tempFilePath: string }) {

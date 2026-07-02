@@ -46,8 +46,8 @@ async function fetchLatestNews() {
       return
     }
     fetchNewsByDate()
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -56,8 +56,8 @@ usePullDownRefresh(async () => {
   try {
     await fetchLatestNews()
     dateOffset.value = INIT_DATE_OFFSET
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
   } finally {
     Taro.stopPullDownRefresh()
     Taro.hideLoading()
