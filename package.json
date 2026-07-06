@@ -46,7 +46,7 @@
     "@tarojs/shared": "^4.2.0",
     "@tarojs/webpack5-runner": "^4.2.0",
     "@types/webpack-env": "^1.18.8",
-    "@vue/babel-plugin-jsx": "^2.0.1",
+    "@vue/babel-plugin-jsx": "^3.0.0",
     "@vue/compiler-sfc": "^3.5.39",
     "babel-preset-taro": "^4.2.0",
     "bumpp": "^11.1.0",
