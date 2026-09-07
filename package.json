@@ -58,7 +58,7 @@
     "postcss": "^8.5.16",
     "taro-define-config": "^0.15.0",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "unplugin-vue-components": "^32.1.0",
     "vue-loader": "^17.4.2",
     "vue-tsc": "^3.3.6",
