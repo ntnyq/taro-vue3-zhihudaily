@@ -20,7 +20,9 @@
     "release": "runs-s release:check release:version",
     "release:check": "run-s lint format:check typecheck",
     "release:version": "bumpp",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "run-s typecheck:vue typecheck:native",
+    "typecheck:native": "node node_modules/@typescript/native/bin/tsc --noEmit -p tsconfig.native.json",
+    "typecheck:vue": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@babel/runtime": "^8.0.0",
@@ -46,6 +48,7 @@
     "@tarojs/shared": "^4.2.0",
     "@tarojs/webpack5-runner": "^4.2.0",
     "@types/webpack-env": "^1.18.8",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@vue/babel-plugin-jsx": "^3.0.0",
     "@vue/compiler-sfc": "^3.5.39",
     "babel-preset-taro": "^4.2.0",
@@ -58,10 +61,10 @@
     "postcss": "^8.5.16",
     "taro-define-config": "^0.15.0",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
-    "typescript": "^7.0.2",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "unplugin-vue-components": "^32.1.0",
     "vue-loader": "^17.4.2",
-    "vue-tsc": "^3.3.6",
+    "vue-tsc": "^3.3.11",
     "webpack": "^5.108.4"
   },
   "nano-staged": {
